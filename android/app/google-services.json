@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1021358619486",
+    "project_id": "codedgp-f63b4",
+    "storage_bucket": "codedgp-f63b4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1021358619486:android:f0bd22779eef5257866dcf",
+        "android_client_info": {
+          "package_name": "com.fluttergp.coded_gp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDz29FTV-yKfhfmgvr1BmjB92Rbpt8j7zg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
