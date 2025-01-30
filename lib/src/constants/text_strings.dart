@@ -17,5 +17,3 @@ const String onboardingsubtitle3 =
 const String boardingcounter1 = "1/3";
 const String boardingcounter2 = "2/3";
 const String boardingcounter3 = "3/3";
-
-const double value1 = 30.0;
