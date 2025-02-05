@@ -33,8 +33,25 @@ dependencies:
   firebase_core: ^3.10.1
   cupertino_icons: ^1.0.8
   flutter_native_splash: ^2.4.4
-  liquid_swipe: ^3.0.0
-  smooth_page_indicator: ^1.0.0+2
+  get: ^4.6.6
+  get_storage: ^2.0.12
+  carousel_slider: ^4.1.1
+  google_fonts: ^6.2.1
+  cached_network_image: ^3.3.1
+  firebase_auth: ^5.2.1
+  cloud_firestore: ^5.3.1
+  firebase_storage: ^12.2.1
+  shared_preferences: ^2.2.2
+  loading_animation_widget: ^1.2.0
+  shimmer: ^2.0.0
+  image_picker: ^1.1.2
+  http: ^1.0.0
+  path: ^1.8.3
+  permission_handler: ^11.3.1
+  timeago: ^3.2.0
+  fl_chart: ^0.60.0
+  url_launcher: ^6.2.1
+  toastification: ^2.2.0
 
 dev_dependencies:
   flutter_test:
