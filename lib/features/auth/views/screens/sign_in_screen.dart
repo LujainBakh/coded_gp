@@ -3,7 +3,9 @@ import 'package:coded_gp/core/common/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:coded_gp/core/config/theme/app_colors.dart';
 import 'package:coded_gp/core/common/widgets/custom_button.dart';
+// ignore: unused_import
 import 'package:coded_gp/features/auth/controllers/auth.dart';
+// ignore: unused_import
 import 'package:firebase_auth/firebase_auth.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -34,99 +36,131 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 50),
-              Row(
-                children: [
-                  Image.asset(
-                    'assets/images/splash/Duck-01.png',
-                    height: 60,
-                    width: 60,
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/coded_bg.png'),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: SafeArea(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return Center(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(24),
+                  child: Container(
+                    width: constraints.maxWidth,
+                    height: constraints.maxHeight,
+                    constraints: const BoxConstraints(maxWidth: 400),
+                    margin: EdgeInsets.symmetric(
+                      horizontal: constraints.maxWidth > 400
+                          ? (constraints.maxWidth - 400) / 2
+                          : 0,
+                    ),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Welcome! Glad to see you',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium
-                              ?.copyWith(
-                                color: isDark
-                                    ? AppColors.kWhiteColor
-                                    : AppColors.kBlackColor,
-                                fontWeight: FontWeight.bold,
+                        SizedBox(height: constraints.maxHeight * 0.10),
+                        const SizedBox(height: 50),
+                        Row(
+                          children: [
+                            Image.asset(
+                              'assets/images/splash/Duck-01.png',
+                              height: 60,
+                              width: 60,
+                            ),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Welcome! Glad to see you',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium
+                                        ?.copyWith(
+                                          color: isDark
+                                              ? AppColors.kWhiteColor
+                                              : AppColors.kBlackColor,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    'Sign in to continue',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium
+                                        ?.copyWith(
+                                          color: isDark
+                                              ? AppColors.kWhiteColor
+                                              : AppColors.kTextLightColor,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                ],
                               ),
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'Sign in to continue',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium
-                              ?.copyWith(
-                                color: isDark
-                                    ? AppColors.kWhiteColor
-                                    : AppColors.kTextLightColor,
-                                fontWeight: FontWeight.bold,
-                              ),
+                        const SizedBox(height: 40),
+
+                        // email field
+                        CustomTextField(
+                          label: 'Email',
+                          hintText: 'Enter your university email',
+                          prefixIcon: Icons.email_outlined,
+                          controller: emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          errorText: emailError,
+                          backgroundColor: isDark
+                              ? AppColors.kDarkFieldColor
+                              : AppColors.kLightFieldColor,
+                          onChanged: (_) => validateInputs(),
+                          onFieldSubmitted: (_) {
+                            validateInputs();
+                            FocusScope.of(context).unfocus();
+                          },
+                        ),
+                        const SizedBox(height: 16),
+
+                        // password field
+                        CustomTextField(
+                          label: 'Password',
+                          hintText: 'Enter your password',
+                          prefixIcon: Icons.lock_outline,
+                          isPassword: true,
+                          controller: passwordController,
+                          errorText: passwordError,
+                          backgroundColor: isDark
+                              ? AppColors.kDarkFieldColor
+                              : AppColors.kLightFieldColor,
+                          onChanged: (_) => validateInputs(),
+                          onFieldSubmitted: (_) {
+                            validateInputs();
+                            FocusScope.of(context).unfocus();
+                          },
+                        ),
+                        const SizedBox(height: 16),
+
+                        // sign in button
+                        CustomButton(
+                          text: 'Sign In',
+                          onPressed: () {},
+                          isLoading: isLoading,
+                          isDisabled: !isValid,
                         ),
                       ],
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(height: 40),
-
-              // email field
-              CustomTextField(
-                label: 'Email',
-                hintText: 'Enter your email',
-                prefixIcon: Icons.email_outlined,
-                controller: emailController,
-                keyboardType: TextInputType.emailAddress,
-                errorText: emailError,
-                onChanged: (_) => validateInputs(),
-                onFieldSubmitted: (_) {
-                  validateInputs();
-                  FocusScope.of(context).unfocus();
-                },
-              ),
-              const SizedBox(height: 16),
-
-              // password field
-              CustomTextField(
-                label: 'Password',
-                hintText: 'Enter your password',
-                prefixIcon: Icons.lock_outline,
-                isPassword: true,
-                controller: passwordController,
-                errorText: passwordError,
-                onChanged: (_) => validateInputs(),
-                onFieldSubmitted: (_) {
-                  validateInputs();
-                  FocusScope.of(context).unfocus();
-                },
-              ),
-              const SizedBox(height: 16),
-
-              // sign in button
-              CustomButton(
-                text: 'Sign In',
-                onPressed: () {},
-                isLoading: isLoading,
-                isDisabled: !isValid,
-              ),
-            ],
+                ),
+              );
+            },
           ),
         ),
       ),

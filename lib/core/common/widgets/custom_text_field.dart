@@ -12,6 +12,7 @@ class CustomTextField extends StatefulWidget {
   final TextInputType? keyboardType;
   final VoidCallback? onEditingComplete;
   final Function(String)? onFieldSubmitted;
+  final Color? backgroundColor;
 
   const CustomTextField({
     super.key,
@@ -25,6 +26,7 @@ class CustomTextField extends StatefulWidget {
     this.keyboardType,
     this.onEditingComplete,
     this.onFieldSubmitted,
+    this.backgroundColor,
   });
 
   @override
@@ -107,8 +109,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
               borderRadius: BorderRadius.circular(12),
               borderSide: const BorderSide(color: AppColors.kErrorColor),
             ),
-            filled: isDark,
-            fillColor: Theme.of(context).cardColor,
+            filled: isDark || widget.backgroundColor != null,
+            fillColor: widget.backgroundColor ?? Theme.of(context).cardColor,
           ),
         ),
       ],

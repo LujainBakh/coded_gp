@@ -13,6 +13,8 @@ class AppColors {
   static const Color kErrorColor = Color(0xFFF44336);
   static const Color kHintTextColor = Color(0xFF9E9E9E);
   static const Color kbBorderColor = Color(0xFFE0E0E0);
+  static const Color kDarkFieldColor = Color(0xFF1A2340);
+  static const Color kLightFieldColor = Color(0xFFF0F1F3);
 
   static const Color kCardLightColor = Color(0xFFFFFFFF);
   static const Color kCardDarkColor = Color(0xFF09122C);
