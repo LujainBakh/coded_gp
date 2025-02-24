@@ -7,7 +7,9 @@ import 'package:coded_gp/core/common/widgets/custom_button.dart';
 import 'package:coded_gp/features/auth/controllers/auth.dart';
 // ignore: unused_import
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:coded_gp/features/home/screens/homescreen.dart';
+// ignore: unused_import
+import 'package:coded_gp/features/home/views/screens/homescreen.dart';
+import 'package:coded_gp/main_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -43,7 +45,7 @@ class _SignInScreenState extends State<SignInScreen> {
         Navigator.of(context).pushReplacement(
           PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) =>
-                const HomeScreen(),
+                const MainScreen(),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
               return FadeTransition(

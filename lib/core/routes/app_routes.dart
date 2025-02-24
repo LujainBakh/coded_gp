@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:coded_gp/features/onboarding/screens/on_boarding_screen.dart';
 import 'package:coded_gp/features/auth/views/screens/sign_in_screen.dart';
 import 'package:coded_gp/features/splash/screens/splash_screen.dart';
-import 'package:coded_gp/features/home/screens/homescreen.dart';
+import 'package:coded_gp/features/home/views/screens/homescreen.dart';
 
 class AppRoutes {
   static const String onboarding = '/onboarding';
