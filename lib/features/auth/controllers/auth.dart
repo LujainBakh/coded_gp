@@ -11,10 +11,14 @@ class Auth {
     required String email,
     required String password,
   }) async {
-    await _firebaseAuth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+    try {
+      await _firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } catch (e) {
+      throw Exception("Failed to sign in: ${e.toString()}");
+    }
   }
 
   Future<void> signOut() async {

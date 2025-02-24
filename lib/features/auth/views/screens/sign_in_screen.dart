@@ -7,6 +7,7 @@ import 'package:coded_gp/core/common/widgets/custom_button.dart';
 import 'package:coded_gp/features/auth/controllers/auth.dart';
 // ignore: unused_import
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:coded_gp/features/home/screens/homescreen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -22,6 +23,86 @@ class _SignInScreenState extends State<SignInScreen> {
 
   String? emailError;
   String? passwordError;
+
+  Future<void> handleSignIn() async {
+    // Validate inputs first
+    validateInputs();
+    if (!isValid) return;
+
+    setState(() => isLoading = true);
+
+    try {
+      // Attempt sign in
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text,
+      );
+
+      // Add fade transition
+      if (mounted) {
+        Navigator.of(context).pushReplacement(
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                const HomeScreen(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity: CurvedAnimation(
+                  parent: animation,
+                  curve: Curves.easeOut,
+                ),
+                child: child,
+              );
+            },
+            transitionDuration: const Duration(milliseconds: 400),
+          ),
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      // Add debug print to see the error code
+      print('Firebase Auth Error Code: ${e.code}');
+
+      String errorMessage = 'An error occurred. Please try again.';
+
+      switch (e.code) {
+        case 'user-not-found':
+        case 'wrong-password':
+        case 'invalid-credential':
+          errorMessage = 'Incorrect email or password';
+          break;
+        case 'invalid-email':
+          errorMessage = 'Invalid email address';
+          break;
+        case 'too-many-requests':
+          errorMessage = 'Too many attempts. Please try again later.';
+          break;
+      }
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(errorMessage),
+            backgroundColor: Colors.red,
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('An error occurred. Please try again.'),
+            backgroundColor: Colors.red,
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => isLoading = false);
+      }
+    }
+  }
 
   void validateInputs() {
     setState(() {
@@ -114,7 +195,6 @@ class _SignInScreenState extends State<SignInScreen> {
                         CustomTextField(
                           label: 'Email',
                           hintText: 'Enter your university email',
-                          prefixIcon: Icons.email_outlined,
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           errorText: emailError,
@@ -133,7 +213,6 @@ class _SignInScreenState extends State<SignInScreen> {
                         CustomTextField(
                           label: 'Password',
                           hintText: 'Enter your password',
-                          prefixIcon: Icons.lock_outline,
                           isPassword: true,
                           controller: passwordController,
                           errorText: passwordError,
@@ -151,7 +230,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         // sign in button
                         CustomButton(
                           text: 'Sign In',
-                          onPressed: () {},
+                          onPressed: handleSignIn,
                           isLoading: isLoading,
                           isDisabled: !isValid,
                         ),

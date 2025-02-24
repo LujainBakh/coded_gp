@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatefulWidget {
   final String label;
   final String hintText;
-  final IconData prefixIcon;
+  final IconData? prefixIcon;
   final bool isPassword;
   final TextEditingController controller;
   final String? errorText;
@@ -18,7 +18,7 @@ class CustomTextField extends StatefulWidget {
     super.key,
     required this.label,
     required this.hintText,
-    required this.prefixIcon,
+    this.prefixIcon,
     this.isPassword = false,
     required this.controller,
     this.errorText,
@@ -70,10 +70,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
             hintStyle: TextStyle(
               color: isDark ? Colors.grey[400] : AppColors.kTextLightColor,
             ),
-            prefixIcon: Icon(
-              widget.prefixIcon,
-              color: isDark ? Colors.grey[400] : AppColors.kTextDarkColor,
-            ),
+            prefixIcon: widget.prefixIcon != null
+                ? Icon(
+                    widget.prefixIcon,
+                    color: isDark ? Colors.grey[400] : AppColors.kTextDarkColor,
+                  )
+                : null,
             suffixIcon: widget.isPassword
                 ? IconButton(
                     onPressed: () {
