@@ -83,6 +83,10 @@ flutter:
     - assets/images/splash/
     - assets/images/onboarding/
     - assets/images/coded_bg.png
+    - assets/images/ads/
+    - assets/images/profile.png
+    - assets/images/CodedLogo1.png
+    - assets/images/Duck-01.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -7,6 +7,8 @@ class AppBottomNavBar extends StatelessWidget {
   final Color? backgroundColor;
   final Color? selectedItemColor;
   final Color? unselectedItemColor;
+  final bool isVisible;
+
   const AppBottomNavBar({
     super.key,
     required this.currentIndex,
@@ -14,10 +16,13 @@ class AppBottomNavBar extends StatelessWidget {
     this.backgroundColor,
     this.selectedItemColor,
     this.unselectedItemColor,
+    this.isVisible = true,
   });
 
   @override
   Widget build(BuildContext context) {
+    if (!isVisible) return const SizedBox.shrink();
+
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Stack(
       clipBehavior: Clip.none,

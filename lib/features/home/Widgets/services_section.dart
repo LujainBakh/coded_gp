@@ -3,21 +3,22 @@ import 'package:flutter/material.dart';
 class ServicesSection extends StatelessWidget {
   final List<Map<String, dynamic>> services;
   final Function(BuildContext) onViewAllTap;
+
   const ServicesSection({
-    super.key, 
-    required this.services, 
+    super.key,
+    required this.services,
     required this.onViewAllTap,
-    });
+  });
 
   @override
   Widget build(BuildContext context) {
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     return Column(
         children: [
-          const SizedBox(height: 10),
+          const SizedBox(height: 4),
           Container(
-            height: 120,
-            margin: const EdgeInsets.symmetric(vertical: 10),
+            height: 100,
+            margin: const EdgeInsets.symmetric(vertical: 4),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: services.length,
@@ -29,8 +30,8 @@ class ServicesSection extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        width: 70,
-                        height: 70,
+                        width: 60,
+                        height: 60,
                         decoration: BoxDecoration(
                           color: Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(20),
@@ -57,7 +58,7 @@ class ServicesSection extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 4),
                       Text(
                         service['title'],
                         style: TextStyle(
