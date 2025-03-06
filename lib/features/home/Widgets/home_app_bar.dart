@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-  
 
-class HomeAppBar extends StatelessWidget implements PreferredSizeWidget{ 
-  const HomeAppBar ({super.key});
-  
+class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const HomeAppBar({super.key});
+
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-  
+
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return AppBar(
@@ -43,6 +43,5 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget{
         ),
       ],
     );
-   
   }
 }
