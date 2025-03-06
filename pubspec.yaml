@@ -87,6 +87,7 @@ flutter:
     - assets/images/profile.png
     - assets/images/CodedLogo1.png
     - assets/images/Duck-01.png
+    - assets/images/coded_bg3.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

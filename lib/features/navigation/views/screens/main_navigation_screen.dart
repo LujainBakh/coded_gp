@@ -24,18 +24,18 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       bottomNavigationBar: AppBottomNavBar(
         currentIndex: _currentIndex,
         onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
           if (index == 1) {
-            // Navigate to ChatbotScreen
-            Navigator.push(
-              context,
+            Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => const ChatbotScreen(),
-                settings: const RouteSettings(name: '/chatbot'), // Add route name
+                fullscreenDialog: true,
+                maintainState: false,
               ),
             );
+          } else {
+            setState(() {
+              _currentIndex = index;
+            });
           }
         },
         // Hide bottom nav bar when in ChatbotScreen

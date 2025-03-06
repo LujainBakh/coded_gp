@@ -1,0 +1,43 @@
+class MainNavigationScreen extends StatefulWidget {
+  @override
+  _MainNavigationScreenState createState() => _MainNavigationScreenState();
+}
+
+class _MainNavigationScreenState extends State<MainNavigationScreen> {
+  int _currentIndex = 0;
+  bool _showNavBar = true;
+
+  final List<Widget> _screens = [
+    HomeScreen(),
+    ChatbotScreen(),
+    ProfileScreen(),
+    // Add other screens as needed
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _screens[_currentIndex],
+      bottomNavigationBar: _showNavBar 
+          ? AnimatedBottomNavigationBar(
+              icons: const [
+                Icons.home,
+                Icons.chat,
+                Icons.person,
+                // Add other icons as needed
+              ],
+              activeIndex: _currentIndex,
+              gapLocation: GapLocation.none,
+              notchSmoothness: NotchSmoothness.defaultEdge,
+              onTap: (index) {
+                setState(() {
+                  _currentIndex = index;
+                  // Hide nav bar when chatbot is selected
+                  _showNavBar = index != 1; // Assuming chatbot is at index 1
+                });
+              },
+            )
+          : null,
+    );
+  }
+}
