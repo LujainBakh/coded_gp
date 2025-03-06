@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:coded_gp/core/routes/app_routes.dart';
+import 'package:coded_gp/features/profile/views/screens/profile_screen.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
@@ -33,7 +36,8 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           padding: const EdgeInsets.only(right: 8.0),
           child: GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, '/profile');
+              print('Profile tap detected');
+              Get.to(() => const ProfileScreen());
             },
             child: CircleAvatar(
               radius: 18,
