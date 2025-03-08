@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
-import 'package:coded_gp/features/navigation/views/screens/main_navigation_screen.dart';  
+import 'package:coded_gp/core/controllers/theme_controllers.dart';
+import 'package:coded_gp/features/onboarding/controllers/onboarding_controller.dart';
+import 'package:coded_gp/features/splash/controllers/splash_controllers.dart';
+import 'package:coded_gp/core/config/theme/app_theme.dart';
+import 'package:coded_gp/core/routes/app_routes.dart';
 // Import other necessary controllers and utilities
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await Get.putAsync(() async => ThemeController());
+  Get.put(OnboardingController());
+  Get.put(SplashController());
   runApp(const MyApp());
 }
 
@@ -17,10 +24,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Coded GP',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MainNavigationScreen(),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeController.to.themeMode,
+      initialRoute: AppRoutes.splash,
+      getPages: AppRoutes.routes,
     );
   }
 }

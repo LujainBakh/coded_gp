@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:coded_gp/features/home/views/screens/homescreen.dart';
 import 'package:coded_gp/features/chatbot/views/screens/chatbot_screen.dart';
 import 'package:coded_gp/features/calendar/views/screens/calendar_screen.dart';
-import 'package:coded_gp/features/profile/views/screens/profile_screen.dart';
 import 'package:coded_gp/core/common/widgets/app_bottom_nav_bar.dart';
 
 class MainScreen extends StatefulWidget {

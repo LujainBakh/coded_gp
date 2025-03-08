@@ -1,11 +1,94 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:coded_gp/core/common/widgets/app_bottom_nav_bar.dart';
 import 'package:coded_gp/core/common/widgets/custom_back_button.dart';
 import 'package:coded_gp/main_screen.dart';
-import 'package:get/get.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  String fullName = '';
+  String studentId = '';
+  String college = '';
+  String phoneNumber = '';
+  String major = '';
+  String expectedGradYear = '';
+  String email = '';
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUserData();
+  }
+
+  Future<void> _fetchUserData() async {
+    try {
+      final User? currentUser = _auth.currentUser;
+      if (currentUser != null) {
+        setState(() {
+          email = currentUser.email ?? 'No email found';
+        });
+
+        // Add error handling and better user feedback
+        try {
+          final DocumentSnapshot userDoc = await _firestore
+              .collection('Users_DB')
+              .doc(currentUser.uid)
+              .get();
+
+          if (userDoc.exists) {
+            setState(() {
+              fullName = userDoc['full_name'] ?? '';
+              studentId = userDoc['st_id'] ?? '';
+              college = userDoc['college'] ?? '';
+              phoneNumber = userDoc['phoneNum'] ?? '';
+              major = userDoc['major'] ?? '';
+              expectedGradYear = userDoc['expectedGrad'] ?? '';
+              isLoading = false;
+            });
+          } else {
+            setState(() {
+              isLoading = false;
+              // You could set a flag here to show a "Profile not found" message
+            });
+            print('User document does not exist for uid: ${currentUser.uid}');
+          }
+        } catch (firestoreError) {
+          print('Firestore error: $firestoreError');
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                  'Unable to access profile data. Please check your permissions.'),
+              backgroundColor: Colors.red,
+            ),
+          );
+          setState(() {
+            isLoading = false;
+          });
+        }
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        print('No user is currently signed in');
+      }
+    } catch (e) {
+      print('Error fetching user data: $e');
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,18 +170,18 @@ class ProfileScreen extends StatelessWidget {
                             children: [
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
-                                    'Jood Khalid AlGhamdi',
-                                    style: TextStyle(
+                                    isLoading ? 'Loading...' : fullName,
+                                    style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                  SizedBox(height: 4),
+                                  const SizedBox(height: 4),
                                   Text(
-                                    'Senior',
-                                    style: TextStyle(
+                                    isLoading ? 'Loading...' : major,
+                                    style: const TextStyle(
                                       color: Colors.grey,
                                       fontSize: 14,
                                     ),
@@ -122,14 +205,20 @@ class ProfileScreen extends StatelessWidget {
                           const SizedBox(height: 24),
 
                           // Student Information
-                          _buildInfoItem('Student ID', '221000IIII'),
-                          _buildInfoItem(
-                            'College',
-                            'College of Computer Sciences & Information Technology',
-                          ),
-                          _buildInfoItem('Phone Number', '+966567891234'),
-                          _buildInfoItem('Major', 'Computer Science'),
-                          _buildInfoItem('Expected Graduation Year', '2025'),
+                          isLoading
+                              ? const Center(child: CircularProgressIndicator())
+                              : Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    _buildInfoItem('Email', email),
+                                    _buildInfoItem('Student ID', studentId),
+                                    _buildInfoItem('College', college),
+                                    _buildInfoItem('Phone Number', phoneNumber),
+                                    _buildInfoItem('Major', major),
+                                    _buildInfoItem('Expected Graduation Year',
+                                        expectedGradYear),
+                                  ],
+                                ),
                         ],
                       ),
                     ),
