@@ -19,6 +19,7 @@ class HomeDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
@@ -27,105 +28,112 @@ class HomeDrawer extends StatelessWidget {
     final primaryColor = primaryAccentColor ?? AppColors.kPrimaryColor;
     final secondaryColor = secondaryAccentColor ?? AppColors.kSecondaryColor;
 
-    return Container(
-      width: screenWidth * 0.75,
-      height: screenHeight * 0.5, // Half the screen height
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(30),
-          bottomRight: Radius.circular(30),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 10,
-            offset: Offset(0, 5),
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // Clean header with just the duck
-          Container(
-            width: double.infinity,
-            height: 140,
-            decoration: BoxDecoration(
-              color: secondaryColor,
-              borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(30),
-              ),
+    return Column(
+      children: [
+        SizedBox(
+            height:
+                screenHeight * 0.1), // Add space at the top to push drawer down
+        Container(
+          width: screenWidth * 0.75,
+          height: screenHeight * 0.5,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(30),
+              bottomRight: Radius.circular(30),
             ),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 30),
-                child: Image.asset(
-                  'assets/images/duck-walking.png',
-                  height: 80,
-                  fit: BoxFit.contain,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 10,
+                offset: Offset(0, 5),
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Clean header with just the duck
+              Container(
+                width: double.infinity,
+                height: 140,
+                decoration: BoxDecoration(
+                  color: secondaryColor,
+                  borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(30),
+                  ),
+                ),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30),
+                    child: Image.asset(
+                      'assets/images/duck-walking.png',
+                      height: 80,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
 
-          // Menu items with improved spacing
-          const SizedBox(height: 16),
+              // Menu items with improved spacing
+              const SizedBox(height: 16),
 
-          _buildMenuItem(
-            context: context,
-            icon: Icons.question_mark_rounded,
-            title: 'FAQs',
-            onTap: () {
-              Navigator.pop(context);
-              // Navigate to FAQs
-              Get.toNamed('/faqs');
-            },
-            iconColor: primaryColor,
-            textColor: primaryColor,
-          ),
+              _buildMenuItem(
+                context: context,
+                icon: Icons.question_mark_rounded,
+                title: 'FAQs',
+                onTap: () {
+                  Navigator.pop(context);
+                  // Navigate to FAQs
+                  Get.toNamed('/faqs');
+                },
+                iconColor: primaryColor,
+                textColor: primaryColor,
+              ),
 
-          _buildMenuItem(
-            context: context,
-            icon: Icons.share_rounded,
-            title: 'Share',
-            onTap: () {
-              Navigator.pop(context);
-              // Handle share functionality
-              _shareApp();
-            },
-            iconColor: primaryColor,
-            textColor: primaryColor,
-          ),
+              _buildMenuItem(
+                context: context,
+                icon: Icons.share_rounded,
+                title: 'Share',
+                onTap: () {
+                  Navigator.pop(context);
+                  // Handle share functionality
+                  _shareApp();
+                },
+                iconColor: primaryColor,
+                textColor: primaryColor,
+              ),
 
-          _buildMenuItem(
-            context: context,
-            icon: Icons.settings_rounded,
-            title: 'Settings',
-            onTap: () {
-              Navigator.pop(context);
-              // Navigate to settings
-              Get.toNamed('/settings');
-            },
-            iconColor: primaryColor,
-            textColor: primaryColor,
-          ),
+              _buildMenuItem(
+                context: context,
+                icon: Icons.settings_rounded,
+                title: 'Settings',
+                onTap: () {
+                  Navigator.pop(context);
+                  // Navigate to settings
+                  Get.toNamed('/settings');
+                },
+                iconColor: primaryColor,
+                textColor: primaryColor,
+              ),
 
-          _buildMenuItem(
-            context: context,
-            icon: Icons.logout_rounded,
-            title: 'Logout',
-            onTap: () {
-              Navigator.pop(context);
-              // Handle logout
-              _showLogoutConfirmation(context);
-            },
-            iconColor: primaryColor,
-            textColor: primaryColor,
+              _buildMenuItem(
+                context: context,
+                icon: Icons.logout_rounded,
+                title: 'Logout',
+                onTap: () {
+                  Navigator.pop(context);
+                  // Handle logout
+                  _showLogoutConfirmation(context);
+                },
+                iconColor: primaryColor,
+                textColor: primaryColor,
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
