@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:coded_gp/features/profile/views/screens/profile_screen.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const HomeAppBar({super.key});
+  final VoidCallback? onMenuTap;
+
+  const HomeAppBar({super.key, this.onMenuTap});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -45,6 +47,13 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ],
+      leading: IconButton(
+        icon: const Icon(Icons.menu),
+        onPressed: onMenuTap ??
+            () {
+              Scaffold.of(context).openDrawer();
+            },
+      ),
     );
   }
 }

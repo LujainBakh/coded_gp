@@ -4,68 +4,53 @@ import 'package:coded_gp/features/home/Widgets/services_section.dart';
 import 'package:coded_gp/features/home/Widgets/ads_carousel.dart';
 import 'package:coded_gp/features/home/Widgets/events_section.dart';
 import 'package:flutter/material.dart';
-
+import 'package:coded_gp/features/home/Widgets/home_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
-State<HomeScreen > createState() => _HomeScreenState();  
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-String _searchQuery = '';
-bool get  _isSearching => _searchQuery.isNotEmpty;
-final List<Map<String, dynamic>> services = [
-  {
-    'icon': Icons.calculate,
-    'color': Colors.deepPurple,
-    'title': 'Calculator'
-  },
-  {
-    'icon': Icons.file_copy,
-    'color': Colors.pink,
-    'title': 'Documents'
-  },
-  {
-    'icon': Icons.summarize,
-    'color': Colors.blue,
-    'title': 'Summary'
-  },
-  {
-    'icon': Icons.timer,
-    'color': Colors.green,
-    'title': 'Schedule'
-  },
-  {
-    'icon': Icons.question_answer,
-    'color': Colors.orange,
-    'title': 'Q&A'
-  },
-  {
-    'icon': Icons.card_giftcard,
-    'color': Colors.purple,
-    'title': 'Rewards'
-  },
-]; // or populate with your actual services
+  String _searchQuery = '';
+  bool get _isSearching => _searchQuery.isNotEmpty;
+  final List<Map<String, dynamic>> services = [
+    {
+      'icon': Icons.calculate,
+      'color': Colors.deepPurple,
+      'title': 'Calculator'
+    },
+    {'icon': Icons.file_copy, 'color': Colors.pink, 'title': 'Documents'},
+    {'icon': Icons.summarize, 'color': Colors.blue, 'title': 'Summary'},
+    {'icon': Icons.timer, 'color': Colors.green, 'title': 'Schedule'},
+    {'icon': Icons.question_answer, 'color': Colors.orange, 'title': 'Q&A'},
+    {'icon': Icons.card_giftcard, 'color': Colors.purple, 'title': 'Rewards'},
+  ]; // or populate with your actual services
 
-List<Map<String, dynamic>> get filteredServices => services
-    .where((service) => service['title']
-        .toString()
-        .toLowerCase()
-        .contains(_searchQuery.toLowerCase()))
-    .toList();
+  List<Map<String, dynamic>> get filteredServices => services
+      .where((service) => service['title']
+          .toString()
+          .toLowerCase()
+          .contains(_searchQuery.toLowerCase()))
+      .toList();
 
-void _clearSearch() {
-  setState(() {
-    _searchQuery = '';
-  });
-}
+  void _clearSearch() {
+    setState(() {
+      _searchQuery = '';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: const HomeAppBar(),
-      drawer: const Drawer(),
+      appBar: HomeAppBar(
+        onMenuTap: () => _scaffoldKey.currentState?.openDrawer(),
+      ),
+      drawer: const HomeDrawer(),
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -94,8 +79,8 @@ void _clearSearch() {
                 Text(
                   'Services',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
                 const SizedBox(height: 0),
                 ServicesSection(
@@ -107,8 +92,8 @@ void _clearSearch() {
                     Text(
                       'News',
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
                     const Spacer(),
                     TextButton(
