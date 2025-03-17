@@ -6,6 +6,7 @@ import 'package:coded_gp/features/onboarding/controllers/onboarding_controller.d
 import 'package:coded_gp/features/splash/controllers/splash_controllers.dart';
 import 'package:coded_gp/core/config/theme/app_theme.dart';
 import 'package:coded_gp/core/routes/app_routes.dart';
+import 'package:coded_gp/features/settings/controllers/notifications_controller.dart';
 // Import other necessary controllers and utilities
 
 void main() async {
@@ -14,6 +15,7 @@ void main() async {
   await Get.putAsync(() async => ThemeController());
   Get.put(OnboardingController());
   Get.put(SplashController());
+  Get.put(NotificationsController());
   runApp(const MyApp());
 }
 

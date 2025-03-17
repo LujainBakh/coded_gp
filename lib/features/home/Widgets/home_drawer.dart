@@ -86,7 +86,7 @@ class HomeDrawer extends StatelessWidget {
                 onTap: () {
                   Navigator.pop(context);
                   // Navigate to FAQs
-                  Get.toNamed('/faqs');
+                  Get.toNamed(AppRoutes.faq);
                 },
                 iconColor: primaryColor,
                 textColor: primaryColor,
@@ -111,8 +111,8 @@ class HomeDrawer extends StatelessWidget {
                 title: 'Settings',
                 onTap: () {
                   Navigator.pop(context);
-                  // Navigate to settings
-                  Get.toNamed('/settings');
+                  // Navigate to settings using named route
+                  Get.toNamed(AppRoutes.settings);
                 },
                 iconColor: primaryColor,
                 textColor: primaryColor,
