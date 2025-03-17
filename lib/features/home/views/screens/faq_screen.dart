@@ -172,40 +172,4 @@ class FAQScreen extends StatelessWidget {
     );
   }
 
-  void _showSubmitQuestionDialog(BuildContext context) {
-    Get.dialog(
-      AlertDialog(
-        title: const Text('Submit Your Question'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              maxLines: 3,
-              decoration: const InputDecoration(
-                hintText: 'Type your question here...',
-                border: OutlineInputBorder(),
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Get.back(),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () {
-              Get.back();
-              Get.snackbar(
-                'Success',
-                'Your question has been submitted',
-                snackPosition: SnackPosition.BOTTOM,
-              );
-            },
-            child: const Text('Submit'),
-          ),
-        ],
-      ),
-    );
-  }
 } 
