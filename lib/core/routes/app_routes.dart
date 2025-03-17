@@ -12,6 +12,7 @@ import 'package:coded_gp/features/settings/views/screens/security_screen.dart';
 import 'package:coded_gp/features/settings/views/screens/help_support_screen.dart';
 import 'package:coded_gp/features/settings/views/screens/terms_policies_screen.dart';
 import 'package:coded_gp/features/home/views/screens/faq_screen.dart';
+import 'package:coded_gp/features/gpa/views/screens/gpa_calculator_screen.dart';
 
 class AppRoutes {
   static const String onboarding = '/onboarding';
@@ -27,6 +28,7 @@ class AppRoutes {
   static const helpSupport = '/help-support';
   static const termsPolicies = '/terms-policies';
   static const faq = '/faq';
+  static const gpaCalculator = '/gpa-calculator';
 
   static final routes = [
     GetPage(name: onboarding, page: () => const OnBoardingScreen()),
@@ -56,6 +58,10 @@ class AppRoutes {
     GetPage(
       name: faq,
       page: () => const FAQScreen(),
+    ),
+    GetPage(
+      name: gpaCalculator,
+      page: () => const GPACalculatorScreen(),
     ),
   ];
 }

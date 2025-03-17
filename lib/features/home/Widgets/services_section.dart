@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class ServicesSection extends StatelessWidget {
   final List<Map<String, dynamic>> services;
-  final Function(BuildContext) onViewAllTap;
+  final Function(Map<String, dynamic>) onServiceTap;
 
   const ServicesSection({
     super.key,
     required this.services,
-    required this.onViewAllTap,
+    required this.onServiceTap,
   });
 
   @override
@@ -46,7 +46,7 @@ class ServicesSection extends StatelessWidget {
                         child: Material(
                           color: Colors.transparent,
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () => onServiceTap(service),
                             borderRadius: BorderRadius.circular(20),
                             child: Icon(
                               service['icon'],

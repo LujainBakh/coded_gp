@@ -1,4 +1,6 @@
+import 'package:coded_gp/core/common/widgets/custom_back_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ChatbotScreen extends StatefulWidget {
   const ChatbotScreen({super.key});
@@ -27,44 +29,38 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: Theme.of(context).copyWith(
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          elevation: 0,
-        ),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          iconTheme: IconThemeData(color: Colors.black),
-          titleTextStyle: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/coded_bg3.png'),
+            fit: BoxFit.cover,
           ),
         ),
-      ),
-      child: Scaffold(
-        extendBody: true,
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          title: const Text(
-            'ChatBot',
-          ),
-          centerTitle: true,
-        ),
-        body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/Coded_bg3.png'),
-              fit: BoxFit.cover,
-            ),
-          ),
+        child: SafeArea(
           child: Column(
             children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0, right: 8.0),
+                child: Row(
+                  children: [
+                    const CustomBackButton(),
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          'ChatBot',
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 48),
+                  ],
+                ),
+              ),
               Expanded(
                 child: ListView.builder(
                   padding: const EdgeInsets.all(16),

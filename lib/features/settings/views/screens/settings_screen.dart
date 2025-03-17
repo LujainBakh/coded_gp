@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:coded_gp/core/routes/app_routes.dart';
 import 'package:coded_gp/features/settings/views/screens/notifications_screen.dart';
+import 'package:coded_gp/core/common/widgets/custom_back_button.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -24,14 +25,10 @@ class SettingsScreen extends StatelessWidget {
             children: [
               // Back button and logo container
               Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 8.0, right: 8.0),
+                padding: const EdgeInsets.only(top: 8.0, right: 8.0),
                 child: Row(
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.arrow_back),
-                      onPressed: () => Get.back(),
-                      alignment: Alignment.centerLeft,
-                    ),
+                    const CustomBackButton(),
                     Expanded(
                       child: Center(
                         child: Image.asset(
