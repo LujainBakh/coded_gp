@@ -5,6 +5,8 @@ import 'package:coded_gp/features/home/Widgets/ads_carousel.dart';
 import 'package:coded_gp/features/home/Widgets/events_section.dart';
 import 'package:flutter/material.dart';
 import 'package:coded_gp/features/home/Widgets/home_drawer.dart';
+import 'package:get/get.dart';
+import 'package:coded_gp/core/routes/app_routes.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,7 +20,8 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       'icon': Icons.calculate,
       'color': Colors.deepPurple,
-      'title': 'Calculator'
+      'title': 'Calculator',
+      'route': AppRoutes.gpaCalculator,
     },
     {'icon': Icons.file_copy, 'color': Colors.pink, 'title': 'Documents'},
     {'icon': Icons.summarize, 'color': Colors.blue, 'title': 'Summary'},
@@ -38,6 +41,12 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _searchQuery = '';
     });
+  }
+
+  void _handleServiceTap(Map<String, dynamic> service) {
+    if (service['route'] != null) {
+      Get.toNamed(service['route']);
+    }
   }
 
   @override
@@ -85,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 0),
                 ServicesSection(
                   services: filteredServices,
-                  onViewAllTap: (context) {},
+                  onServiceTap: _handleServiceTap,
                 ),
                 Row(
                   children: [

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coded_gp/core/common/widgets/app_bottom_nav_bar.dart';
+import 'package:coded_gp/core/common/widgets/custom_back_button.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -20,14 +21,10 @@ class AboutScreen extends StatelessWidget {
             children: [
               // Back button and logo container
               Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 8.0, right: 8.0),
+                padding: const EdgeInsets.only(top: 8.0, right: 8.0),
                 child: Row(
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.arrow_back),
-                      onPressed: () => Get.back(),
-                      alignment: Alignment.centerLeft,
-                    ),
+                    const CustomBackButton(),
                     Expanded(
                       child: Center(
                         child: Image.asset(
