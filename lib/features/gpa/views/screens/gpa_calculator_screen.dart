@@ -185,13 +185,15 @@ class _GPACalculatorScreenState extends State<GPACalculatorScreen> {
                                 ),
                               ),
                               const SizedBox(height: 16),
-                              if (!calculatedGPA.isNull) ...[
+                              
+                              // Show GPA if calculated
+                              if (calculatedGPA != null)
                                 Container(
                                   width: double.infinity,
                                   margin: const EdgeInsets.symmetric(horizontal: 16),
                                   padding: const EdgeInsets.symmetric(vertical: 16),
                                   decoration: BoxDecoration(
-                                    color: const Color(0xFF1a457b),
+                                    color: const Color.fromARGB(255, 187, 222, 78), 
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   child: Text(
@@ -204,64 +206,67 @@ class _GPACalculatorScreenState extends State<GPACalculatorScreen> {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 16),
-                              ] else ...[
-                                Container(
-                                  width: double.infinity,
-                                  height: 50,
-                                  margin: const EdgeInsets.symmetric(horizontal: 16),
-                                  child: ElevatedButton(
-                                    onPressed: calculateGPA,
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color(0xFF1a457b),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
+                              const SizedBox(height: 16),
+                              
+                              // Always show Calculate button
+                              Container(
+                                width: double.infinity,
+                                height: 50,
+                                margin: const EdgeInsets.symmetric(horizontal: 16),
+                                child: ElevatedButton(
+                                  onPressed: calculateGPA,
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color(0xFF1a457b),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
                                     ),
-                                    child: const Text(
-                                      'Calculate',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      ),
+                                  ),
+                                  child: const Text(
+                                    'Calculate',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 16),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    TextButton.icon(
-                                      onPressed: addCourse,
-                                      icon: const Icon(
-                                        Icons.add_circle_outline,
+                              ),
+                              const SizedBox(height: 16),
+                              
+                              // Always show Add Course and Clear All buttons
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  TextButton.icon(
+                                    onPressed: addCourse,
+                                    icon: const Icon(
+                                      Icons.add_circle_outline,
+                                      color: Color(0xFF1a457b),
+                                    ),
+                                    label: const Text(
+                                      'Add Course',
+                                      style: TextStyle(
                                         color: Color(0xFF1a457b),
                                       ),
-                                      label: const Text(
-                                        'Add Course',
-                                        style: TextStyle(
-                                          color: Color(0xFF1a457b),
-                                        ),
-                                      ),
                                     ),
-                                    const SizedBox(width: 20),
-                                    TextButton.icon(
-                                      onPressed: clearAll,
-                                      icon: const Icon(
-                                        Icons.clear_all,
+                                  ),
+                                  const SizedBox(width: 20),
+                                  TextButton.icon(
+                                    onPressed: clearAll,
+                                    icon: const Icon(
+                                      Icons.clear_all,
+                                      color: Colors.red,
+                                    ),
+                                    label: const Text(
+                                      'Clear All',
+                                      style: TextStyle(
                                         color: Colors.red,
                                       ),
-                                      label: const Text(
-                                        'Clear All',
-                                        style: TextStyle(
-                                          color: Colors.red,
-                                        ),
-                                      ),
                                     ),
-                                  ],
-                                ),
-                              ],
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 16),
                             ],
                           ),
                         ),
@@ -275,11 +280,11 @@ class _GPACalculatorScreenState extends State<GPACalculatorScreen> {
         currentIndex: 0,
         onTap: (index) {
           if (index == 0) {
-            Get.offAllNamed('/home');
+            Get.offAllNamed('/main');
           } else if (index == 1) {
             Get.toNamed('/chatbot');
           } else if (index == 2) {
-            Get.offAllNamed('/calendar');
+            Get.offAllNamed('/main', arguments: 2);
           }
         },
       ),

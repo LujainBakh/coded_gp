@@ -62,7 +62,7 @@ class AppBottomNavBar extends StatelessWidget {
               width: 65,
               child: FloatingActionButton(
                 elevation: 2,
-                backgroundColor: AppColors.kSecondaryColor,
+                backgroundColor: const Color.fromARGB(255, 187, 222, 78),
                 shape: const CircleBorder(),
                 child: const Icon(
                   Icons.chat_bubble_outline_rounded,
