@@ -14,6 +14,7 @@ import 'package:coded_gp/features/settings/views/screens/terms_policies_screen.d
 import 'package:coded_gp/features/home/views/screens/faq_screen.dart';
 import 'package:coded_gp/features/gpa/views/screens/gpa_calculator_screen.dart';
 import 'package:coded_gp/features/filemanager/views/screens/file_manager_screen.dart';
+import 'package:coded_gp/features/filemanager/views/screens/add_file_screen.dart';
 
 class AppRoutes {
   static const String onboarding = '/onboarding';
@@ -31,6 +32,7 @@ class AppRoutes {
   static const faq = '/faq';
   static const gpaCalculator = '/gpa-calculator';
   static const fileManager = '/file-manager';
+  static const addFile = '/add-file';
 
   static final routes = [
     GetPage(name: onboarding, page: () => const OnBoardingScreen()),
@@ -67,7 +69,11 @@ class AppRoutes {
     ),
     GetPage(
       name: fileManager,
-      page: () => const FileManagerScreen(),
+      page: () => FileManagerScreen(),
+    ),
+    GetPage(
+      name: addFile,
+      page: () => const AddFileScreen(),
     ),
   ];
 }
