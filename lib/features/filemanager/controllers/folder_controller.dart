@@ -74,4 +74,19 @@ class FolderController extends GetxController {
       print('Error creating folder: $e');
     }
   }
+
+  Future<void> deleteFolder(String userId, String folderId) async {
+    try {
+      await _firestore
+          .collection('Users_DB')
+          .doc(userId)
+          .collection('folders')
+          .doc(folderId)
+          .delete();
+
+      await getFolders(userId);
+    } catch (e) {
+      print('Error deleting folder: $e');
+    }
+  }
 }

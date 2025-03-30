@@ -221,61 +221,92 @@ class FileManagerScreen extends StatelessWidget {
   }
 
   Widget _buildFolderItem(Folder folder) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            width: 150,
-            height: 150,
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Image.asset(
-              folder.iconUrl.startsWith('/')
-                  ? folder.iconUrl.substring(1)
-                  : folder.iconUrl,
-              width: 120,
-              height: 120,
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) {
-                print('Error loading folder icon: $error');
-                return const Icon(
-                  Icons.folder,
-                  size: 120,
-                  color: Colors.blue,
-                );
-              },
-            ),
-          ),
-          const SizedBox(height: 4),
-          Flexible(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.8),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Text(
-                folder.name,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black87,
+    return GestureDetector(
+      onLongPress: () {
+        final userId = FirebaseAuth.instance.currentUser?.uid;
+        if (userId != null) {
+          showDialog(
+            context: Get.context!,
+            builder: (context) => AlertDialog(
+              title: const Text('Delete Folder'),
+              content:
+                  Text('Are you sure you want to delete "${folder.name}"?'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Cancel'),
                 ),
-                textAlign: TextAlign.center,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+                TextButton(
+                  onPressed: () {
+                    folderController.deleteFolder(userId, folder.id);
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    'Delete',
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 150,
+              height: 150,
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Image.asset(
+                folder.iconUrl.startsWith('/')
+                    ? folder.iconUrl.substring(1)
+                    : folder.iconUrl,
+                width: 120,
+                height: 120,
+                fit: BoxFit.contain,
+                errorBuilder: (context, error, stackTrace) {
+                  print('Error loading folder icon: $error');
+                  return const Icon(
+                    Icons.folder,
+                    size: 120,
+                    color: Colors.blue,
+                  );
+                },
               ),
             ),
-          ),
-        ],
+            const SizedBox(height: 4),
+            Flexible(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.8),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  folder.name,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black87,
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
