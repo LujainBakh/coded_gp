@@ -6,6 +6,7 @@ import 'package:coded_gp/features/filemanager/controllers/folder_controller.dart
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:coded_gp/features/filemanager/models/folder_model.dart';
 import 'package:coded_gp/features/filemanager/views/screens/add_folder_screen.dart';
+import 'package:coded_gp/features/filemanager/views/screens/view_files_screen.dart';
 
 class FileManagerScreen extends StatelessWidget {
   FileManagerScreen({super.key});
@@ -222,6 +223,9 @@ class FileManagerScreen extends StatelessWidget {
 
   Widget _buildFolderItem(Folder folder) {
     return GestureDetector(
+      onTap: () {
+        Get.toNamed('/view-files', arguments: folder.name);
+      },
       onLongPress: () {
         final userId = FirebaseAuth.instance.currentUser?.uid;
         if (userId != null) {

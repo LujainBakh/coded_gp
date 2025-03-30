@@ -79,7 +79,8 @@ class AppRoutes {
     ),
     GetPage(
       name: viewFiles,
-      page: () => const ViewFilesScreen(),
+      page: () =>
+          ViewFilesScreen(folderName: Get.arguments?.toString() ?? 'Files'),
     ),
   ];
 }
