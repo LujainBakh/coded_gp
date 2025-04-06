@@ -21,7 +21,6 @@ class EventsSection extends StatelessWidget {
       },
       {
         'title': 'FLUTTER WORKSHOP',
-        'club': 'MOBILE DEVELOPMENT SOCIETY',
         'date': 'Wed, 19 Sep 2025',
         'time': '2:00 PM - 4:00 PM',
       },
@@ -162,14 +161,15 @@ class EventsSection extends StatelessWidget {
                                     ],
                                   ),
                                   const SizedBox(height: 4),
-                                  Text(
-                                    event['club']!,
-                                    style: TextStyle(
-                                      color: Colors.grey[600],
-                                      fontSize: 12,
+                                  if (event['club'] != null)
+                                    Text(
+                                      event['club']!,
+                                      style: TextStyle(
+                                        color: Colors.grey[600],
+                                        fontSize: 12,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
                                     ),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
                                   const SizedBox(height: 8),
                                   DefaultTextStyle(
                                     style: TextStyle(

@@ -389,10 +389,10 @@ class _CalendarScreenState extends State<CalendarScreen> {
     final titleController = TextEditingController();
     final noteController = TextEditingController();
     final dateController = TextEditingController(
-      // If initialDate is provided, use it; otherwise leave empty
       text: initialDate != null ? DateFormat('MMM d, yyyy').format(initialDate) : '',
     );
-    final timeController = TextEditingController();
+    final startTimeController = TextEditingController();
+    final endTimeController = TextEditingController();
     final locationController = TextEditingController();
     bool remindMe = false;
     String selectedEventType = 'Event';
@@ -400,67 +400,98 @@ class _CalendarScreenState extends State<CalendarScreen> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return StatefulBuilder(
-          builder: (context, setState) {
-            return Dialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: SingleChildScrollView(
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Add New Event',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      TextField(
-                        controller: titleController,
-                        decoration: InputDecoration(
-                          hintText: 'Event name*',
-                          hintStyle: TextStyle(color: Colors.grey[400]),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide(color: Colors.grey[300]!),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide(color: Colors.grey[300]!),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      TextField(
-                        controller: noteController,
-                        maxLines: 3,
-                        decoration: InputDecoration(
-                          hintText: 'Type the note here...',
-                          hintStyle: TextStyle(color: Colors.grey[400]),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide(color: Colors.grey[300]!),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide(color: Colors.grey[300]!),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      TextField(
-                        controller: dateController,
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20), // Increased padding
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  'Add New Event',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 24), // Increased spacing
+                TextField(
+                  controller: titleController,
+                  decoration: InputDecoration(
+                    hintText: 'Event name*',
+                    hintStyle: TextStyle(color: Colors.grey[400]),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.grey[300]!),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.grey[300]!),
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12), // Added padding
+                  ),
+                ),
+                const SizedBox(height: 20), // Increased spacing
+                TextField(
+                  controller: noteController,
+                  maxLines: 3,
+                  decoration: InputDecoration(
+                    hintText: 'Type the note here...',
+                    hintStyle: TextStyle(color: Colors.grey[400]),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.grey[300]!),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.grey[300]!),
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12), // Added padding
+                  ),
+                ),
+                const SizedBox(height: 20), // Increased spacing
+                TextField(
+                  controller: dateController,
+                  readOnly: true,
+                  decoration: InputDecoration(
+                    hintText: 'Date',
+                    hintStyle: TextStyle(color: Colors.grey[400]),
+                    suffixIcon: const Icon(Icons.calendar_today),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.grey[300]!),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.grey[300]!),
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12), // Added padding
+                  ),
+                  onTap: () async {
+                    final date = await showDatePicker(
+                      context: context,
+                      initialDate: _selectedDay ?? DateTime.now(),
+                      firstDate: DateTime.now(),
+                      lastDate: DateTime(2025, 12, 31),
+                    );
+                    if (date != null) {
+                      dateController.text = DateFormat('MMM d, yyyy').format(date);
+                    }
+                  },
+                ),
+                const SizedBox(height: 20), // Increased spacing
+                // Time Fields in a Row
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: startTimeController,
                         readOnly: true,
                         decoration: InputDecoration(
-                          hintText: 'Date',
-                          hintStyle: TextStyle(color: Colors.grey[400]),
-                          suffixIcon: const Icon(Icons.calendar_today),
+                          labelText: 'Start Time',
+                          suffixIcon: const Icon(Icons.access_time),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide(color: Colors.grey[300]!),
@@ -469,176 +500,181 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide(color: Colors.grey[300]!),
                           ),
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                         ),
                         onTap: () async {
-                          final date = await showDatePicker(
+                          final TimeOfDay? pickedTime = await showTimePicker(
                             context: context,
-                            initialDate: _selectedDay ?? DateTime.now(),
-                            firstDate: DateTime.now(),
-                            lastDate: DateTime(2025, 12, 31),
+                            initialTime: TimeOfDay.now(),
                           );
-                          if (date != null) {
-                            dateController.text = DateFormat('MMM d, yyyy').format(date);
+                          if (pickedTime != null) {
+                            startTimeController.text = pickedTime.format(context);
                           }
                         },
                       ),
-                      const SizedBox(height: 16),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TextField(
-                              controller: timeController,
-                              readOnly: true,
-                              decoration: InputDecoration(
-                                hintText: 'Time',
-                                hintStyle: TextStyle(color: Colors.grey[400]),
-                                suffixIcon: const Icon(Icons.access_time),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                  borderSide: BorderSide(color: Colors.grey[300]!),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                  borderSide: BorderSide(color: Colors.grey[300]!),
-                                ),
-                              ),
-                              onTap: () async {
-                                final time = await showTimePicker(
-                                  context: context,
-                                  initialTime: TimeOfDay.now(),
-                                );
-                                if (time != null) {
-                                  timeController.text = time.format(context);
-                                }
-                              },
-                            ),
+                    ),
+                    const SizedBox(width: 12), // Space between fields
+                    Expanded(
+                      child: TextField(
+                        controller: endTimeController,
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          labelText: 'End Time',
+                          suffixIcon: const Icon(Icons.access_time),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(color: Colors.grey[300]!),
                           ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: TextField(
-                              controller: locationController,
-                              decoration: InputDecoration(
-                                hintText: 'Location',
-                                hintStyle: TextStyle(color: Colors.grey[400]),
-                                suffixIcon: const Icon(Icons.location_on),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                  borderSide: BorderSide(color: Colors.grey[300]!),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                  borderSide: BorderSide(color: Colors.grey[300]!),
-                                ),
-                              ),
-                            ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(color: Colors.grey[300]!),
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Remind me',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          Switch(
-                            value: remindMe,
-                            onChanged: (value) {
-                              setState(() {
-                                remindMe = value;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8, // Add vertical spacing between wrapped rows
-                        children: [
-                          // Generate radio buttons for all event types
-                          ...eventTypes.map((type) => _buildEventTypeRadio(
-                            type['label'],
-                            type['color'],
-                            selectedEventType,
-                            (value) {
-                              setState(() => selectedEventType = value!);
-                            },
-                          )).toList(),
-                        ],
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          _showAddLabelDialog(context, (newLabel) {
-                            setState(() {
-                              // Add the new label with a random color and select it
-                              eventTypes.add({
-                                'label': newLabel,
-                                'color': Colors.primaries[
-                                  eventTypes.length % Colors.primaries.length
-                                ],
-                              });
-                              selectedEventType = newLabel;
-                            });
-                          });
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        ),
+                        onTap: () async {
+                          final TimeOfDay? pickedTime = await showTimePicker(
+                            context: context,
+                            initialTime: TimeOfDay.now(),
+                          );
+                          if (pickedTime != null) {
+                            endTimeController.text = pickedTime.format(context);
+                          }
                         },
-                        child: Text(
-                          '+ Add new',
-                          style: TextStyle(
-                            color: Colors.green[600],
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
                       ),
-                      const SizedBox(height: 16),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            final date = DateFormat('MMM d, yyyy').parse(dateController.text);
-                            final eventData = {
-                              'title': titleController.text,
-                              'subtitle': titleController.text,
-                              'time': timeController.text,
-                              'eventType': selectedEventType,
-                              'location': locationController.text,
-                              'notes': noteController.text,
-                            };
-
-                            setState(() {
-                              if (_events[date] == null) {
-                                _events[date] = [];
-                              }
-                              _events[date]!.add(eventData);
-                            });
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF1A4789),
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                          child: const Text(
-                            'Create Event',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20), // Increased spacing
+                TextField(
+                  controller: locationController,
+                  decoration: InputDecoration(
+                    hintText: 'Location',
+                    hintStyle: TextStyle(color: Colors.grey[400]),
+                    suffixIcon: const Icon(Icons.location_on),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.grey[300]!),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.grey[300]!),
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12), // Added padding
                   ),
                 ),
-              ),
-            );
-          },
+                const SizedBox(height: 20), // Increased spacing
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Remind me',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Switch(
+                      value: remindMe,
+                      onChanged: (value) {
+                        setState(() {
+                          remindMe = value;
+                        });
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20), // Increased spacing
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8, // Add vertical spacing between wrapped rows
+                  children: [
+                    // Generate radio buttons for all event types
+                    ...eventTypes.map((type) => _buildEventTypeRadio(
+                      type['label'],
+                      type['color'],
+                      selectedEventType,
+                      (value) {
+                        setState(() => selectedEventType = value!);
+                      },
+                    )).toList(),
+                  ],
+                ),
+                TextButton(
+                  onPressed: () {
+                    _showAddLabelDialog(context, (newLabel) {
+                      setState(() {
+                        // Add the new label with a random color and select it
+                        eventTypes.add({
+                          'label': newLabel,
+                          'color': Colors.primaries[
+                            eventTypes.length % Colors.primaries.length
+                          ],
+                        });
+                        selectedEventType = newLabel;
+                      });
+                    });
+                  },
+                  child: Text(
+                    '+ Add new',
+                    style: TextStyle(
+                      color: Colors.green[600],
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20), // Increased spacing
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (titleController.text.isEmpty || 
+                          dateController.text.isEmpty || 
+                          startTimeController.text.isEmpty ||
+                          endTimeController.text.isEmpty) {
+                        Get.snackbar(
+                          'Error',
+                          'Please fill all required fields',
+                          snackPosition: SnackPosition.BOTTOM,
+                        );
+                        return;
+                      }
+
+                      // Create event with both start and end times
+                      final newEvent = {
+                        'title': titleController.text,
+                        'date': dateController.text,
+                        'startTime': startTimeController.text,
+                        'endTime': endTimeController.text,
+                        'location': locationController.text,
+                        'notes': noteController.text,
+                        'eventType': selectedEventType,
+                        'remindMe': remindMe,
+                      };
+
+                      // ... save event logic ...
+
+                      Navigator.pop(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF1A4789),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: const Text(
+                      'Save',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         );
       },
     );
@@ -1133,7 +1169,10 @@ class _CalendarScreenState extends State<CalendarScreen> {
     final titleController = TextEditingController(text: title);
     final noteController = TextEditingController(text: notes);
     final dateController = TextEditingController(text: dateTime);
-    final timeController = TextEditingController(text: time);
+    // Split the time into start and end times
+    final times = time.split(' - ');
+    final startTimeController = TextEditingController(text: times.first);
+    final endTimeController = TextEditingController(text: times.last);
     final locationController = TextEditingController(text: location);
     bool remindMe = false;
     String selectedEventType = eventType;
@@ -1228,11 +1267,10 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         children: [
                           Expanded(
                             child: TextField(
-                              controller: timeController,
+                              controller: startTimeController,
                               readOnly: true,
                               decoration: InputDecoration(
-                                hintText: 'Time',
-                                hintStyle: TextStyle(color: Colors.grey[400]),
+                                labelText: 'Start Time',
                                 suffixIcon: const Icon(Icons.access_time),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12),
@@ -1242,26 +1280,27 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                   borderRadius: BorderRadius.circular(12),
                                   borderSide: BorderSide(color: Colors.grey[300]!),
                                 ),
+                                contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                               ),
                               onTap: () async {
-                                final time = await showTimePicker(
+                                final TimeOfDay? pickedTime = await showTimePicker(
                                   context: context,
                                   initialTime: TimeOfDay.now(),
                                 );
-                                if (time != null) {
-                                  timeController.text = time.format(context);
+                                if (pickedTime != null) {
+                                  startTimeController.text = pickedTime.format(context);
                                 }
                               },
                             ),
                           ),
-                          const SizedBox(width: 16),
+                          const SizedBox(width: 12),
                           Expanded(
                             child: TextField(
-                              controller: locationController,
+                              controller: endTimeController,
+                              readOnly: true,
                               decoration: InputDecoration(
-                                hintText: 'Location',
-                                hintStyle: TextStyle(color: Colors.grey[400]),
-                                suffixIcon: const Icon(Icons.location_on),
+                                labelText: 'End Time',
+                                suffixIcon: const Icon(Icons.access_time),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12),
                                   borderSide: BorderSide(color: Colors.grey[300]!),
@@ -1270,10 +1309,37 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                   borderRadius: BorderRadius.circular(12),
                                   borderSide: BorderSide(color: Colors.grey[300]!),
                                 ),
+                                contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                               ),
+                              onTap: () async {
+                                final TimeOfDay? pickedTime = await showTimePicker(
+                                  context: context,
+                                  initialTime: TimeOfDay.now(),
+                                );
+                                if (pickedTime != null) {
+                                  endTimeController.text = pickedTime.format(context);
+                                }
+                              },
                             ),
                           ),
                         ],
+                      ),
+                      const SizedBox(height: 16),
+                      TextField(
+                        controller: locationController,
+                        decoration: InputDecoration(
+                          hintText: 'Location',
+                          hintStyle: TextStyle(color: Colors.grey[400]),
+                          suffixIcon: const Icon(Icons.location_on),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(color: Colors.grey[300]!),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(color: Colors.grey[300]!),
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 16),
                       Row(
