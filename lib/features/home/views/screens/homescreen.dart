@@ -20,10 +20,15 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       'icon': Icons.calculate,
       'color': Colors.deepPurple,
-      'title': 'Calculator',
+      'title': 'GPA Calculator',
       'route': AppRoutes.gpaCalculator,
     },
-    {'icon': Icons.file_copy, 'color': Colors.pink, 'title': 'Documents'},
+    {
+      'icon': Icons.file_copy,
+      'color': Colors.pink,
+      'title': 'File Manager',
+      'route': AppRoutes.fileManager,
+    },
     {'icon': Icons.summarize, 'color': Colors.blue, 'title': 'Summary'},
     {'icon': Icons.timer, 'color': Colors.green, 'title': 'Schedule'},
     {'icon': Icons.question_answer, 'color': Colors.orange, 'title': 'Q&A'},
@@ -45,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _handleServiceTap(Map<String, dynamic> service) {
     if (service['route'] != null) {
-      Get.toNamed(service['route']);
+      Navigator.pushNamed(context, service['route']);
     }
   }
 

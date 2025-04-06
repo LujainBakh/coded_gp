@@ -89,7 +89,7 @@ class _GPACalculatorScreenState extends State<GPACalculatorScreen> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/coded_bg3.png'),
+            image: AssetImage('assets/images/Coded_bg3.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -118,7 +118,7 @@ class _GPACalculatorScreenState extends State<GPACalculatorScreen> {
 
               // Main Content
               Expanded(
-                child: courses.isEmpty 
+                child: courses.isEmpty
                     ? _buildEmptyState()
                     : Padding(
                         padding: const EdgeInsets.all(16),
@@ -132,7 +132,8 @@ class _GPACalculatorScreenState extends State<GPACalculatorScreen> {
                             children: [
                               const SizedBox(height: 16),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 16),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 16),
                                 child: Row(
                                   children: [
                                     const Expanded(
@@ -185,15 +186,18 @@ class _GPACalculatorScreenState extends State<GPACalculatorScreen> {
                                 ),
                               ),
                               const SizedBox(height: 16),
-                              
+
                               // Show GPA if calculated
                               if (calculatedGPA != null)
                                 Container(
                                   width: double.infinity,
-                                  margin: const EdgeInsets.symmetric(horizontal: 16),
-                                  padding: const EdgeInsets.symmetric(vertical: 16),
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 16),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 16),
                                   decoration: BoxDecoration(
-                                    color: const Color.fromARGB(255, 187, 222, 78), 
+                                    color:
+                                        const Color.fromARGB(255, 187, 222, 78),
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   child: Text(
@@ -207,12 +211,13 @@ class _GPACalculatorScreenState extends State<GPACalculatorScreen> {
                                   ),
                                 ),
                               const SizedBox(height: 16),
-                              
+
                               // Always show Calculate button
                               Container(
                                 width: double.infinity,
                                 height: 50,
-                                margin: const EdgeInsets.symmetric(horizontal: 16),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 16),
                                 child: ElevatedButton(
                                   onPressed: calculateGPA,
                                   style: ElevatedButton.styleFrom(
@@ -232,7 +237,7 @@ class _GPACalculatorScreenState extends State<GPACalculatorScreen> {
                                 ),
                               ),
                               const SizedBox(height: 16),
-                              
+
                               // Always show Add Course and Clear All buttons
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -380,7 +385,8 @@ class _CourseEntryState extends State<CourseEntry> {
                   borderRadius: BorderRadius.circular(8),
                   borderSide: const BorderSide(color: Color(0xFF1a457b)),
                 ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
               ),
             ),
           ),
@@ -402,7 +408,8 @@ class _CourseEntryState extends State<CourseEntry> {
                   borderRadius: BorderRadius.circular(8),
                   borderSide: const BorderSide(color: Color(0xFF1a457b)),
                 ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
               ),
               icon: const Icon(Icons.arrow_drop_down, color: Colors.grey),
               items: ['A+', 'A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F']
@@ -437,7 +444,8 @@ class _CourseEntryState extends State<CourseEntry> {
                   borderRadius: BorderRadius.circular(8),
                   borderSide: const BorderSide(color: Color(0xFF1a457b)),
                 ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
               ),
               icon: const Icon(Icons.arrow_drop_down, color: Colors.grey),
               items: [1, 2, 3, 4, 5].map<DropdownMenuItem<int>>((int value) {
@@ -473,4 +481,4 @@ class _CourseEntryState extends State<CourseEntry> {
     courseNameController.dispose();
     super.dispose();
   }
-} 
+}

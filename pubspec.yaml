@@ -91,6 +91,8 @@ flutter:
     - assets/images/CodedLogo1.png
     - assets/images/Duck-01.png
     - assets/images/coded_bg3.png
+    - assets/images/folder_icons/
+    
 
   # To add assets to your application, add an assets section, like this:
   # assets:
