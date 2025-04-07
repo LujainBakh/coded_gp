@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:coded_gp/core/common/widgets/custom_back_button.dart';
+import 'package:coded_gp/features/filemanager/views/screens/add_file_screen.dart';
 
 class ViewFilesScreen extends StatelessWidget {
   final String folderName;
@@ -9,64 +12,93 @@ class ViewFilesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text(folderName),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {
-              // TODO: Implement add functionality
-            },
-          ),
-        ],
-      ),
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/Coded_bg3.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search',
-                  prefixIcon: const Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  contentPadding: const EdgeInsets.symmetric(vertical: 8),
-                ),
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/Coded_bg3.png'),
+                fit: BoxFit.cover,
               ),
             ),
-            Expanded(
-              child: ListView(
+            child: SafeArea(
+              child: Column(
                 children: [
-                  _buildFileItem(
-                    fileName: 'SwiftUI_chapter1',
-                    fileType: 'PDF',
-                    icon: Icons.picture_as_pdf,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0, right: 8.0),
+                    child: Row(
+                      children: [
+                        const CustomBackButton(),
+                        Expanded(
+                          child: Center(
+                            child: Text(
+                              folderName,
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () => Get.toNamed('/add-file'),
+                          child: Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: const Icon(Icons.add),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  const Divider(),
-                  _buildFileItem(
-                    fileName: 'sudoku_sequential',
-                    fileType: 'CPP',
-                    icon: Icons.code,
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Search',
+                        prefixIcon: const Icon(Icons.search),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                        contentPadding: const EdgeInsets.symmetric(vertical: 8),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView(
+                      children: [
+                        _buildFileItem(
+                          fileName: 'SwiftUI_chapter1',
+                          fileType: 'PDF',
+                          icon: Icons.picture_as_pdf,
+                        ),
+                        const Divider(),
+                        _buildFileItem(
+                          fileName: 'sudoku_sequential',
+                          fileType: 'CPP',
+                          icon: Icons.code,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

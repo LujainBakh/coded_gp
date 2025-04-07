@@ -16,4 +16,4 @@ class CalendarController extends GetxController {
     }
     events.refresh();
   }
-} 
+}
