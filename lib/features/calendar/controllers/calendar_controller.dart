@@ -300,4 +300,4 @@ class CalendarController extends GetxController {
     searchQuery.value = query;
     update();
   }
-} 
+}
