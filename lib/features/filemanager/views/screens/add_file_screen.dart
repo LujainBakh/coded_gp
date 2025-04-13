@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coded_gp/core/common/widgets/custom_back_button.dart';
+import 'package:file_picker/file_picker.dart';
+import 'dart:io';
 
 class AddFileScreen extends StatefulWidget {
   const AddFileScreen({super.key});
@@ -11,6 +13,71 @@ class AddFileScreen extends StatefulWidget {
 
 class _AddFileScreenState extends State<AddFileScreen> {
   final TextEditingController _titleController = TextEditingController();
+  PlatformFile? _selectedFile;
+  bool _isLoading = false;
+
+  Future<void> _pickFile() async {
+    if (_isLoading) return;
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final result = await FilePicker.platform.pickFiles(
+        type: FileType.any,
+        allowMultiple: false,
+        withData: true,
+      );
+
+      if (!mounted) return;
+
+      if (result != null && result.files.isNotEmpty) {
+        final file = result.files.first;
+
+        // Check if file size exceeds 25MB
+        if (file.size > 25 * 1024 * 1024) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('File size exceeds 25MB limit'),
+              backgroundColor: Color(0xFF1A237E),
+            ),
+          );
+          return;
+        }
+
+        setState(() {
+          _selectedFile = file;
+          // Set the title to the filename if not already set
+          if (_titleController.text.isEmpty) {
+            _titleController.text = file.name;
+          }
+        });
+      }
+    } catch (e) {
+      debugPrint('Error picking file: $e');
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error picking file: ${e.toString()}'),
+          backgroundColor: const Color(0xFF1A237E),
+        ),
+      );
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,38 +155,71 @@ class _AddFileScreenState extends State<AddFileScreen> {
                 ),
                 const SizedBox(height: 32),
 
-                // File Type Selection Section
-                const Text(
-                  'File Type',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF1A237E),
-                  ),
-                ),
-                const SizedBox(height: 12),
+                // File Upload Section
                 Container(
                   width: double.infinity,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.9),
-                    borderRadius: BorderRadius.circular(16),
-                    border:
-                        Border.all(color: const Color(0xFF1A237E), width: 2),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color: Colors.grey.shade300,
+                      width: 2,
+                      style: BorderStyle.solid,
+                    ),
                   ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Select file type',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.grey,
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: _isLoading ? null : _pickFile,
+                      borderRadius: BorderRadius.circular(8),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 32.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            if (_isLoading)
+                              const CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                    Color(0xFF1A237E)),
+                              )
+                            else
+                              Icon(
+                                Icons.note_add_outlined,
+                                size: 48,
+                                color: Colors.green[400],
+                              ),
+                            const SizedBox(height: 12),
+                            RichText(
+                              textAlign: TextAlign.center,
+                              text: TextSpan(
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  height: 1.5,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text: 'Click to Upload',
+                                    style: TextStyle(
+                                      color: Colors.green[400],
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Text(
+                              _selectedFile != null
+                                  ? 'Selected: ${_selectedFile!.name}'
+                                  : '(Max. File size: 25 MB)',
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Icon(Icons.arrow_drop_down, color: Color(0xFF1A237E)),
-                    ],
+                    ),
                   ),
                 ),
                 const SizedBox(height: 32),
@@ -134,6 +234,15 @@ class _AddFileScreenState extends State<AddFileScreen> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('Please enter a file name'),
+                            backgroundColor: Color(0xFF1A237E),
+                          ),
+                        );
+                        return;
+                      }
+                      if (_selectedFile == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Please select a file'),
                             backgroundColor: Color(0xFF1A237E),
                           ),
                         );
@@ -164,11 +273,5 @@ class _AddFileScreenState extends State<AddFileScreen> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _titleController.dispose();
-    super.dispose();
   }
 }
