@@ -469,29 +469,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          color: Colors.transparent,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withAlpha(77),
-              blurRadius: 10,
-              offset: const Offset(0, -5),
-            ),
-          ],
-        ),
-        child: AppBottomNavBar(
-          currentIndex: 2,
-          onTap: (index) {
-            if (index != 2) {
-              Get.back();
-            }
-          },
-          backgroundColor: Colors.transparent,
-          selectedItemColor: Theme.of(context).primaryColor,
-          unselectedItemColor: Theme.of(context).unselectedWidgetColor,
-        ),
-      ),
     );
   }
 

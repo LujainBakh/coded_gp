@@ -44,7 +44,9 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                 padding: const EdgeInsets.only(top: 8.0, right: 8.0),
                 child: Row(
                   children: [
-                    const CustomBackButton(),
+                    CustomBackButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
                     Expanded(
                       child: Center(
                         child: Text(
@@ -202,10 +204,6 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                         ),
                         style: const TextStyle(color: Colors.black),
                       ),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.mic, color: Colors.black),
-                      onPressed: () {},
                     ),
                   ],
                 ),

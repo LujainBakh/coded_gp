@@ -3,10 +3,12 @@ import 'package:get/get.dart';
 
 class CustomBackButton extends StatelessWidget {
   final VoidCallback? onPressed;
+  final bool useNavigator;
 
   const CustomBackButton({
     super.key,
     this.onPressed,
+    this.useNavigator = false,
   });
 
   @override
@@ -33,7 +35,13 @@ class CustomBackButton extends StatelessWidget {
             Icons.arrow_back_ios_new,
             size: 18,
           ),
-          onPressed: onPressed ?? () => Get.back(),
+          onPressed: onPressed ?? () {
+            if (useNavigator) {
+              Navigator.of(context).pop();
+            } else {
+              Get.back();
+            }
+          },
           padding: EdgeInsets.zero,
         ),
       ),

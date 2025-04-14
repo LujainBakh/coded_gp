@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coded_gp/core/common/widgets/app_bottom_nav_bar.dart';
 import 'package:coded_gp/core/common/widgets/custom_back_button.dart';
+import 'package:coded_gp/features/chatbot/views/screens/chatbot_screen.dart';
+import 'package:coded_gp/main_screen.dart';
 
 class GPACalculatorScreen extends StatefulWidget {
   const GPACalculatorScreen({super.key});
@@ -96,12 +98,14 @@ class _GPACalculatorScreenState extends State<GPACalculatorScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              // Header with just back button
+              // Header with back button
               Padding(
                 padding: const EdgeInsets.only(top: 8.0, right: 8.0),
                 child: Row(
                   children: [
-                    const CustomBackButton(),
+                    CustomBackButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
                     Expanded(
                       child: Center(
                         child: Image.asset(
@@ -284,14 +288,27 @@ class _GPACalculatorScreenState extends State<GPACalculatorScreen> {
       bottomNavigationBar: AppBottomNavBar(
         currentIndex: 0,
         onTap: (index) {
-          if (index == 0) {
-            Get.offAllNamed('/main');
-          } else if (index == 1) {
-            Get.toNamed('/chatbot');
-          } else if (index == 2) {
-            Get.offAllNamed('/main', arguments: 2);
+          if (index == 1) {
+            // For chatbot, push as a new screen
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const ChatbotScreen(),
+                fullscreenDialog: true,
+              ),
+            );
+          } else {
+            // For home and calendar, replace with MainScreen
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MainScreen(initialIndex: index),
+              ),
+            );
           }
         },
+        backgroundColor: Colors.transparent,
+        selectedItemColor: Theme.of(context).primaryColor,
+        unselectedItemColor: Theme.of(context).unselectedWidgetColor,
       ),
     );
   }
