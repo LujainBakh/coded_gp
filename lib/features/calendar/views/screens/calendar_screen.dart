@@ -217,43 +217,53 @@ class _CalendarScreenState extends State<CalendarScreen> {
                       ],
                     ),
                     const SizedBox(height: 8),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          ...EventModel.availableEventTypes.map((type) {
-                            final isSelected = _calendarController.selectedEventTypes.contains(type);
-                            final color = EventModel.eventTypeColors[type] ?? Colors.blue;
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: FilterChip(
-                                label: Text(
-                                  type,
-                                  style: TextStyle(
-                                    color: isSelected ? Colors.white : color,
-                                    fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                    Container(
+                      height: 40,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Obx(() {
+                          print('Rebuilding chips - Selected types: ${_calendarController.selectedEventTypes}');
+                          return Row(
+                            children: EventModel.availableEventTypes.map((type) {
+                              final isSelected = _calendarController.selectedEventTypes.contains(type);
+                              final color = EventModel.eventTypeColors[type] ?? Colors.blue;
+                              print('Building chip: $type, isSelected: $isSelected');
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 8),
+                                child: RawChip(
+                                  label: Text(
+                                    type,
+                                    style: TextStyle(
+                                      color: isSelected ? Colors.white : color,
+                                      fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                                    ),
                                   ),
-                                ),
-                                selected: isSelected,
-                                onSelected: (selected) {
-                                  _calendarController.toggleEventType(type);
-                                },
-                                backgroundColor: Colors.white.withOpacity(0.9),
-                                selectedColor: color,
-                                checkmarkColor: Colors.white,
-                                showCheckmark: false,
-                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  side: BorderSide(
-                                    color: color,
-                                    width: isSelected ? 0 : 1,
+                                  selected: isSelected,
+                                  onSelected: (selected) {
+                                    print('Chip tapped: $type, selected: $selected');
+                                    _calendarController.toggleEventType(type);
+                                  },
+                                  selectedColor: color.withOpacity(1.0),
+                                  backgroundColor: Colors.white,
+                                  checkmarkColor: Colors.white,
+                                  showCheckmark: true,
+                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                    side: BorderSide(
+                                      color: color,
+                                      width: 1.5,
+                                    ),
                                   ),
+                                  elevation: isSelected ? 4 : 0,
+                                  pressElevation: 6,
+                                  visualDensity: VisualDensity.compact,
+                                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                 ),
-                              ),
-                            );
-                          }),
-                        ],
+                              );
+                            }).toList(),
+                          );
+                        }),
                       ),
                     ),
                   ],

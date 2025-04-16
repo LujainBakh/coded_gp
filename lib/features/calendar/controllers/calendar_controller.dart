@@ -14,7 +14,7 @@ class CalendarController extends GetxController {
   final events = <String, List<EventModel>>{}.obs;
   final isLoading = false.obs;
   final searchQuery = ''.obs;
-  final selectedEventTypes = <String>[].obs;
+  final selectedEventTypes = RxList<String>([]);
 
   @override
   void onInit() {
@@ -265,39 +265,60 @@ class CalendarController extends GetxController {
       final matchesType = selectedEventTypes.isEmpty || 
           selectedEventTypes.contains(event.eventType);
       
-      // Only show upcoming events
-      final isUpcoming = event.startTime.isAfter(DateTime.now().subtract(const Duration(days: 1)));
-      
-      return matchesSearch && matchesType && isUpcoming;
+      return matchesSearch && matchesType;
     }).toList()..sort((a, b) => a.startTime.compareTo(b.startTime));
   }
 
-  // Get events for a specific day (used by calendar)
+  // Get filtered events for a specific day (used by calendar)
   List<EventModel> getEventsForDay(DateTime day) {
     final date = DateTime(day.year, day.month, day.day).toString();
-    return events[date] ?? [];
+    final dayEvents = events[date] ?? [];
+    
+    // Apply the same filtering logic as getFilteredEvents
+    return dayEvents.where((event) {
+      // Search query filter
+      final matchesSearch = searchQuery.value.isEmpty ||
+          event.title.toLowerCase().contains(searchQuery.value.toLowerCase()) ||
+          (event.subtitle?.toLowerCase().contains(searchQuery.value.toLowerCase()) ?? false);
+      
+      // Event type filter - show only events of the selected type
+      final matchesType = selectedEventTypes.isEmpty || 
+          selectedEventTypes.contains(event.eventType);
+      
+      return matchesSearch && matchesType;
+    }).toList()..sort((a, b) => a.startTime.compareTo(b.startTime));
+  }
+
+  // Get upcoming events (used by home screen)
+  List<EventModel> getUpcomingEvents() {
+    final now = DateTime.now();
+    return getFilteredEvents().where((event) => 
+      event.startTime.isAfter(now.subtract(const Duration(days: 1)))
+    ).toList();
   }
 
   // Get all events across all days
   List<EventModel> getAllEvents() {
-    return events.values.expand((list) => list).toList();
+    return getFilteredEvents();
   }
 
   // Toggle event type filter
   void toggleEventType(String eventType) {
+    print('Toggling event type: $eventType');
+    print('Before toggle - Selected types: ${selectedEventTypes.toString()}');
+    
     if (selectedEventTypes.contains(eventType)) {
       selectedEventTypes.remove(eventType);
     } else {
-      // Clear other filters when selecting a new one
       selectedEventTypes.clear();
       selectedEventTypes.add(eventType);
     }
-    update();
+    
+    print('After toggle - Selected types: ${selectedEventTypes.toString()}');
   }
 
   // Set search query
   void setSearchQuery(String query) {
     searchQuery.value = query;
-    update();
   }
 }

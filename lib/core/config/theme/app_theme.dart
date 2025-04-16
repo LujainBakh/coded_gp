@@ -96,6 +96,21 @@ class AppTheme {
       secondary: AppColors.kSecondaryColor,
       brightness: Brightness.light,
     ),
+    chipTheme: ChipThemeData(
+      backgroundColor: Colors.white,
+      selectedColor: AppColors.kPrimaryColor,
+      secondarySelectedColor: AppColors.kSecondaryColor,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      showCheckmark: true,
+      checkmarkColor: Colors.white,
+      labelStyle: const TextStyle(color: AppColors.kTextDarkColor),
+      selectedShadowColor: Colors.black26,
+      elevation: 0,
+      pressElevation: 2,
+    ),
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.kWhiteColor,
       elevation: 0,

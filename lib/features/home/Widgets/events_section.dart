@@ -5,14 +5,27 @@ import 'package:coded_gp/features/calendar/views/screens/calendar_screen.dart';
 import 'package:coded_gp/features/calendar/controllers/calendar_controller.dart';
 import 'package:coded_gp/features/calendar/models/event_model.dart';
 
-class EventsSection extends StatelessWidget {
+class EventsSection extends StatefulWidget {
   const EventsSection({super.key});
+
+  @override
+  State<EventsSection> createState() => _EventsSectionState();
+}
+
+class _EventsSectionState extends State<EventsSection> {
+  final CalendarController calendarController = Get.find<CalendarController>();
+
+  @override
+  void initState() {
+    super.initState();
+    // Fetch events when the widget initializes
+    calendarController.fetchEvents();
+  }
 
   @override
   Widget build(BuildContext context) {
     // Define the custom color
     final customGreen = Color(0xFFBBDE4E);
-    final calendarController = Get.find<CalendarController>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
