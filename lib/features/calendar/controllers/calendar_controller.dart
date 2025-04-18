@@ -45,7 +45,7 @@ class CalendarController extends GetxController {
       
       print('Debug: Starting to fetch events from Firestore...');
       
-      // Fetch admin events
+      // Fetch admin events - modified query to ensure we get all admin events
       final adminSnapshot = await _firestore
           .collection('Events_DB')
           .where('type', isEqualTo: 'Admin')
@@ -57,16 +57,18 @@ class CalendarController extends GetxController {
       final userSnapshot = await _firestore
           .collection('Events_DB')
           .where('ownerId', isEqualTo: user.uid)
+          .where('type', isEqualTo: 'User')  // Added to be explicit about event type
           .get();
       
       print('Debug: Found ${userSnapshot.docs.length} user events');
       
       final newEvents = <String, List<EventModel>>{};
       
-      // Process admin events
+      // Process admin events first
       for (var doc in adminSnapshot.docs) {
         try {
           print('Debug: Processing admin document ID: ${doc.id}');
+          print('Debug: Admin document data: ${doc.data()}');  // Added to check document content
           final event = EventModel.fromFirestore(doc);
           final date = DateTime(
             event.startTime.year,
@@ -110,6 +112,13 @@ class CalendarController extends GetxController {
       events.value = newEvents;
       print('Debug: Final events map contains ${events.length} dates');
       print('Debug: Total events: ${events.values.fold(0, (sum, list) => sum + list.length)}');
+      print('Debug: Events breakdown:');
+      events.forEach((date, eventList) {
+        print('Date: $date');
+        eventList.forEach((event) {
+          print('  - ${event.title} (Type: ${event.type}, Owner: ${event.ownerId})');
+        });
+      });
       
     } catch (e) {
       print('Error fetching events: $e');

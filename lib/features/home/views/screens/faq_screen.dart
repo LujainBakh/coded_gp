@@ -24,7 +24,9 @@ class FAQScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 8.0, right: 8.0),
                 child: Row(
                   children: [
-                    const CustomBackButton(),
+                    CustomBackButton(
+                      onPressed: () => Get.back(),
+                    ),
                     Expanded(
                       child: Center(
                         child: Image.asset(
@@ -120,18 +122,6 @@ class FAQScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: AppBottomNavBar(
-        currentIndex: 0,
-        onTap: (index) {
-          if (index == 0) {
-            Get.offAllNamed('/home');
-          } else if (index == 1) {
-            Get.toNamed('/chatbot');
-          } else if (index == 2) {
-            Get.offAllNamed('/calendar');
-          }
-        },
       ),
     );
   }

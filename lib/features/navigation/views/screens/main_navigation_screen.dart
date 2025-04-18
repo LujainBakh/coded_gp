@@ -14,22 +14,28 @@ class MainNavigationScreen extends StatefulWidget {
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _currentIndex = 0;
 
+  final List<Widget> _screens = [
+    const HomeScreen(),
+    const ChatbotScreen(),
+    const CalendarScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    // Get the current route name
-    final currentRoute = ModalRoute.of(context)?.settings.name;
-    
     return Scaffold(
-      body: _buildBody(),
+      body: IndexedStack(
+        index: _currentIndex,
+        children: _screens,
+      ),
       bottomNavigationBar: AppBottomNavBar(
         currentIndex: _currentIndex,
         onTap: (index) {
           if (index == 1) {
+            // For chatbot, push as a new screen instead of switching index
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => const ChatbotScreen(),
                 fullscreenDialog: true,
-                maintainState: false,
               ),
             );
           } else {
@@ -38,20 +44,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             });
           }
         },
-        // Hide bottom nav bar when in ChatbotScreen
-        isVisible: currentRoute != '/chatbot',
+        isVisible: true,
       ),
     );
-  }
-
-  Widget _buildBody() {
-    switch (_currentIndex) {
-      case 0:
-        return const HomeScreen();
-      case 2:
-        return const CalendarScreen();
-      default:
-        return const HomeScreen();
-    }
   }
 } 

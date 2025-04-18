@@ -181,301 +181,308 @@ class _CalendarScreenState extends State<CalendarScreen> {
           ),
         ),
         child: SafeArea(
-          child: Column(
-            children: [
-              // Search and Filter Bar
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: _searchController,
-                            decoration: InputDecoration(
-                              hintText: 'Search events...',
-                              prefixIcon: const Icon(Icons.search),
-                              suffixIcon: IconButton(
-                                icon: const Icon(Icons.clear),
-                                onPressed: () {
-                                  _searchController.clear();
-                                  _calendarController.setSearchQuery('');
-                                },
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              filled: true,
-                              fillColor: Colors.white.withOpacity(0.9),
-                            ),
-                            onChanged: (value) {
-                              _calendarController.setSearchQuery(value);
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Container(
-                      height: 40,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Obx(() {
-                          print('Rebuilding chips - Selected types: ${_calendarController.selectedEventTypes}');
-                          return Row(
-                            children: EventModel.availableEventTypes.map((type) {
-                              final isSelected = _calendarController.selectedEventTypes.contains(type);
-                              final color = EventModel.eventTypeColors[type] ?? Colors.blue;
-                              print('Building chip: $type, isSelected: $isSelected');
-                              return Padding(
-                                padding: const EdgeInsets.only(right: 8),
-                                child: RawChip(
-                                  label: Text(
-                                    type,
-                                    style: TextStyle(
-                                      color: isSelected ? Colors.white : color,
-                                      fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                                    ),
-                                  ),
-                                  selected: isSelected,
-                                  onSelected: (selected) {
-                                    print('Chip tapped: $type, selected: $selected');
-                                    _calendarController.toggleEventType(type);
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                // Search and Filter Bar
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: _searchController,
+                              decoration: InputDecoration(
+                                hintText: 'Search events...',
+                                prefixIcon: const Icon(Icons.search),
+                                suffixIcon: IconButton(
+                                  icon: const Icon(Icons.clear),
+                                  onPressed: () {
+                                    _searchController.clear();
+                                    _calendarController.setSearchQuery('');
                                   },
-                                  selectedColor: color.withOpacity(1.0),
-                                  backgroundColor: Colors.white,
-                                  checkmarkColor: Colors.white,
-                                  showCheckmark: true,
-                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                    side: BorderSide(
-                                      color: color,
-                                      width: 1.5,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                filled: true,
+                                fillColor: Colors.white.withOpacity(0.9),
+                              ),
+                              onChanged: (value) {
+                                _calendarController.setSearchQuery(value);
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Container(
+                        height: 40,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Obx(() {
+                            return Row(
+                              children: EventModel.availableEventTypes.map((type) {
+                                final isSelected = _calendarController.selectedEventTypes.contains(type);
+                                final color = EventModel.eventTypeColors[type] ?? Colors.blue;
+                                return Padding(
+                                  padding: const EdgeInsets.only(right: 8),
+                                  child: RawChip(
+                                    label: Text(
+                                      type,
+                                      style: TextStyle(
+                                        color: isSelected ? Colors.white : color,
+                                        fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                                      ),
                                     ),
+                                    selected: isSelected,
+                                    onSelected: (selected) {
+                                      _calendarController.toggleEventType(type);
+                                    },
+                                    selectedColor: color.withOpacity(1.0),
+                                    backgroundColor: Colors.white,
+                                    checkmarkColor: Colors.white,
+                                    showCheckmark: true,
+                                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                      side: BorderSide(
+                                        color: color,
+                                        width: 1.5,
+                                      ),
+                                    ),
+                                    elevation: isSelected ? 4 : 0,
+                                    pressElevation: 6,
+                                    visualDensity: VisualDensity.compact,
+                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                   ),
-                                  elevation: isSelected ? 4 : 0,
-                                  pressElevation: 6,
-                                  visualDensity: VisualDensity.compact,
-                                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                );
+                              }).toList(),
+                            );
+                          }),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // Month header with navigation ducks
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _focusedDay = DateTime(
+                              _focusedDay.year,
+                              _focusedDay.month - 1,
+                              _focusedDay.day,
+                            );
+                          });
+                        },
+                        child: Transform.scale(
+                          scaleX: -1,
+                          child: Image.asset('assets/images/Duck-01.png', height: 40),
+                        ),
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            DateFormat('MMMM').format(_focusedDay),
+                            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            DateFormat('yyyy').format(_focusedDay),
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _focusedDay = DateTime(
+                              _focusedDay.year,
+                              _focusedDay.month + 1,
+                              _focusedDay.day,
+                            );
+                          });
+                        },
+                        child: Image.asset('assets/images/Duck-01.png', height: 40),
+                      ),
+                    ],
+                  ),
+                ),
+                // Calendar
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFD1E78D),
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 10,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: TableCalendar(
+                    firstDay: _firstDay,
+                    lastDay: _lastDay,
+                    focusedDay: _focusedDay,
+                    selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+                    onDaySelected: (selectedDay, focusedDay) {
+                      setState(() {
+                        _selectedDay = selectedDay;
+                        _focusedDay = focusedDay;
+                      });
+                      _showEventsForDay(context, selectedDay);
+                    },
+                    onDayLongPressed: (selectedDay, focusedDay) {
+                      _showAddEventDialog(context, initialDate: selectedDay);
+                    },
+                    onPageChanged: _onPageChanged,
+                    eventLoader: (day) => _calendarController.getEventsForDay(day),
+                    calendarStyle: CalendarStyle(
+                      outsideDaysVisible: true,
+                      outsideTextStyle: const TextStyle(color: Colors.grey),
+                      weekendTextStyle: const TextStyle(color: Color(0xFF000080)),
+                      todayDecoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor.withOpacity(0.5),
+                        shape: BoxShape.circle,
+                      ),
+                      selectedDecoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        shape: BoxShape.circle,
+                      ),
+                      defaultTextStyle: const TextStyle(fontWeight: FontWeight.bold),
+                      todayTextStyle: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      selectedTextStyle: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    calendarBuilders: CalendarBuilders(
+                      markerBuilder: (context, date, events) {
+                        if (events.isEmpty) return null;
+                        final eventTypes = events.map((e) => (e as EventModel).eventType).toSet();
+                        return Positioned(
+                          bottom: 1,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: eventTypes.map((type) {
+                              final color = EventModel.eventTypeColors[type] ?? Colors.blue;
+                              return Container(
+                                width: 6,
+                                height: 6,
+                                margin: const EdgeInsets.symmetric(horizontal: 1),
+                                decoration: BoxDecoration(
+                                  color: color,
+                                  shape: BoxShape.circle,
                                 ),
                               );
                             }).toList(),
-                          );
-                        }),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              // Month header with navigation ducks
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _focusedDay = DateTime(
-                            _focusedDay.year,
-                            _focusedDay.month - 1,
-                            _focusedDay.day,
-                          );
-                        });
+                          ),
+                        );
                       },
-                      child: Transform.scale(
-                        scaleX: -1,
-                        child: Image.asset('assets/images/Duck-01.png', height: 40),
-                      ),
                     ),
-                    Column(
-                      children: [
-                        Text(
-                          DateFormat('MMMM').format(_focusedDay),
-                          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                              ),
-                        ),
-                        Text(
-                          DateFormat('yyyy').format(_focusedDay),
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: Colors.grey,
-                              ),
-                        ),
-                      ],
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _focusedDay = DateTime(
-                            _focusedDay.year,
-                            _focusedDay.month + 1,
-                            _focusedDay.day,
-                          );
-                        });
-                      },
-                      child: Image.asset('assets/images/Duck-01.png', height: 40),
-                    ),
-                  ],
-                ),
-              ),
-              // Calendar
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFD1E78D),
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 10,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
-                ),
-                child: TableCalendar(
-                  firstDay: _firstDay,
-                  lastDay: _lastDay,
-                  focusedDay: _focusedDay,
-                  selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-                  onDaySelected: (selectedDay, focusedDay) {
-                    setState(() {
-                      _selectedDay = selectedDay;
-                      _focusedDay = focusedDay;
-                    });
-                    _showEventsForDay(context, selectedDay);
-                  },
-                  onDayLongPressed: (selectedDay, focusedDay) {
-                    _showAddEventDialog(context, initialDate: selectedDay);
-                  },
-                  onPageChanged: _onPageChanged,
-                  eventLoader: (day) => _calendarController.getEventsForDay(day),
-                  calendarStyle: CalendarStyle(
-                    outsideDaysVisible: true,
-                    outsideTextStyle: const TextStyle(color: Colors.grey),
-                    weekendTextStyle: const TextStyle(color: Color(0xFF000080)),
-                    todayDecoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor.withOpacity(0.5),
-                      shape: BoxShape.circle,
-                    ),
-                    selectedDecoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      shape: BoxShape.circle,
-                    ),
-                    defaultTextStyle: const TextStyle(fontWeight: FontWeight.bold),
-                    todayTextStyle: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    selectedTextStyle: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                    headerStyle: const HeaderStyle(
+                      formatButtonVisible: false,
+                      titleCentered: true,
+                      leftChevronVisible: false,
+                      rightChevronVisible: false,
+                      headerPadding: EdgeInsets.zero,
+                      headerMargin: EdgeInsets.zero,
+                      titleTextStyle: TextStyle(fontSize: 0),
                     ),
                   ),
-                  calendarBuilders: CalendarBuilders(
-                    markerBuilder: (context, date, events) {
-                      if (events.isEmpty) return null;
-                      
-                      // Group events by type
-                      final eventTypes = events.map((e) => (e as EventModel).eventType).toSet();
-                      
-                      return Positioned(
-                        bottom: 1,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: eventTypes.map((type) {
-                            final color = EventModel.eventTypeColors[type] ?? Colors.blue;
-                            return Container(
-                              width: 6,
-                              height: 6,
-                              margin: const EdgeInsets.symmetric(horizontal: 1),
-                              decoration: BoxDecoration(
-                                color: color,
-                                shape: BoxShape.circle,
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                      );
-                    },
-                  ),
-                  headerStyle: const HeaderStyle(
-                    formatButtonVisible: false,
-                    titleCentered: true,
-                    leftChevronVisible: false,
-                    rightChevronVisible: false,
-                    headerPadding: EdgeInsets.zero,
-                    headerMargin: EdgeInsets.zero,
-                    titleTextStyle: TextStyle(fontSize: 0),
-                  ),
                 ),
-              ),
-              // Events list
-              Expanded(
-                child: Obx(() {
-                  if (_calendarController.isLoading.value) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                  
-                  final filteredEvents = _calendarController.getFilteredEvents();
-                  
-                  return Container(
+                // Events list
+                Container(
                   margin: const EdgeInsets.all(20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                            Text(
-                              '${filteredEvents.length} Events',
-                              style: const TextStyle(
-                                fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.add_circle),
-                            onPressed: () => _showAddEventDialog(context),
-                            color: Theme.of(context).primaryColor,
-                            iconSize: 28,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      Expanded(
-                          child: ListView.separated(
-                          padding: const EdgeInsets.only(bottom: 80),
-                            itemCount: filteredEvents.length,
-                            separatorBuilder: (context, index) => const SizedBox(height: 12),
-                            itemBuilder: (context, index) {
-                              final event = filteredEvents[index];
-                              return _buildEventCard(
-                                title: event.title,
-                                subtitle: event.subtitle,
-                                dateTime: DateFormat('E, d MMM yyyy').format(event.startTime),
-                                time: '${DateFormat('h:mm a').format(event.startTime)} - ${DateFormat('h:mm a').format(event.endTime)}',
-                                eventType: event.eventType,
-                                location: event.location,
-                                notes: event.note,
-                                onDelete: () => _calendarController.deleteEvent(event.id),
-                                onEdit: () => _showEditEventDialog(
-                                  context,
-                                  event: event,
+                      Obx(() {
+                        if (_calendarController.isLoading.value) {
+                          return const Center(child: CircularProgressIndicator());
+                        }
+                        
+                        final filteredEvents = _calendarController.getFilteredEvents();
+                        
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  '${filteredEvents.length} Events',
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              );
-                            },
-                          ),
+                                IconButton(
+                                  icon: const Icon(Icons.add_circle),
+                                  onPressed: () => _showAddEventDialog(context),
+                                  color: Theme.of(context).primaryColor,
+                                  iconSize: 28,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 16),
+                            Container(
+                              constraints: BoxConstraints(
+                                maxHeight: 5 * 110.0, // Approximate height for 5 events
+                              ),
+                              child: SingleChildScrollView(
+                                physics: const AlwaysScrollableScrollPhysics(),
+                                child: ListView.separated(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  padding: const EdgeInsets.only(bottom: 80),
+                                  itemCount: filteredEvents.length,
+                                  separatorBuilder: (context, index) => const SizedBox(height: 12),
+                                  itemBuilder: (context, index) {
+                                    final event = filteredEvents[index];
+                                    return _buildEventCard(
+                                      title: event.title,
+                                      subtitle: event.subtitle,
+                                      dateTime: DateFormat('E, d MMM yyyy').format(event.startTime),
+                                      time: '${DateFormat('h:mm a').format(event.startTime)} - ${DateFormat('h:mm a').format(event.endTime)}',
+                                      eventType: event.eventType,
+                                      location: event.location,
+                                      notes: event.note,
+                                      onDelete: () => _calendarController.deleteEvent(event.id),
+                                      onEdit: () => _showEditEventDialog(
+                                        context,
+                                        event: event,
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
                             ),
                           ],
-                        ),
-                  );
-                }),
-              ),
-            ],
+                        );
+                      }),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

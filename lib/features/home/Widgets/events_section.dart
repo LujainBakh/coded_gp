@@ -15,6 +15,23 @@ class EventsSection extends StatefulWidget {
 class _EventsSectionState extends State<EventsSection> {
   final CalendarController calendarController = Get.find<CalendarController>();
 
+  IconData _getEventTypeIcon(String eventType) {
+    switch (eventType.toLowerCase()) {
+      case 'holiday':
+        return Icons.beach_access;
+      case 'quiz':
+        return Icons.quiz;
+      case 'event':
+        return Icons.event;
+      case 'meeting':
+        return Icons.groups;
+      case 'task':
+        return Icons.task;
+      default:
+        return Icons.event;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -24,9 +41,6 @@ class _EventsSectionState extends State<EventsSection> {
 
   @override
   Widget build(BuildContext context) {
-    // Define the custom color
-    final customGreen = Color(0xFFBBDE4E);
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -103,6 +117,8 @@ class _EventsSectionState extends State<EventsSection> {
                           separatorBuilder: (context, index) => const SizedBox(height: 12),
                           itemBuilder: (context, index) {
                             final event = events[index];
+                            final color = EventModel.eventTypeColors[event.eventType] ?? Colors.blue;
+                            
                             return GestureDetector(
                               onTap: () {
                                 // Navigate to calendar screen with the event's date
@@ -115,15 +131,15 @@ class _EventsSectionState extends State<EventsSection> {
                                 width: double.infinity,
                                 padding: const EdgeInsets.all(16),
                                 decoration: BoxDecoration(
-                                  color: Colors.blue.withOpacity(0.1),
+                                  color: color.withOpacity(0.1),
                                   borderRadius: BorderRadius.circular(15),
                                 ),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Icon(
-                                      Icons.calendar_today,
-                                      color: Colors.blue,
+                                      _getEventTypeIcon(event.eventType),
+                                      color: color,
                                       size: 24,
                                     ),
                                     const SizedBox(width: 16),
@@ -146,15 +162,21 @@ class _EventsSectionState extends State<EventsSection> {
                                               ),
                                               const SizedBox(width: 8),
                                               Container(
-                                                padding: const EdgeInsets.all(4),
+                                                padding: const EdgeInsets.symmetric(
+                                                  horizontal: 8,
+                                                  vertical: 4,
+                                                ),
                                                 decoration: BoxDecoration(
-                                                  color: customGreen.withOpacity(0.2),
+                                                  color: color.withOpacity(0.1),
                                                   borderRadius: BorderRadius.circular(8),
                                                 ),
-                                                child: Icon(
-                                                  Icons.check_circle,
-                                                  color: customGreen,
-                                                  size: 16,
+                                                child: Text(
+                                                  event.eventType,
+                                                  style: TextStyle(
+                                                    color: color,
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                                 ),
                                               ),
                                             ],

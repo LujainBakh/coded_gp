@@ -100,7 +100,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             decoration: const BoxDecoration(
               color: Colors.white,
               image: DecorationImage(
-                image: AssetImage('assets/images/Coded_bg3.png'),
+                image: AssetImage('assets/images/coded_bg2.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -150,16 +150,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.edit_outlined,
-                                  color: Colors.grey,
-                                  size: 20,
-                                ),
-                                onPressed: () {},
-                                padding: EdgeInsets.zero,
-                                constraints: const BoxConstraints(),
-                              ),
                             ],
                           ),
                           const SizedBox(height: 16),
@@ -188,15 +178,107 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ],
                               ),
-                              Container(
-                                width: 60,
-                                height: 60,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  image: const DecorationImage(
-                                    image:
-                                        AssetImage('assets/images/profile.png'),
-                                    fit: BoxFit.cover,
+                              GestureDetector(
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    barrierColor: Colors.black87,
+                                    builder: (BuildContext context) {
+                                      return Dialog(
+                                        backgroundColor: Colors.transparent,
+                                        insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Stack(
+                                              clipBehavior: Clip.none,
+                                              alignment: Alignment.center,
+                                              children: [
+                                                Hero(
+                                                  tag: 'profileImage',
+                                                  child: Container(
+                                                    width: 300,
+                                                    height: 300,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(20),
+                                                      color: Colors.white,
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          color: Colors.black.withOpacity(0.2),
+                                                          blurRadius: 15,
+                                                          spreadRadius: 2,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    child: ClipRRect(
+                                                      borderRadius: BorderRadius.circular(20),
+                                                      child: Image.asset(
+                                                        'assets/images/profileduck.png',
+                                                        fit: BoxFit.contain,
+                                                        filterQuality: FilterQuality.high,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Positioned(
+                                                  top: -20,
+                                                  right: -20,
+                                                  child: GestureDetector(
+                                                    onTap: () => Navigator.pop(context),
+                                                    child: Container(
+                                                      width: 40,
+                                                      height: 40,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        shape: BoxShape.circle,
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                            color: Colors.black.withOpacity(0.1),
+                                                            blurRadius: 5,
+                                                            spreadRadius: 1,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      child: const Icon(
+                                                        Icons.close,
+                                                        color: Colors.black54,
+                                                        size: 20,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Hero(
+                                  tag: 'profileImage',
+                                  child: Container(
+                                    width: 80,
+                                    height: 80,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16),
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.1),
+                                          blurRadius: 5,
+                                          spreadRadius: 1,
+                                        ),
+                                      ],
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(16),
+                                      child: Image.asset(
+                                        'assets/images/profileduck.png',
+                                        fit: BoxFit.contain,
+                                        filterQuality: FilterQuality.high,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
