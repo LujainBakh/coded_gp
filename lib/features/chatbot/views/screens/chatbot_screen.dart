@@ -1,6 +1,6 @@
 import 'package:coded_gp/core/common/widgets/custom_back_button.dart';
+import 'package:coded_gp/core/services/chat_service.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ChatbotScreen extends StatefulWidget {
   const ChatbotScreen({super.key});
@@ -25,6 +25,34 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
         'E-Library Website',
       ],
     });
+  }
+
+  Future<void> _handleUserMessage(String message) async {
+    setState(() {
+      _messages.add({
+        'isBot': false,
+        'message': message,
+      });
+    });
+
+    try {
+      final botReply = await ChatService.sendMessage(message);
+      setState(() {
+        _messages.add({
+          'isBot': true,
+          'message': botReply,
+        });
+      });
+    } catch (e) {
+      setState(() {
+        _messages.add({
+          'isBot': true,
+          'message': 'Oops! Something went wrong. Please try again later.',
+        });
+      });
+    }
+
+    _messageController.clear();
   }
 
   @override
@@ -72,8 +100,8 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                     final isBot = message['isBot'] as bool;
 
                     return Column(
-                      crossAxisAlignment: isBot 
-                          ? CrossAxisAlignment.start 
+                      crossAxisAlignment: isBot
+                          ? CrossAxisAlignment.start
                           : CrossAxisAlignment.end,
                       children: [
                         if (isBot)
@@ -141,22 +169,20 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                               children: (message['options'] as List<String>)
                                   .map((option) => InkWell(
                                         onTap: () {
-                                          setState(() {
-                                            _messages.add({
-                                              'isBot': false,
-                                              'message': option,
-                                            });
-                                            if (option == 'E-Library Website') {
+                                          _handleUserMessage(option);
+                                          if (option == 'E-Library Website') {
+                                            setState(() {
                                               _messages.add({
                                                 'isBot': true,
                                                 'message': 'E-Library',
                                               });
                                               _messages.add({
                                                 'isBot': true,
-                                                'message': 'Can I help you with something else?',
+                                                'message':
+                                                    'Can I help you with something else?',
                                               });
-                                            }
-                                          });
+                                            });
+                                          }
                                         },
                                         child: Container(
                                           padding: const EdgeInsets.symmetric(
@@ -167,7 +193,8 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                                             border: Border.all(
                                               color: const Color(0xFFBBDE4E),
                                             ),
-                                            borderRadius: BorderRadius.circular(20),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
                                           ),
                                           child: Text(option),
                                         ),
@@ -203,7 +230,17 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                           hintStyle: TextStyle(color: Colors.black54),
                         ),
                         style: const TextStyle(color: Colors.black),
+                        onSubmitted: _handleUserMessage,
                       ),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.send, color: Color(0xFFBBDE4E)),
+                      onPressed: () {
+                        final text = _messageController.text.trim();
+                        if (text.isNotEmpty) {
+                          _handleUserMessage(text);
+                        }
+                      },
                     ),
                   ],
                 ),
