@@ -67,7 +67,7 @@ class AboutScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 24),
                       const Text(
-                        'We express our deepest gratitude to Allah for His countless blessings and guidance throughout this project. Our sincere thanks go to our supervisor, Dr. Yasir AlGuwaifli, for his invaluable assistance and encouragement. We also thank Amjad AlKhalifa, Jood Shuwaikan, Jood AlGhamdi, Layan AlNahdi, and our leader Lujain Bakhurji for their unwavering support and teamwork. We are deeply grateful to our families for their love and patience, and to Imam Abdulrahman bin Faisal University for providing resources that foster learning and creativity. Lastly, we appreciate Ethan and his project "Folderly," which inspired the creation of "CODED."',
+                        'We express our deepest gratitude to Allah for His countless blessings and guidance throughout this project. Our sincere thanks go to our supervisor, Dr. Yasir AlGuwaifli, for his invaluable assistance and encouragement. We also thank Amjad AlKhalifa, Jood Shuwaikan, Jood AlGhamdi, Layan AlNahdi, and our leader Lujain Bakhurji for their unwavering support and teamwork. We are deeply grateful to our families for their love and patience, and to Imam Abdulrahman bin Faisal University for providing resources that foster learning and creativity. Lastly, we appreciate Ethan and his project "Folderly," which inspired the creation of "CodEd."',
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.black87,

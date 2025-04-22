@@ -72,7 +72,7 @@ class TermsPoliciesScreen extends StatelessWidget {
                       
                       _buildSection(
                         'Terms of Use',
-                        'By using CODED, you agree to the following terms:',
+                        'By using CodEd, you agree to the following terms:',
                         [
                           'The app is intended for IAU students and staff.',
                           'Users must maintain the confidentiality of their account credentials.',

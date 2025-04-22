@@ -73,8 +73,8 @@ class FAQScreen extends StatelessWidget {
                       const SizedBox(height: 24),
                       
                       _buildExpandableFAQ(
-                        'Can CODED help me plan my study schedule?',
-                        'Yes! CODED offers a smart scheduling system that helps you:\n'
+                        'Can CodEd help me plan my study schedule?',
+                        'Yes! CodEd offers a smart scheduling system that helps you:\n'
                         '• Create personalized study timetables\n'
                         '• Set reminders for assignments and exams\n'
                         '• Balance your study time across different courses\n'
@@ -83,8 +83,8 @@ class FAQScreen extends StatelessWidget {
                       ),
                       
                       _buildExpandableFAQ(
-                        'How does CODED differ from Blackboard or SIS?',
-                        'CODED complements Blackboard and SIS by providing:\n'
+                        'How does CodEd differ from Blackboard or SIS?',
+                        'CodEd complements Blackboard and SIS by providing:\n'
                         '• AI-powered study assistance and instant answers\n'
                         '• Smart calendar integration for better time management\n'
                         '• Personalized notifications for important deadlines\n'
@@ -96,7 +96,7 @@ class FAQScreen extends StatelessWidget {
                       _buildExpandableFAQ(
                         'Questions related to support:',
                         'Here\'s how you can get help:\n'
-                        '• Email support: support@coded.com\n'
+                        '• Email support: support@coded.edu\n'
                         '• Phone support: +966 456 7890\n'
                         '• Report issues through the app\'s "Report a Problem" feature\n'
                         '• Check our help documentation in the Help & Support section',
