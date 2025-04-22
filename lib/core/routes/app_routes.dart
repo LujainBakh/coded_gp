@@ -16,6 +16,7 @@ import 'package:coded_gp/features/gpa/views/screens/gpa_calculator_screen.dart';
 import 'package:coded_gp/features/filemanager/views/screens/file_manager_screen.dart';
 import 'package:coded_gp/features/filemanager/views/screens/add_file_screen.dart';
 import 'package:coded_gp/features/filemanager/views/screens/view_files_screen.dart';
+import 'package:coded_gp/features/timer/views/screens/timer_screen.dart';
 
 class AppRoutes {
   static const String onboarding = '/onboarding';
@@ -35,6 +36,7 @@ class AppRoutes {
   static const fileManager = '/file-manager';
   static const addFile = '/add-file';
   static const viewFiles = '/view-files';
+  static const timer = '/timer';
   static const summariser = '/summariser';
 
   static final routes = [
@@ -82,6 +84,10 @@ class AppRoutes {
       name: viewFiles,
       page: () =>
           ViewFilesScreen(folderName: Get.arguments?.toString() ?? 'Files'),
+    ),
+    GetPage(
+      name: timer,
+      page: () => TimerScreen(),
     ),
   ];
 }
