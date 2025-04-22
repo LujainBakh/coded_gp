@@ -35,6 +35,7 @@ class AppRoutes {
   static const fileManager = '/file-manager';
   static const addFile = '/add-file';
   static const viewFiles = '/view-files';
+  static const summariser = '/summariser';
 
   static final routes = [
     GetPage(name: onboarding, page: () => const OnBoardingScreen()),

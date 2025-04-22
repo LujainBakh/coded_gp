@@ -61,7 +61,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/coded_bg3.png'),
+            image: AssetImage('assets/images/Coded_bg3.png'),
             fit: BoxFit.cover,
           ),
         ),
