@@ -30,7 +30,12 @@ class _HomeScreenState extends State<HomeScreen> {
       'route': AppRoutes.fileManager,
     },
     {'icon': Icons.summarize, 'color': Colors.blue, 'title': 'Summary'},
-    {'icon': Icons.timer, 'color': Colors.green, 'title': 'Timer'},
+    {
+      'icon': Icons.timer,
+      'color': Colors.green,
+      'title': 'Timer',
+      'route': AppRoutes.timer,
+    },
     {'icon': Icons.style, 'color': Colors.orange, 'title': 'Flashcards'},
     {'icon': Icons.quiz, 'color': Colors.purple, 'title': 'Quiz'},
   ]; // or populate with your actual services

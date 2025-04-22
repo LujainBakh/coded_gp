@@ -1,6 +1,7 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
+import 'package:flutter/material.dart';
 
 class NotificationService {
   static final NotificationService _instance = NotificationService._internal();
@@ -40,25 +41,45 @@ class NotificationService {
     required DateTime scheduledTime,
     String? payload,
   }) async {
+    final androidDetails = AndroidNotificationDetails(
+      'timer_channel',  // channel id
+      'Timer Notifications',  // channel name
+      channelDescription: 'Notifications for timer events',
+      importance: Importance.high,
+      priority: Priority.high,
+      enableLights: true,
+      color: const Color(0xFFBBDE4E),  // notification LED color
+      ledColor: const Color(0xFFBBDE4E),
+      ledOnMs: 1000,
+      ledOffMs: 500,
+      icon: '@mipmap/ic_launcher',
+      largeIcon: const DrawableResourceAndroidBitmap('@mipmap/ic_launcher'),
+      styleInformation: const BigTextStyleInformation(''),
+      playSound: true,
+      enableVibration: true,
+      visibility: NotificationVisibility.public,
+      category: AndroidNotificationCategory.reminder,
+    );
+
+    final iosDetails = const DarwinNotificationDetails(
+      presentAlert: true,
+      presentBadge: true,
+      presentSound: true,
+      interruptionLevel: InterruptionLevel.active,
+      threadIdentifier: 'timer_notifications',
+    );
+
+    final notificationDetails = NotificationDetails(
+      android: androidDetails,
+      iOS: iosDetails,
+    );
+
     await _notifications.zonedSchedule(
       id,
       title,
       body,
       tz.TZDateTime.from(scheduledTime, tz.local),
-      NotificationDetails(
-        android: AndroidNotificationDetails(
-          'event_channel',
-          'Event Notifications',
-          channelDescription: 'Notifications for upcoming events',
-          importance: Importance.high,
-          priority: Priority.high,
-        ),
-        iOS: const DarwinNotificationDetails(
-          presentAlert: true,
-          presentBadge: true,
-          presentSound: true,
-        ),
-      ),
+      notificationDetails,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
       payload: payload,
