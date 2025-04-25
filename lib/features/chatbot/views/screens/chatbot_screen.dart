@@ -58,16 +58,35 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/Coded_bg3.png'),
-            fit: BoxFit.cover,
+      body: Stack(
+        children: [
+          // Background image
+          Positioned.fill(
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/coded_bg3.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: Column(
+
+          // White bottom overlay to block background
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            height: 100, // make sure this is enough to cover the home bar
+            child: Container(color: Colors.white),
+          ),
+
+          // Main chat layout
+          Column(
             children: [
+              const SafeArea(child: SizedBox()), // just for top notch
+
+              // Back button and logo container
               Padding(
                 padding: const EdgeInsets.only(top: 8.0, right: 8.0),
                 child: Row(
@@ -207,47 +226,45 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                   },
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
+              // Bottom chat bar
+              SafeArea(
+                top: false,
+                minimum: const EdgeInsets.only(bottom: 8),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      blurRadius: 5,
-                      offset: const Offset(0, -2),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: _messageController,
-                        decoration: const InputDecoration(
-                          hintText: 'Start typing',
-                          border: InputBorder.none,
-                          hintStyle: TextStyle(color: Colors.black54),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: _messageController,
+                          decoration: const InputDecoration(
+                            hintText: 'Start typing',
+                            border: InputBorder.none,
+                            hintStyle: TextStyle(color: Colors.black54),
+                            contentPadding: EdgeInsets.zero,
+                          ),
+                          style: const TextStyle(color: Colors.black),
+                          onSubmitted: _handleUserMessage,
                         ),
-                        style: const TextStyle(color: Colors.black),
-                        onSubmitted: _handleUserMessage,
                       ),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.send, color: Color(0xFFBBDE4E)),
-                      onPressed: () {
-                        final text = _messageController.text.trim();
-                        if (text.isNotEmpty) {
-                          _handleUserMessage(text);
-                        }
-                      },
-                    ),
-                  ],
+                      IconButton(
+                        icon: const Icon(Icons.send, color: Color(0xFFBBDE4E)),
+                        padding: EdgeInsets.zero,
+                        onPressed: () {
+                          final text = _messageController.text.trim();
+                          if (text.isNotEmpty) {
+                            _handleUserMessage(text);
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
           ),
-        ),
+        ],
       ),
     );
   }
