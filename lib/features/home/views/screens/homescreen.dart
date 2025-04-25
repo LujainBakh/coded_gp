@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:coded_gp/features/home/Widgets/home_drawer.dart';
 import 'package:get/get.dart';
 import 'package:coded_gp/core/routes/app_routes.dart';
+import 'package:coded_gp/features/flashcards/views/screens/flashcards_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,7 +37,12 @@ class _HomeScreenState extends State<HomeScreen> {
       'title': 'Timer',
       'route': AppRoutes.timer,
     },
-    {'icon': Icons.style, 'color': Colors.orange, 'title': 'Flashcards'},
+    {
+      'icon': Icons.style, 
+      'color': Colors.orange, 
+      'title': 'Flashcards',
+      'isFlashcards': true,  // Special flag for Flashcards
+    },
     {'icon': Icons.quiz, 'color': Colors.purple, 'title': 'Quiz'},
   ]; // or populate with your actual services
 
@@ -54,7 +60,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _handleServiceTap(Map<String, dynamic> service) {
-    if (service['route'] != null) {
+    if (service['isFlashcards'] == true) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const FlashcardsScreen(),
+        ),
+      );
+    } else if (service['route'] != null) {
       Navigator.pushNamed(context, service['route']);
     }
   }
