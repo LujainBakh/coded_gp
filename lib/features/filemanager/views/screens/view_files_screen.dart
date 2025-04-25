@@ -28,7 +28,10 @@ class ViewFilesScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 8.0, right: 8.0),
                     child: Row(
                       children: [
-                        const CustomBackButton(),
+                        CustomBackButton(
+                          useNavigator: false,
+                          onPressed: () => Get.offNamed('/file-manager'),
+                        ),
                         Expanded(
                           child: Center(
                             child: Text(

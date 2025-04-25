@@ -21,7 +21,6 @@ void main() async {
   Get.put(CalendarController());
   Get.put(TimerController());
   runApp(const MyApp());
-
 }
 
 class MyApp extends StatelessWidget {
