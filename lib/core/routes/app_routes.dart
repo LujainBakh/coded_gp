@@ -17,6 +17,8 @@ import 'package:coded_gp/features/filemanager/views/screens/file_manager_screen.
 import 'package:coded_gp/features/filemanager/views/screens/add_file_screen.dart';
 import 'package:coded_gp/features/filemanager/views/screens/view_files_screen.dart';
 import 'package:coded_gp/features/timer/views/screens/timer_screen.dart';
+import 'package:coded_gp/features/summariser/views/screens/summariser_screen.dart';
+import 'package:coded_gp/features/summariser/views/screens/upload_file_summariser_screen.dart';
 
 class AppRoutes {
   static const String onboarding = '/onboarding';
@@ -38,6 +40,7 @@ class AppRoutes {
   static const viewFiles = '/view-files';
   static const timer = '/timer';
   static const summariser = '/summariser';
+  static const uploadFileSummariser = '/upload-file-summariser';
 
   static final routes = [
     GetPage(name: onboarding, page: () => const OnBoardingScreen()),
@@ -88,6 +91,14 @@ class AppRoutes {
     GetPage(
       name: timer,
       page: () => TimerScreen(),
+    ),
+    GetPage(
+      name: summariser,
+      page: () => SummariserScreen(),
+    ),
+    GetPage(
+      name: uploadFileSummariser,
+      page: () => UploadFileSummariserScreen(),
     ),
   ];
 }

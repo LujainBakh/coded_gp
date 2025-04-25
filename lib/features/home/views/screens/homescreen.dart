@@ -29,7 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
       'title': 'File Manager',
       'route': AppRoutes.fileManager,
     },
-    {'icon': Icons.summarize, 'color': Colors.blue, 'title': 'Summary'},
+    {
+      'icon': Icons.summarize,
+      'color': Colors.blue,
+      'title': 'Summary',
+      'route': AppRoutes.summariser
+    },
     {
       'icon': Icons.timer,
       'color': Colors.green,
