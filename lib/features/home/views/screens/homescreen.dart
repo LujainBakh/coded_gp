@@ -8,6 +8,7 @@ import 'package:coded_gp/features/home/Widgets/home_drawer.dart';
 import 'package:get/get.dart';
 import 'package:coded_gp/core/routes/app_routes.dart';
 import 'package:coded_gp/features/flashcards/views/screens/flashcards_screen.dart';
+import 'package:coded_gp/features/home/views/screens/view_all_news_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String _searchQuery = '';
   bool get _isSearching => _searchQuery.isNotEmpty;
+  final _carouselKey = GlobalKey<AdsCarouselState>();
   final List<Map<String, dynamic>> services = [
     {
       'icon': Icons.calculate,
@@ -48,7 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
       'title': 'Flashcards',
       'isFlashcards': true,  // Special flag for Flashcards
     },
-    {'icon': Icons.quiz, 'color': Colors.purple, 'title': 'Quiz'},
   ]; // or populate with your actual services
 
   List<Map<String, dynamic>> get filteredServices => services
@@ -135,14 +136,28 @@ class _HomeScreenState extends State<HomeScreen> {
                     const Spacer(),
                     TextButton(
                       onPressed: () {
-                        // Handle view all news
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ViewAllNewsPage(
+                              allNews: _carouselKey.currentState!.ads,
+                            ),
+                          ),
+                        );
                       },
-                      child: const Text('View All'),
+                      child: const Text(
+                        'View All',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          color: Color(0xFF1a457b),
+                        ),
+                      ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 2),
-                const AdsCarousel(),
+                AdsCarousel(key: _carouselKey),
                 const SizedBox(height: 16),
                 const EventsSection(),
               ],
