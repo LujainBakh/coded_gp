@@ -264,7 +264,7 @@ class _ViewFilesScreenState extends State<ViewFilesScreen> {
           const SizedBox(width: 32),
           Expanded(
             child: Text(
-              file.fileName.substring(0, file.fileName.lastIndexOf('.')),
+              file.fileTitle,
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -333,7 +333,7 @@ class _ViewFilesScreenState extends State<ViewFilesScreen> {
 
   void _showEditDialog(FileModel file) {
     final TextEditingController controller =
-        TextEditingController(text: file.fileName);
+        TextEditingController(text: file.fileTitle);
 
     showDialog(
       context: context,
@@ -356,7 +356,7 @@ class _ViewFilesScreenState extends State<ViewFilesScreen> {
               onPressed: () async {
                 if (controller.text.isNotEmpty) {
                   try {
-                    await _storageService.updateFileName(
+                    await _storageService.updateFileTitle(
                       file.fileId,
                       widget.folderId,
                       controller.text,

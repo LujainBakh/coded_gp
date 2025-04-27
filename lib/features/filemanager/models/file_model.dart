@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FileModel {
   final String fileId;
   final String fileName;
+  final String fileTitle;
   final int fileSize;
   final String fileType;
   final String fileUrl;
@@ -12,6 +13,7 @@ class FileModel {
   FileModel({
     required this.fileId,
     required this.fileName,
+    required this.fileTitle,
     required this.fileSize,
     required this.fileType,
     required this.fileUrl,
@@ -23,6 +25,7 @@ class FileModel {
     return {
       'fileId': fileId,
       'fileName': fileName,
+      'fileTitle': fileTitle,
       'fileSize': fileSize,
       'fileType': fileType,
       'fileUrl': fileUrl,
@@ -35,6 +38,7 @@ class FileModel {
     return FileModel(
       fileId: map['fileId'] ?? '',
       fileName: map['fileName'] ?? '',
+      fileTitle: map['fileTitle'] ?? '',
       fileSize: map['fileSize'] ?? 0,
       fileType: map['fileType'] ?? '',
       fileUrl: map['fileUrl'] ?? '',

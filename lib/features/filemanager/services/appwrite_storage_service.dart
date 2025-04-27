@@ -22,6 +22,7 @@ class AppwriteStorageService {
     required String filePath,
     required String fileName,
     required String folderId,
+    required String fileTitle,
   }) async {
     try {
       // Get file metadata
@@ -33,6 +34,7 @@ class AppwriteStorageService {
       debugPrint('Attempting to upload file:');
       debugPrint('File ID: $fileId');
       debugPrint('File Name: $fileName');
+      debugPrint('File Title: $fileTitle');
       debugPrint('File Type: $fileType');
       debugPrint('File Size: $fileSize bytes');
       debugPrint('File Path: $filePath');
@@ -81,6 +83,7 @@ class AppwriteStorageService {
       final fileModel = FileModel(
         fileId: fileId,
         fileName: fileName,
+        fileTitle: fileTitle,
         fileSize: fileSize,
         fileType: fileType,
         fileUrl: fileUrl,
@@ -264,6 +267,41 @@ class AppwriteStorageService {
       return files;
     } catch (e) {
       debugPrint('Error listing files: $e');
+      rethrow;
+    }
+  }
+
+  Future<void> updateFileTitle(
+      String fileId, String folderId, String newFileTitle) async {
+    try {
+      final userId = _auth.currentUser?.uid;
+      if (userId == null) throw Exception('User not authenticated');
+
+      // Get file metadata from Firestore
+      final fileDoc = await _firestore
+          .collection('Users_DB')
+          .doc(userId)
+          .collection('folders')
+          .doc(folderId)
+          .collection('files')
+          .doc(fileId)
+          .get();
+
+      if (!fileDoc.exists) throw Exception('File not found');
+
+      // Update in Firestore
+      await _firestore
+          .collection('Users_DB')
+          .doc(userId)
+          .collection('folders')
+          .doc(folderId)
+          .collection('files')
+          .doc(fileId)
+          .update({
+        'fileTitle': newFileTitle,
+      });
+    } catch (e) {
+      debugPrint('Error updating file title: $e');
       rethrow;
     }
   }

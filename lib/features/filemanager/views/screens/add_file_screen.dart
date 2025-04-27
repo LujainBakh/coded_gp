@@ -128,6 +128,7 @@ class _AddFileScreenState extends State<AddFileScreen> {
         filePath: tempFile.path,
         fileName: fileName, // Use the original file name
         folderId: _folderId,
+        fileTitle: _titleController.text, // Pass the user-entered title
       );
 
       // Clean up temp file
