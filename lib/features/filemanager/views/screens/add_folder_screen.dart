@@ -52,6 +52,7 @@ class _AddFolderScreenState extends State<AddFolderScreen> {
           .collection('folders')
           .doc();
 
+      // Create the folder document
       await folderRef.set({
         'name': _titleController.text,
         'iconUrl': folderIcons[selectedColorIndex],
@@ -59,9 +60,13 @@ class _AddFolderScreenState extends State<AddFolderScreen> {
         'path': userId,
       });
 
+      // Create an empty files collection for this folder
+      final filesCollectionRef = folderRef.collection('files');
+      await filesCollectionRef.add({});
+
       // Refresh folders and then go back
       await folderController.getFolders(userId);
-      Get.back();
+      Get.offAllNamed('/file-manager');
     } catch (e) {
       print('Error creating folder: $e');
       // Add error handling/user feedback here
@@ -89,7 +94,10 @@ class _AddFolderScreenState extends State<AddFolderScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const CustomBackButton(),
+                    CustomBackButton(
+                      useNavigator: false,
+                      onPressed: () => Get.offNamed('/file-manager'),
+                    ),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.only(

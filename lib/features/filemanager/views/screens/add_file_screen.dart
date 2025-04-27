@@ -3,6 +3,11 @@ import 'package:get/get.dart';
 import 'package:coded_gp/core/common/widgets/custom_back_button.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:io';
+import 'package:appwrite/appwrite.dart';
+import 'package:coded_gp/features/filemanager/services/appwrite_storage_service.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:coded_gp/core/config/appwrite_config.dart';
+import 'package:coded_gp/core/routes/app_routes.dart';
 
 class AddFileScreen extends StatefulWidget {
   const AddFileScreen({super.key});
@@ -15,6 +20,33 @@ class _AddFileScreenState extends State<AddFileScreen> {
   final TextEditingController _titleController = TextEditingController();
   PlatformFile? _selectedFile;
   bool _isLoading = false;
+  late AppwriteStorageService _storageService;
+  late String _folderId;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeAppwrite();
+    final args = Get.arguments;
+    if (args is Map && args['folderId'] != null) {
+      _folderId = args['folderId'];
+    } else if (args is String) {
+      _folderId = args;
+    } else {
+      _folderId = 'root';
+    }
+  }
+
+  void _initializeAppwrite() {
+    final client = Client()
+      ..setEndpoint(AppwriteConfig.endpoint)
+      ..setProject(AppwriteConfig.projectId);
+
+    _storageService = AppwriteStorageService(
+      client: client,
+      bucketId: AppwriteConfig.bucketId,
+    );
+  }
 
   Future<void> _pickFile() async {
     if (_isLoading) return;
@@ -61,6 +93,73 @@ class _AddFileScreenState extends State<AddFileScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Error picking file: ${e.toString()}'),
+          backgroundColor: const Color(0xFF1A237E),
+        ),
+      );
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
+
+  Future<void> _uploadFile() async {
+    if (_selectedFile == null || _titleController.text.isEmpty) return;
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      // Create a temporary file
+      final tempDir = await getTemporaryDirectory();
+      final tempFile = File('${tempDir.path}/${_selectedFile!.name}');
+      await tempFile.writeAsBytes(_selectedFile!.bytes!);
+
+      // Use the original file name with extension
+      final fileName = _selectedFile!.name;
+
+      // Upload to Appwrite and Firestore
+      final fileId = await _storageService.uploadFile(
+        fileId: ID.unique(),
+        filePath: tempFile.path,
+        fileName: fileName, // Use the original file name
+        folderId: _folderId,
+      );
+
+      // Clean up temp file
+      await tempFile.delete();
+
+      if (!mounted) return;
+
+      // Show success message
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('File uploaded successfully'),
+          backgroundColor: Color(0xFF1A237E),
+        ),
+      );
+
+      // Navigate back
+      Get.offAllNamed(
+        AppRoutes.viewFiles,
+        arguments: {
+          'folderId': _folderId,
+          'folderName':
+              Get.arguments is Map && Get.arguments['folderName'] != null
+                  ? Get.arguments['folderName']
+                  : 'Files',
+        },
+      );
+    } catch (e) {
+      debugPrint('Error uploading file: $e');
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error uploading file: ${e.toString()}'),
           backgroundColor: const Color(0xFF1A237E),
         ),
       );
@@ -229,27 +328,7 @@ class _AddFileScreenState extends State<AddFileScreen> {
                   width: double.infinity,
                   height: 56,
                   child: ElevatedButton(
-                    onPressed: () {
-                      if (_titleController.text.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Please enter a file name'),
-                            backgroundColor: Color(0xFF1A237E),
-                          ),
-                        );
-                        return;
-                      }
-                      if (_selectedFile == null) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Please select a file'),
-                            backgroundColor: Color(0xFF1A237E),
-                          ),
-                        );
-                        return;
-                      }
-                      // TODO: Implement file creation logic
-                    },
+                    onPressed: _isLoading ? null : _uploadFile,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF1A237E),
                       shape: RoundedRectangleBorder(

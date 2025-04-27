@@ -85,8 +85,14 @@ class AppRoutes {
     ),
     GetPage(
       name: viewFiles,
-      page: () =>
-          ViewFilesScreen(folderName: Get.arguments?.toString() ?? 'Files'),
+      page: () => ViewFilesScreen(
+        folderId: Get.arguments is Map
+            ? Get.arguments['folderId'] ?? ''
+            : Get.arguments?.toString() ?? '',
+        folderName: Get.arguments is Map
+            ? Get.arguments['folderName'] ?? 'Files'
+            : 'Files',
+      ),
     ),
     GetPage(
       name: timer,
