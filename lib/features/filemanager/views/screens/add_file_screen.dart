@@ -8,6 +8,7 @@ import 'package:coded_gp/features/filemanager/services/appwrite_storage_service.
 import 'package:path_provider/path_provider.dart';
 import 'package:coded_gp/core/config/appwrite_config.dart';
 import 'package:coded_gp/core/routes/app_routes.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AddFileScreen extends StatefulWidget {
   const AddFileScreen({super.key});

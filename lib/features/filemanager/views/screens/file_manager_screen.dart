@@ -226,7 +226,8 @@ class FileManagerScreen extends StatelessWidget {
   Widget _buildFolderItem(Folder folder) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed('/view-files', arguments: folder.name);
+        Get.toNamed('/view-files',
+            arguments: {'folderId': folder.id, 'folderName': folder.name});
       },
       onLongPress: () {
         final userId = FirebaseAuth.instance.currentUser?.uid;

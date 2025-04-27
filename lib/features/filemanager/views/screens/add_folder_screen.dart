@@ -60,10 +60,6 @@ class _AddFolderScreenState extends State<AddFolderScreen> {
         'path': userId,
       });
 
-      // Create an empty files collection for this folder
-      final filesCollectionRef = folderRef.collection('files');
-      await filesCollectionRef.add({});
-
       // Refresh folders and then go back
       await folderController.getFolders(userId);
       Get.offAllNamed('/file-manager');

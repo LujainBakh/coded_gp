@@ -252,8 +252,11 @@ class AppwriteStorageService {
 
       debugPrint('Found ${querySnapshot.docs.length} files');
 
-      final files = querySnapshot.docs.map((doc) {
-        debugPrint('Processing file: ${doc.data()}');
+      final files = querySnapshot.docs
+          .where((doc) =>
+              doc.data().containsKey('fileId')) // Only include real files
+          .map((doc) {
+        debugPrint('Processing file: \\n${doc.data()}');
         return FileModel.fromMap(doc.data() as Map<String, dynamic>);
       }).toList();
 

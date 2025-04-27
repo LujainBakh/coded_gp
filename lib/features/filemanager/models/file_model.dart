@@ -38,7 +38,9 @@ class FileModel {
       fileSize: map['fileSize'] ?? 0,
       fileType: map['fileType'] ?? '',
       fileUrl: map['fileUrl'] ?? '',
-      uploadedAt: (map['uploadedAt'] as Timestamp).toDate(),
+      uploadedAt: map['uploadedAt'] != null
+          ? (map['uploadedAt'] as Timestamp).toDate()
+          : DateTime.fromMillisecondsSinceEpoch(0),
       folderId: map['folderId'] ?? '',
     );
   }
