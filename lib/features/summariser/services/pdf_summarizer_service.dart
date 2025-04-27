@@ -1,9 +1,14 @@
-import 'dart:convert';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
-import 'dart:async';
+import 'package:path/path.dart' as path;
+import 'package:syncfusion_flutter_pdf/pdf.dart';
+import 'package:coded_gp/features/summariser/services/openai_service.dart';
+import 'dart:convert';
 import 'package:coded_gp/core/config/api_config.dart';
 
-class OpenAIService {
+class PDFSummarizerService {
+  final OpenAIService _openAIService = OpenAIService();
   static const String _baseUrl = 'https://api.openai.com/v1';
   static const int _maxChunkSize = 4000;
   static const int _maxRetries = 3;
@@ -11,6 +16,76 @@ class OpenAIService {
   static const int _maxDelay = 30;
   static const int _concurrentRequests = 3;
   static const int _chunkDelay = 5;
+
+  Future<String> summarizePDFFromUrl(String pdfUrl, String title) async {
+    try {
+      // Download the PDF file
+      final response = await http.get(Uri.parse(pdfUrl));
+      if (response.statusCode != 200) {
+        throw Exception('Failed to download PDF: ${response.statusCode}');
+      }
+
+      // Save the PDF to temporary directory
+      final tempDir = await getTemporaryDirectory();
+      final fileName = path.basename(pdfUrl);
+      final file = File('${tempDir.path}/$fileName');
+      await file.writeAsBytes(response.bodyBytes);
+
+      // Extract text from PDF
+      final pdfText = await _extractTextFromPDF(file.path);
+
+      // Summarize the text
+      return await _openAIService.summarizeFile(pdfText, title);
+    } catch (e) {
+      throw Exception('Error summarizing PDF: $e');
+    }
+  }
+
+  Future<String> summarizePDFFromFile(File pdfFile, String title) async {
+    try {
+      // Extract text from PDF
+      final pdfText = await _extractTextFromPDF(pdfFile.path);
+
+      // Summarize the text
+      return await _openAIService.summarizeFile(pdfText, title);
+    } catch (e) {
+      throw Exception('Error summarizing PDF: $e');
+    }
+  }
+
+  Future<String> _extractTextFromPDF(String pdfPath) async {
+    try {
+      final bytes = await File(pdfPath).readAsBytes();
+      final document = PdfDocument(inputBytes: bytes);
+      final text = StringBuffer();
+
+      for (var i = 0; i < document.pages.count; i++) {
+        final page = document.pages[i];
+        final pageText = PdfTextExtractor(document)
+            .extractText(startPageIndex: i, endPageIndex: i);
+        text.writeln(pageText);
+      }
+
+      document.dispose();
+      return text.toString();
+    } catch (e) {
+      throw Exception('Failed to extract text from PDF: $e');
+    }
+  }
+
+  Future<String> extractTextFromPDF(List<int> pdfBytes) async {
+    try {
+      final PdfDocument document = PdfDocument(inputBytes: pdfBytes);
+      String text = '';
+      for (int i = 0; i < document.pages.count; i++) {
+        text += PdfTextExtractor(document).extractText(startPageIndex: i);
+      }
+      document.dispose();
+      return text;
+    } catch (e) {
+      throw Exception('Error extracting text from PDF: $e');
+    }
+  }
 
   List<String> _splitIntoChunks(String text) {
     List<String> chunks = [];
@@ -49,9 +124,6 @@ class OpenAIService {
 
     while (retryCount < _maxRetries) {
       try {
-        print(
-            'Attempting to summarize chunk $chunkNumber of $totalChunks (Attempt ${retryCount + 1})');
-
         final response = await http.post(
           Uri.parse('$_baseUrl/chat/completions'),
           headers: {
@@ -86,15 +158,10 @@ class OpenAIService {
               'API Error: ${errorData['error']['message'] ?? response.body}';
 
           if (response.statusCode == 429) {
-            // Exponential backoff for rate limits
             currentDelay = (currentDelay * 1.5).ceil();
             if (currentDelay > _maxDelay) currentDelay = _maxDelay;
-
-            print('Rate limit hit. Waiting ${currentDelay}s before retry...');
             await Future.delayed(Duration(seconds: currentDelay));
           } else {
-            print(
-                'Error status code: ${response.statusCode}. Waiting $currentDelay seconds before retry...');
             await Future.delayed(Duration(seconds: currentDelay));
           }
 
@@ -105,7 +172,6 @@ class OpenAIService {
         lastError = 'Network Error: $e';
         if (retryCount < _maxRetries - 1) {
           retryCount++;
-          print('Error occurred: $e. Retrying in $currentDelay seconds...');
           await Future.delayed(Duration(seconds: currentDelay));
           continue;
         }
@@ -116,18 +182,17 @@ class OpenAIService {
         'Failed to summarize chunk after $_maxRetries attempts. Last error: $lastError');
   }
 
-  Future<String> summarizeFile(String fileContent, String title) async {
+  Future<String> summarizePDF(List<int> pdfBytes, String title) async {
     try {
-      if (fileContent.isEmpty) {
-        throw Exception('File content is empty');
+      final text = await extractTextFromPDF(pdfBytes);
+      if (text.isEmpty) {
+        throw Exception('PDF content is empty');
       }
 
-      final chunks = _splitIntoChunks(fileContent);
+      final chunks = _splitIntoChunks(text);
       final totalChunks = chunks.length;
-      print('Processing $totalChunks chunks...');
       List<String> summaries = [];
 
-      // Process chunks in parallel with a limit on concurrent requests
       for (int i = 0; i < chunks.length; i += _concurrentRequests) {
         final currentBatch = chunks.sublist(
           i,
@@ -149,15 +214,10 @@ class OpenAIService {
         final batchResults = await Future.wait(batchFutures);
         summaries.addAll(batchResults);
 
-        // Add a smaller delay between batches
         if (i + _concurrentRequests < chunks.length) {
-          print('Waiting $_chunkDelay seconds before next batch...');
           await Future.delayed(Duration(seconds: _chunkDelay));
         }
       }
-
-      print('All chunks processed. Creating final summary...');
-      await Future.delayed(Duration(seconds: _chunkDelay));
 
       final combinedSummaries = summaries.join('\n\n');
       int retryCount = 0;
@@ -203,13 +263,8 @@ class OpenAIService {
           if (finalResponse.statusCode == 429) {
             currentDelay = (currentDelay * 1.5).ceil();
             if (currentDelay > _maxDelay) currentDelay = _maxDelay;
-
-            print(
-                'Rate limit hit. Waiting ${currentDelay}s before final summary...');
             await Future.delayed(Duration(seconds: currentDelay));
           } else {
-            print(
-                'Error status code: ${finalResponse.statusCode}. Waiting $currentDelay seconds before retry...');
             await Future.delayed(Duration(seconds: currentDelay));
           }
 
@@ -219,8 +274,6 @@ class OpenAIService {
           lastError = 'Network Error: $e';
           if (retryCount < _maxRetries - 1) {
             retryCount++;
-            print(
-                'Error occurred: $e. Retrying final summary in $currentDelay seconds...');
             await Future.delayed(Duration(seconds: currentDelay));
             continue;
           }
@@ -230,7 +283,7 @@ class OpenAIService {
       throw Exception(
           'Failed to create final summary after $_maxRetries attempts. Last error: $lastError');
     } catch (e) {
-      throw Exception('Error summarizing file: $e');
+      throw Exception('Error summarizing PDF: $e');
     }
   }
 }

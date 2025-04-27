@@ -9,6 +9,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:coded_gp/core/config/appwrite_config.dart';
 import 'package:coded_gp/features/filemanager/models/file_model.dart';
+import 'package:coded_gp/features/filemanager/views/screens/file_display_screen.dart';
 
 class ViewFilesScreen extends StatefulWidget {
   final String folderId;
@@ -255,78 +256,86 @@ class _ViewFilesScreenState extends State<ViewFilesScreen> {
   Widget _buildFileItem({
     required FileModel file,
   }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          _FileIconWithLabel(fileType: file.fileType),
-          const SizedBox(width: 32),
-          Expanded(
-            child: Text(
-              file.fileTitle,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          PopupMenuButton<String>(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            color: Colors.white,
-            elevation: 4,
-            onSelected: (value) async {
-              if (value == 'delete') {
-                await _deleteFile(file);
-              } else if (value == 'edit') {
-                _showEditDialog(file);
-              }
-            },
-            itemBuilder: (BuildContext context) => [
-              PopupMenuItem<String>(
-                value: 'edit',
-                child: Row(
-                  children: [
-                    Icon(Icons.edit, color: Colors.grey[800]),
-                    const SizedBox(width: 8),
-                    Text('Edit Title',
-                        style: TextStyle(color: Colors.grey[800])),
-                  ],
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => FileDisplayScreen(
+              fileId: file.fileId,
+              folderId: file.folderId,
+            ));
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            _FileIconWithLabel(fileType: file.fileType),
+            const SizedBox(width: 32),
+            Expanded(
+              child: Text(
+                file.fileTitle,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-              PopupMenuItem<String>(
-                value: 'delete',
-                child: Row(
-                  children: [
-                    Icon(Icons.delete, color: Colors.red[400]),
-                    const SizedBox(width: 8),
-                    Text('Delete', style: TextStyle(color: Colors.red[400])),
-                  ],
-                ),
+            ),
+            PopupMenuButton<String>(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
               ),
-            ],
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
+              color: Colors.white,
+              elevation: 4,
+              onSelected: (value) async {
+                if (value == 'delete') {
+                  await _deleteFile(file);
+                } else if (value == 'edit') {
+                  _showEditDialog(file);
+                }
+              },
+              itemBuilder: (BuildContext context) => [
+                PopupMenuItem<String>(
+                  value: 'edit',
+                  child: Row(
+                    children: [
+                      Icon(Icons.edit, color: Colors.grey[800]),
+                      const SizedBox(width: 8),
+                      Text('Edit Title',
+                          style: TextStyle(color: Colors.grey[800])),
+                    ],
                   ),
-                ],
-              ),
-              child: Icon(
-                Icons.more_vert,
-                color: Colors.grey[800],
+                ),
+                PopupMenuItem<String>(
+                  value: 'delete',
+                  child: Row(
+                    children: [
+                      Icon(Icons.delete, color: Colors.red[400]),
+                      const SizedBox(width: 8),
+                      Text('Delete', style: TextStyle(color: Colors.red[400])),
+                    ],
+                  ),
+                ),
+              ],
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 4,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Icon(
+                  Icons.more_vert,
+                  color: Colors.grey[800],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
