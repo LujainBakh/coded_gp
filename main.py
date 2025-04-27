@@ -2,11 +2,16 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import openai
-import os
-from dotenv import load_dotenv
+from config import OPENAI_API_KEY
+import logging
 
-load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
+# Set the OpenAI API key
+openai.api_key = OPENAI_API_KEY
+logger.info("OpenAI API key set")
 
 app = FastAPI()
 
@@ -22,22 +27,47 @@ app.add_middleware(
 class Message(BaseModel):
     user_input: str
 
+# Read the knowledge base file
+with open("files/coded_info.txt", "r") as f:
+    knowledge_base = f.read()
+
+system_prompt = f"""You are a helpful assistant for CodEd, an educational platform. 
+You have access to the following information about the platform:
+
+{knowledge_base}
+
+Use this information to answer user questions accurately and helpfully. 
+If you don't know the answer based on the provided information, say so.
+"""
+
 @app.post("/chat")
 async def chat(message: Message):
     try:
-        if not openai.api_key:
+        logger.info(f"Received message: {message.user_input}")
+        
+        if not OPENAI_API_KEY:
+            logger.error("OpenAI API key not found")
             raise HTTPException(status_code=500, detail="OpenAI API key not found")
             
+        # Create the chat completion
+        logger.info("Creating chat completion...")
         response = openai.ChatCompletion.create(
-            model="gpt-4",
+            model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "You are a helpful assistant"},
+                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": message.user_input}
-            ]
+            ],
+            temperature=0.7,
+            max_tokens=500
         )
-        return {"reply": response["choices"][0]["message"]["content"]}
+
+        # Extract the assistant's response
+        assistant_response = response.choices[0].message.content
+        logger.info(f"Assistant response: {assistant_response}")
+        return {"reply": assistant_response}
+
     except Exception as e:
-        print(f"Error: {str(e)}")
+        logger.error(f"Error in chat endpoint: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":

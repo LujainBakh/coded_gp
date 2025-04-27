@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 class ChatService {
   // Base URL for your Python FastAPI server
-  static const String _baseUrl = 'http://192.168.1.19:8000';
+  static const String _baseUrl = 'http://localhost:8000';
 
   /// Sends a message to the chatbot backend and returns its response.
   ///

@@ -1,0 +1,1773 @@
+CodEd Platform Information:
+
+1. Platform Overview:
+- CodEd is an educational platform designed to help students learn and practice coding
+- Features include a chatbot, calendar, flashcards, and file management
+- The platform uses AI to provide personalized learning experiences
+
+2. Chatbot Features:
+- The chatbot can answer questions about the platform
+- It can help with coding problems and concepts
+- It has access to educational resources and documentation
+
+3. Calendar Features:
+- Track important dates and deadlines
+- Schedule study sessions
+- Set reminders for assignments and exams
+
+4. Flashcard System:
+- Create and manage digital flashcards
+- Practice coding concepts and terminology
+- Track progress and review difficult topics
+
+5. File Management:
+- Upload and organize educational materials
+- Access files from anywhere
+- Share files with other users
+
+6. User Support:
+- Help center for common questions
+- Technical support for platform issues
+- Community forum for peer support 
+
+## AI Courses
+
+### AI Principles & Techniques (ARTI 401)
+- Basics of AI: history, agents, expert systems, logic behind agents.
+- Not strongly connected to practical AI concepts.
+  
+### Parallel Computer Architecture (ARTI 503)
+- Programming course without labs.
+- Students must run and study code outside class to understand parallelism.
+
+### Mobile Application Programming (CS 526)
+- Focus on Android development and its system components.
+- Labs require creating mobile apps; the project involves building a full app.
+
+### NLP (Elective) (ARTI 501)
+- Advanced course; strong AI foundation recommended.
+- Covers Natural Language Processing in AI.
+- Theoretical with limited practical application.
+
+## CS Courses
+
+### Computer Data Security and Privacy (CIS 425)
+- Not difficult but contains heavy content.
+- Small project using two tools in Kali Linux.
+
+### Language Theory & Finite Automata (CS 422)
+- Cumulative subject; easy if consistently studied.
+- Focus on concepts and regular practice.
+
+### Numerical Analysis (MATH 411)
+- Gets harder with each chapter.
+- Practice is key; similar questions every year.
+
+### Human Computer Interaction (CIS 422)
+- Very simple subject.
+- Projects involve using apps to design and test interfaces.
+
+### Web-Based Systems (CIS 423)
+- Covers HTML, CSS, JavaScript, PHP.
+- Practical projects and group quizzes.
+- Reference YouTube playlist for tutorials.
+
+Courses list
+Course ID: CYS506
+Course Name: Ethical Hacking
+Course Description: Provides the basis of Ethical Hacking, evaluating deployed system security. Covers penetration testing phases, wireless hacking, web application hacking, denial of service attacks, and includes lab tutorials.
+
+Course ID: CS522
+Course Name: Selected Topics in Computer Sciences
+Course Description: Topics selected from emerging areas not covered elsewhere in the curriculum. Covers Web technologies, mobile computing, AI trends, and software engineering developments. Students complete individual research projects and presentations.
+
+Course ID: CS516
+Course Name: Advanced Programming Language
+Course Description: Discusses basic programming language concepts including types, control structures, abstraction mechanisms, inheritance, concurrency, and programming paradigms such as object-oriented, functional, and logic programming.
+
+Course ID: CS412
+Course Name: Algorithm Analysis & Design
+Course Description: Covers foundations for designing algorithms. Introduces brute-force, divide-and-conquer, greedy methods, and dynamic programming to solve common computational problems.
+
+Course ID: ARTI401
+Course Name: Artificial Intelligence: Principles and Techniques
+Course Description: Introduces AI fundamentals, including intelligent agents, search methods, logic, knowledge representation, planning, and reasoning under uncertainty.
+
+Course ID: CIS425
+Course Name: Computer Data Security and Privacy
+Course Description: Covers IT security principles, risk management, vulnerability assessment, policy development, hardware/software security, and real-world security case studies.
+
+Course ID: CS414
+Course Name: Computer Organization
+Course Description: Provides an understanding of how computer hardware and software components interact. Covers MIPS architecture, CPU design, memory systems, and parallel processing concepts.
+
+Course ID: CIS517
+Course Name: Data Mining and Warehousing
+Course Description: Introduces data mining cycles, data preprocessing, frequent patterns, classification, clustering, and warehousing with OLAP techniques.
+
+Course ID: CIS422
+Course Name: Human Computer Interaction
+Course Description: Covers theories and principles of human-computer interaction. Focuses on usability design, user-centered evaluation, participatory design, and applications in business environments.
+
+Course ID: CS422
+Course Name: Language Theory & Finite Automata
+Course Description: Teaches formal language theory, finite state machines, context-free grammars, pushdown automata, and the theoretical basis of computation models.
+
+Course ID: MATH401
+Course Name: Logic & Proof Techniques
+Course Description: Introduces propositional and predicate logic, proof strategies (direct, contradiction, induction), and discrete mathematical methods used in computer science.
+
+Course ID: CS526
+Course Name: Mobile Application Programming
+Course Description: Covers design and development of mobile applications primarily on the Android platform, focusing on scalability, maintainability, and real-device deployment.
+
+Course ID: MATH411
+Course Name: Numerical Analysis
+Course Description: Introduces numerical solutions to problems including nonlinear equations, interpolation, differentiation, integration, and solving differential equations.
+
+Course ID: CS322
+Course Name: Operating Systems
+Course Description: Teaches basic operating system concepts including processes, memory management, scheduling, deadlocks, file systems, and virtual memory.
+
+Course ID: ARTI503
+Course Name: Parallel Computer Architecture and Programming
+Course Description: Covers parallel computing models, multi-core systems, GPU architectures, and parallel programming using MPI, CUDA, and MapReduce.
+
+Course ID: CS411
+Course Name: Software Engineering
+Course Description: Discusses software development life cycle, agile methodologies, project management, testing, maintenance, reuse, and software evolution processes.
+
+Course ID: CIS423
+Course Name: Web Based System
+Course Description: Focuses on web development technologies including HTML, CSS, JavaScript, PHP, MySQL, and the use of APIs and web services.
+
+Course ID: COMP108
+Course Name: Fundamentals of Programming
+Course Description: Introduces basic programming structures such as sequence, selection, iteration, functions, arrays, and introductory object-oriented programming.
+
+Course ID: ARAB182
+Course Name: Arabic Language Skills
+Course Description: Focuses on advanced Arabic writing, spelling, comprehension, and applied communication skills through text analysis and exercises.
+
+Course ID: MATH104
+Course Name: General Mathematics
+Course Description: Reinforces algebraic concepts, equations, inequalities, functions, complex numbers, and graph analysis as preparation for calculus.
+
+Course ID: ENGL101
+Course Name: General English Language 1
+Course Description: An intensive course aimed at improving English proficiency from A1 to B1 level, enhancing listening, speaking, reading, and writing skills.
+
+Course ID: CIS105
+Course Name: Fundamentals of Information Systems
+Course Description: Introduces information system components (hardware, software, people, data, communication) and their role in modern organizations.
+
+Course ID: ENGL102
+Course Name: General English Language 2
+Course Description: Builds upon ENGL101, advancing English skills from B1 to C1 proficiency level with emphasis on practical communication.
+
+Course ID: ISLM181
+Course Name: Creed and Family in Islam
+Course Description: Covers Islamic beliefs, ranks of religion, prophecy, unseen faith matters, family rights, loyalty and disavowal concepts in Islam.
+
+Course ID: MATH109
+Course Name: Calculus
+Course Description: Teaches the concepts of limits, continuity, derivatives, integrals, and their applications, particularly in computing and science.
+
+Course ID: ARTI106
+Course Name: Artificial Intelligence Principles and Techniques
+Course Description: Introduces basic AI topics such as intelligent agents, search strategies, problem solving, logic representation, and planning under uncertainty.
+
+Course ID: CYS107
+Course Name: Fundamentals of Cybersecurity
+Course Description: Introduces cybersecurity fundamentals including laws, risk management, digital forensics, information security governance, and cyber policy frameworks.
+
+Course ID: STAT201
+Course Name: Introduction to Statistics and Probability Theory
+Course Description: Covers probability, statistical distributions, hypothesis testing, regression analysis, confidence intervals, and data analysis using statistical software.
+
+Course ID: CS315
+Course Name: Object Oriented Programming 1
+Course Description: Teaches fundamental object-oriented programming concepts such as classes, inheritance, polymorphism, and encapsulation using Java.
+
+Course ID: TECH301
+Course Name: Technical Reports
+Course Description: Develops technical writing skills for professional communication, including memos, letters, formal reports, and scientific documentation.
+
+Course ID: CIS210
+Course Name: Fundamentals of Communications and Networking
+Course Description: Covers network architectures, TCP/IP and OSI models, transmission media, routing, switching, and network security fundamentals.
+
+Course ID: PHYS101
+Course Name: Physics
+Course Description: Introduces concepts of heat, thermodynamics, and energy transfer, relating physical phenomena to real-world applications.
+
+Course ID: HIST101
+Course Name: History and Civilization of Kingdom of Saudi Arabia
+Course Description: Reviews the historical, cultural, and civilizational development of Saudi Arabia, including Vision 2030 and national heritage efforts.
+
+Course ID: CS415
+Course Name: Operating Systems
+Course Description: Introduces operating system principles including CPU scheduling, memory management, virtual memory, deadlock resolution, and file system organization.
+
+Course ID: MATH201
+Course Name: Linear Algebra
+Course Description: Covers matrices, solving systems of equations, vector spaces, orthogonality, eigenvalues, eigenvectors, and matrix decompositions.
+
+Course ID: BUS401
+Course Name: Entrepreneurship
+Course Description: Introduces entrepreneurial concepts, innovation processes, business planning, and strategies for launching new ventures.
+
+Course ID: CS404
+Course Name: Machine Learning
+Course Description: Covers supervised and unsupervised learning, classifiers, neural networks, decision trees, clustering methods, and reinforcement learning.
+
+Course ID: CS405
+Course Name: Deep Learning
+Course Description: Explores deep neural networks, convolutional neural networks, backpropagation, optimization, and deep learning applications in vision and speech.
+
+Course ID: CS406
+Course Name: Natural Language Processing
+Course Description: Introduces NLP tasks such as text classification, language modeling, syntax analysis, sentiment analysis, and information extraction.
+
+Course ID: CS407
+Course Name: Robotics and Intelligent Systems
+Course Description: Covers robotic system design, autonomous navigation, sensors, actuators, and group-based projects building functional robots.
+
+Course ID: CS408
+Course Name: Image Processing
+Course Description: Introduces techniques for image enhancement, filtering, transformations, compression, segmentation, and object recognition.
+
+Course ID: DS401
+Course Name: Data Science and Analytics
+Course Description: Covers data wrangling, exploratory data analysis, predictive modeling, data visualization, and analytics project development with real-world datasets.
+
+Course ID: CS409
+Course Name: Parallel and Distributed Computing
+Course Description: Introduces concepts of parallel computing, distributed systems architecture, synchronization, scalability, and programming using frameworks like MPI and Hadoop.
+
+Course ID: COOP500
+Course Name: Practical (Co-op) Training
+Course Description: Structured training program bridging academic study with real-world experience. Students complete 10 weeks of work at organizations plus a technical report and presentation.
+
+Course ID: CS410
+Course Name: Programming for Artificial Intelligence
+Course Description: Focuses on Python programming for AI applications. Covers data structures, algorithms, data science libraries, machine learning basics, and AI-oriented software development.
+
+Course ID: CS420
+Course Name: Mathematical Foundation for Artificial Intelligence
+Course Description: Covers multivariate calculus, gradients, optimization techniques, Lagrange multipliers, matrix calculus, and applications to machine learning and AI systems.
+
+Course ID: CS421
+Course Name: Object Oriented Analysis and Design
+Course Description: Teaches system analysis and design using object-oriented methods and UML modeling. Covers use-case diagrams, class diagrams, interaction diagrams, and system workflows.
+
+Course ID: CS423
+Course Name: Network Security
+Course Description: Introduces cryptography concepts, network vulnerabilities, attack prevention techniques, authentication protocols, secure communications, and network service protection.
+
+Course ID: CS424
+Course Name: Digital Logic Design
+Course Description: Covers binary number systems, Boolean algebra, logic gates, combinational and sequential circuits, flip-flops, counters, registers, and programmable logic devices.
+
+Course ID: CS425
+Course Name: Deep Learning
+Course Description: Covers fundamentals of deep neural networks, convolutional networks, automatic feature learning, optimization challenges, and real-world applications in vision, text, and speech.
+
+Course ID: CS426
+Course Name: Natural Language Processing
+Course Description: Focuses on computational methods for understanding, processing, and generating human language. Topics include syntax, semantics, language models, and machine translation.
+
+Course ID: CS427
+Course Name: Robotics and Intelligent Systems
+Course Description: Explores autonomous robotic systems, hardware design, sensing and control systems, path planning, and intelligent behavior modeling.
+
+Course ID: CS428
+Course Name: Image Processing
+Course Description: Introduces image fundamentals, enhancement techniques, image restoration, segmentation, feature extraction, and classification for digital image analysis.
+
+Course ID: CS429
+Course Name: Data Science and Analytics
+Course Description: Equips students with skills for data collection, integration, analysis, predictive modeling, and data product creation using real-world datasets.
+
+Course ID: CS430
+Course Name: Parallel and Distributed Computing
+Course Description: Discusses parallel computation models, multi-core architectures, distributed computing environments, synchronization, scalability, and performance optimization techniques.
+
+Course ID: BIO102
+Course Name: Biology
+Course Description: Provides foundational understanding of biological systems, human anatomy, physiology, genetics, and the impact of technology on biological research.
+
+## Faculty Contacts
+
+Doctor Name, Email, Office
+Sunday Olusanya Olatunji, osunday@iau.edu.sa, 4205-3
+Dr. Mostafa Youldash, mmzyouldash@iau.edu.sa, Not registered
+Dr. Mohammed Imran Basheer Ahmed, mbahmed@iau.edu.sa, Not registered
+Dr.Dina Abdullah Alabbad, daalabbad@iau.edu.sa, Not registered
+Dr. Nawaf Alharbi, nmsalharbi@iau.edu.sa, Not registered
+Noor Maher Felemban, nmfelemban@iau.edu.sa, Not registered
+Huda Abdulhadi Alamri, haalamri@iau.edu.sa, Not registered
+Mohammed Salih Ahmed, msAhmed@iau.edu.sa, 4201-6
+Mohammad Aftab Alam Khan, mkhan@iau.edu.sa, Not registered
+Mehwash Farooqui, mfarooqui@iau.edu.sa, Not registered
+Mohammed Mosuily, mtmosuily@iau.edu.sa, Not registered
+Dr. Mohammed Alqahtani, maqhtani@iau.edu.sa, 4100 - F
+Dr. Abdullah Ali Alqahtani, aamqahtani@iau.edu.sa, 35451
+Dr. Nahier Ghaleb Aldhafeeri, naldhafeeri@iau.edu.sa, 32703
+Dr.Yasser Ahmad Bamarouf, yabamarouf@iau.edu.sa, 4200 - D
+Dr.Rami Mustafa AbdelRahman, rmmohammad@iau.edu.sa, 32044
+Dr. Saqib Saeed, sbsaed@iau.edu.sa, 1113
+Dr. Mohammed Gollapalli, magollapalli@iau.edu.sa, 4100 - G
+Dr. Rachid Zagrouba, rmzagrouba@iau.edu.sa, 4205 - 5
+Dr. May Issa Aldossary, mialdossary@iau.edu.sa, 32020
+Dr. Fatema Shaikh, fsshaikh@iau.edu.sa, Not registered
+Dr. Deemah Ali Alqahtani, daalqahtani@iau.edu.sa, Not registered
+Dr. Alaa Yahya Jaber Alahmadi, ayalahmadi@iau.edu.sa, Not registered
+Dr. Sumayh Saud Aljameel, saljameel@iau.edu.sa, Not registered
+Dr. Amal Aodah Alahmadi, aaalahmadi@iau.edu.sa, Not registered
+Prof. Nazar Abbas Saqib, nasaqib@iau.edu.sa, 4201-13
+Pro. Nasro Min Alalh, nabdullatief@iau.edu.sa, Not registered
+Dr. Atta-ur-Rahman, aaurrahman@iau.edu.sa, 4205-2
+Dr. Fahd Abdulsalam Alhaidari, faalhaidari@iau.edu.sa, 4205 - 8
+Dr. Abdullah Mohammed Almuhaideb, amalmuhaideb@iau.edu.sa, D1
+Dr. Garsah Farhan Alqarni, gfalqarni@iau.edu.sa, 102E
+Dr. Nesrine Islah Mezhoudi, nimezhoudi@iau.edu.sa, Not registered
+Dr. Samiha Brahimi, sbrahimi@iau.edu.sa, 650-100h
+Dr. Abdulrahman Alharby, aalharby@iau.edu.sa, 4100-C
+Dr. Khadeejah Alhindi, krAlhindi@iau.edu.sa, Not registered
+Dr. Nida Aslam, naslam@iau.edu.sa, 102C
+Dr. Irfan Ullah Khan, iurab@iau.edu.sa, Not registered
+Dr. Dhiaa A. Musleh, damusleh@iau.edu.sa, Not registered
+Dr. Farmanullah Jan, fzmjan@iau.edu.sa, Not registered
+Dr. Maryam Ahmed, mtahmed@iau.edu.sa, Not registered
+Dr. Mariam Elhussein, maelhussein@iau.edu.sa, Not registered
+Dr. Nahid Sultana, nszakir@iau.edu.sa, 102D
+Dr. Naya Nagy, nmnagy@iau.edu.sa, 102G
+Yasir Alguwaifli, ymalguwaifli@iau.edu.sa, Not registered
+Dr. Khalid Adnan Alissa, kaalissa@iau.edu.sa, Dean’s Office
+Dr. Mashael Hamad Alkadi, malkadi@iau.edu.sa, Not registered
+Dalal Aldowaihi, daaldowaihi@iau.edu.sa, Not registered
+Asrar Almogbil, aaalmogbil@iau.edu.sa, Not registered
+Abrar Mutlaq Alotaibi, amotaibi@iau.edu.sa, 200H
+khalid mohamed hassan aloub, kmAloup@iau.edu.sa, Not registered
+Reem Alassaf, Raalassaf@iau.edu.sa, Not registered
+Amal Hadi Alhajri, aalhajri@iau.edu.sa, Not registered
+Mona Ahmed Altassan, maltassan@iau.edu.sa, Not registered
+Mahira Ilyas, mIlyas@iau.edu.sa, Not registered
+Saeed Hussein AlQahtani, shaqahtani@iau.edu.sa, 4100 - E
+Azzah Abdulrahim Alghamdi, azghamdi@iau.edu.sa, Not registered
+Rabab Ahmad Alkhalifa, raalkhalifa@iau.edu.sa, Not registered
+Sultan Sarhan Alanazy, ssalanazy@iau.edu.sa, Not registered
+Jumana Habeeb Bokhari, jhbokhari@iau.edu.sa, Not registered
+Arwa Almalki, ammalki@iau.edu.sa, Not registered
+Asiya Abdus Salam, aasalam@iau.edu.sa, Not registered
+Ruba mahmood Alsalah, rmalsalah@iau.edu.sa, Not registered
+Esraa Alshabeeb, ealshabeeb@iau.edu.sa, Room#205
+Yousof Almunsour, yzalmunsour@iau.edu.sa, 4100 - B
+Sghaier Chabani, srchabani@iau.edu.sa, 4203 - 6
+Gomathi Krishna, gKrishna@iau.edu.sa, Not registered
+Nehad Mohamed Abdel Rahman, nmaIbrahim@iau.edu.sa, 4203
+Mamoun Masoud Ibrahim Abdulqader, mmibrahim@iau.edu.sa, Not registered
+Norah Saleh Alturayeif, nsalTurayeif@iau.edu.sa, Not registered
+Madeeha Saqib, mssaeed@iau.edu.sa, 202 D
+Fatimah Alshamrani, Fhaalshamrani@iau.edu.sa, Not registered
+Sarah Adil Mohammed Alissa, saalissa@iau.edu.sa, Not registered
+Abdullah Almuqhim, aalmuqhim@iau.edu.sa, Not registered
+Hanoof Algofari, hmalgofari@iau.edu.sa, Not registered
+Saad Abdulrahman Alharthi, saalharthi@iau.edu.sa, Not registered
+Mamon Masoud Ibrahim Abdelqader, mmibrahm@iau.edu.sa, Not registered
+Fatimah Hazza Alshmarani, fhaalshamrani@iau.edu.sa, Not registered
+Maryam Mohammed Aldossary, mmsaldossary@iau.edu.sa, Not registered
+Elham Binshaflout, elhambinshaflout@gmail.com, Not registered
+Albandary Alamer, amalamer@iau.edu.sa, Not registered
+Ghadah ALRugaib, gmalrugaib@iau.edu.sa, Not registered
+Maryam Abdullah Alnasser, maalnasser@iau.edu.sa, Not registered
+Mona Adel Al-binali, malbinali@iau.edu.sa, Not registered
+Kholood AlNowaiser, kkalnowaiser@iau.edu.sa, Not registered
+Khansa Almofeez, kaalnefeez@iau.edu.sa, Not registered
+Wadha Almattar, wmalmattar@iau.edu.sa, Room#205
+Rahma Alzahrani, razahrani@iau.edu.sa, Not registered
+Hussah Albinali, halbinali@iau.edu.sa, Not registered
+Noor AlAkkas, nalakkas@iau.edu.sa, Not registered
+Norah Almubairik, naalmubairik@iau.edu.sa, Not registered
+Atheer Algerairy, asalgerairy@iau.edu.sa, Not registered
+Hina Gull, hgull@iau.edu.sa, Not registered
+Sardar Zafar Iqbal, saiqbal@iau.edu.sa, 4201 - 3
+Areej Boker, aanbuker@iau.edu.sa, Not registered
+Reem Abdullah Alshareef, raalshareef@iau.edu.sa, Not registered
+Abdulrahman Almuhaidib, asmalmuhaidib@iau.edu.sa, Not registered
+Thamer Hammad AlJohani, thsaljohani@iau.edu.sa, Not registered
+Almajd Mohammed Zunquti, amzunquti@iau.edu.sa, Not registered
+Rawan Hamed Saeed Alghamdi, rhalghamdi@iau.edu.sa, Not registered
+Reem Abdulrahman Abdullatif AlJunaid, raaljunaid@iau.edu.sa, Not registered
+Ghadeer Rashed Alazman, gralazman@iau.edu.sa, Not registered
+Abdalwahab Almajed, analmajed@iau.edu.sa, Not registered
+Elham Awad Shaflout, eashaflout@iau.edu.sa, Not registered
+
+## General Information
+
+### Positions and Contacts
+- Unit Chair: Saad Abdulrahman Alharthi — ccsit.sa@iau.edu.sa
+- Academic Program Advisors:
+  - General Years: Mrs. Fatimah AlShamrani
+  - CS: Ms. Hanoof Algofari
+  - CIS: Mrs. Ghadah Alrugaib
+  - Cyber Security: Mr. Sghaier Chabani
+  - AI: Prof. Sunday Olusanya Olatunji
+
+  Advisory board
+(active tab)
+
+Artificial Intelligence (AI) is poised to be the next technological revolution to change the way we work today. AI technology is designed to mimic human thinking by “learning” through recognizing patterns and drawing on past experiences. Today, AI technologies can identify objects, understand speech, translate languages, recognize faces, and analyze sentiments. Siri, Google Now, and IBM’s Watson are obvious examples of AI, but AI is all around us. It can be found in vacuum cleaners, cars, lawnmowers, video games, medical research, and international financial markets. In recent years scientists made breakthroughs in AI, using neural networks, which mimic the processes of real neurons. On the other hand, the volume of data is expected to grow to 35 trillion Gigabytes in 2020 as compared to 0.5 trillion Gigabytes in 2009 i.e., by a factor of 44. World Economic Forum in 2011 declared that “Data is the new Oil.” Today, deep learning allows machines to process information for themselves on a very sophisticated level enabling them to perform complex functions like facial recognition and next-generation genome sequencing.
+
+The College of Computer Science and Information Technology (CCSIT) understands that it is time to create adequate knowledge in the field of AI for the socio-economic uplift of the region. With a pool of talented faculty, CCSIT initiated an undergraduate degree in AI, offered under the umbrella of the Computer Engineering (CE) Department at CCSIT.
+
+Artificial Intelligence Program ABET Accreditation
+
+The undergraduate program "Bachelor of Science in Artificial Intelligence (AI) Program", in the Department of Computer Engineering is accredited by the Computing Accreditation Commission (CAC) of ABET. ABET Website
+
+College
+College of Computer Science and Information Technology
+Campus
+Dammam
+Level
+Undergraduate
+Degree
+BSc
+Gender
+Female, Male
+Years of study
+4
+Credit hours
+128
+Additional requirements
+Internship
+Track                                             CCSIT
+
+Vision
+
+A distinguished artificial intelligence program achieving quality education, research, and community services nationally and internationally.
+
+Mission
+
+Providing quality artificial intelligence education, research, and professional services for the socio-economic uplift of the community by preparing students for professional careers and lifelong learning.
+
+Program Educational Objectives
+
+Graduates of the Bachelor of Science program in Artificial Intelligence (BS-AI) will:
+
+Demonstrate expertise in Artificial Intelligence tools and techniques to meet the industry needs pertaining to devising cutting-edge solutions. 
+Cultivate the culture of innovation and research in Artificial Intelligence, data science, and related disciplines.  
+Contribute to humanity using Artificial Intelligence knowledge while working individually or within a team.  
+Demonstrate ethical conduct and ability for lifelong learning.
+Students Outcomes
+
+0. Understand and explain the fundamental concepts and theories of computer science and related fields.
+
+1. Analyze a complex computing problem and apply principles of computing and other relevant disciplines to identify solutions. 
+
+2. Design, implement, and evaluate a computing-based solution to meet a given set of computing requirements in the context of the Program’s discipline.
+
+3. Communicate effectively in a variety of professional contexts.
+
+4. Recognize professional responsibilities and make informed judgments in computing practice based on legal and ethical principles. 
+
+5. Function effectively as a member or leader of a team engaged in activities appropriate to the program’s discipline. 
+
+6. Apply computer science theory and software development fundamentals to produce computing-based solutions.
+
+7. Apply Artificial Intelligence principles and techniques for problem solving and decision making.
+
+ Graduate Attributes
+
+Ethically and Socially Responsible.
+Critical thinking and Problem solver.
+Effective communicator & Team Player.
+Life-long Learner.
+Innovative AI practitioners.
+Annual student Enrollment and Graduation data for Artificial Intelligence Program
+
+
+
+ 
+
+Career Opportunities
+
+AI software engineering
+Machine learning system developer.
+Data mining expert
+AI Data scientist.
+Knowledge engineering expert
+AI data analytics expert
+AI in logistic and supply chain expert
+AI in e-commerce expert
+AI Research engineer
+
+AI Plan for students admitted in the academic year 2017/2018 or before
+AI Plan for students admitted from the academic year 2018/2019 to 2021/2022
+AI Plan for students admitted in the academic year 2022/2023
+
+## First Year
+
+### Semester One
+
+| Course ID  | Course Title                           | Credit Hours | Contact Hours | Pre-requisite |
+|------------|----------------------------------------|--------------|---------------|---------------|
+| COMP-108   | Fundamentals of Programming            | 3            | 4             | -             |
+| ARAB-182   | Arabic Language Skills                 | 2            | 2             | -             |
+| MATH-104   | General Mathematics                    | 4            | 5             | -             |
+| ENGL-101   | General English Language 1             | 4            | 16            | -             |
+| CIS-105    | Fundamentals of Information Systems    | 3            | 3             | -             |
+
+### Semester Two
+
+| Course ID  | Course Title                           | Credit Hours | Contact Hours | Pre-requisite |
+|------------|----------------------------------------|--------------|---------------|---------------|
+| ENGL-102   | General English Language 2             | 3            | 10            | ENGL-101      |
+| ISLM-181   | Creed and Family in Islam              | 2            | 2             | -             |
+| MATH-109   | Calculus                               | 4            | 5             | MATH-104      |
+| ARTI-106   | Artificial Intelligence Principles and Techniques | 3  | 4             | -             |
+| CYS-107    | Fundamentals of Cybersecurity          | 3            | 3             | -             |
+
+
+Second year CS
+Semester One
+            Course Title: Introduction to Statistics and Probability Theory
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: MATH 109
+
+            Course Title: Object Oriented Programming 1
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: COMP 108
+
+            Course Title: Technical Reports
+            Credit Hours: 1
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Course Title: Fundamentals of Communications and Networking
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: CIS 105
+
+            Course Title: Physics
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: History and Civilization of Kingdom of Saudi Arabia
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Semester Two
+            Course Title: Database Concepts and Design
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: CIS 105
+
+            Course Title: Object Oriented Programming 2
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: CSC 231
+
+            Course Title: Discrete Mathematics
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: STAT 238
+
+            Course Title: Digital Logic Design
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: Data Structure
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: CSC 231
+
+            Course Title: Islamic Ethics and Values
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+
+Third year CS
+ Semester One
+            Course Title: Operating Systems
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: CIS 105
+
+            Course Title: Linear Algebra
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: MATH 232
+
+            Course Title: Software Engineering
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: CSC 236, CIS 235
+
+            Course Title: Computer Organization and Architecture
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: CSE 210
+
+            Course Title: Logic and Proof Techniques
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: MATH 232
+
+            Course Title: Entrepreneurship
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Semester Two
+            Course Title: Machine Learning
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: ARTI 106
+
+            Course Title: Human Computer Interaction
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: CIS 105
+
+            Course Title: Computer Data Security and Privacy
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: CYS 233
+
+            Course Title: Algorithm Analysis and Design
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: MATH 232, CSC 237
+
+            Course Title: Biology
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+            Course Title: Web-Based Systems
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: CSC 236
+
+            Course Title: Practical (Co-op) Training
+            Credit Hours: 3
+            Contact Hours: 20
+            Pre-requisite: CIS 423, CS 322, CS 411
+
+Fourth year CS
+Semester One
+            Course Title: Graduation Project Proposal
+            Credit Hours: 2
+            Contact Hours: Not specified
+            Pre-requisite: Software Engineering
+
+            Course Title: Language Theory and Finite Automata
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: Logic and Proof Techniques
+
+            Course Title: Mobile Application Programming
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Object Oriented Programming 2
+
+            Course Title: Selected Topics in Computer Science
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: None
+
+            Course Title: Elective Course 1
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: None
+
+            Semester Two
+            Course Title: Graduation Project Implementation
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: Graduation Project Proposal
+
+            Course Title: Parallel and Distributed Computing
+            Credit Hours: 4
+            Contact Hours: 3
+            Pre-requisite: Computer Organization and Architecture
+
+            Course Title: Elective Course 2
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: None
+
+            Course Title: Elective Course 3
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: None
+
+Electives CS
+            elective Elective Courses
+            Course Title: Data Mining and Warehousing
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: Image Processing
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Machine Learning
+
+            Course Title: Natural Language Processing
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Machine Learning
+
+            Course Title: Mobile Computing
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+            Course Title: Programming Languages and Translators
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite:  CSC 303
+
+            Course Title: Modeling and Simulation
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Discrete Mathematics
+
+            Course Title: Advanced Programming Languages
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Object Oriented Programming 2
+
+            Course Title: Multi-Agent Systems
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: Operating Systems
+
+            Course Title: Advanced Operating Systems
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: Operating Systems
+
+            Course Title: Ethical Hacking
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: Biometric Security
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+first year CIS Semester One
+            Course Title: Fundamentals of Programming
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: Arabic Language Skills
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Course Title: General Mathematics
+            Credit Hours: 4
+            Contact Hours: 5
+            Pre-requisite: None
+
+            Course Title: General English Language 1
+            Credit Hours: 4
+            Contact Hours: 16
+            Pre-requisite: None
+
+            Course Title: Fundamentals of Information Systems
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+            Semester Two
+            Course Title: General English Language 2
+            Credit Hours: 3
+            Contact Hours: 10
+            Pre-requisite: General English Language 1
+
+            Course Title: Creed and Family in Islam
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Course Title: Calculus
+            Credit Hours: 4
+            Contact Hours: 5
+            Pre-requisite: General Mathematics
+
+            Course Title: Artificial Intelligence Principles and Techniques
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: Fundamentals of Cybersecurity
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+second year CIS Semester One
+            Course Title: Object Oriented Programming 1
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Fundamentals of Programming
+
+            Course Title: Technical Reports
+            Credit Hours: 1
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Course Title: Fundamentals of Communications and Networking
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Fundamentals of Information Systems
+
+            Course Title: Introduction to Statistics and Probability Theory
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Calculus
+
+            Course Title: History and Civilization of Kingdom of Saudi Arabia
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Course Title: Principles of Management
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+            Semester Two
+            Course Title: Database Concepts and Design
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Fundamentals of Information Systems
+
+            Course Title: Object Oriented Programming 2
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Object Oriented Programming 1
+
+            Course Title: Data Structure
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Object Oriented Programming 1
+
+            Course Title: Discrete Mathematics
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Introduction to Statistics and Probability Theory
+
+            Course Title: Islamic Ethics and Values
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Course Title: Fundamentals of Business
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: Principles of Management
+
+third year Semester One
+            Course Title: Operating Systems
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Fundamentals of Information Systems
+
+            Course Title: System Analysis and Design
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Fundamentals of Information Systems
+
+            Course Title: Entrepreneurship
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Course Title: Information Technology Infrastructure Management
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Fundamentals of Communications and Networking
+
+            Course Title: Information Technology Project Management
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: Fundamentals of Information Systems
+
+            Course Title: Data and Information Management
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Database Concepts and Design
+
+            Semester Two
+            Course Title: Organizational Behavior
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: Fundamentals of Business
+
+            Course Title: Human Computer Interaction
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Fundamentals of Information Systems
+
+            Course Title: Professional Responsibility
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Course Title: Web-Based Systems
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Object Oriented Programming 2
+
+            Course Title: Computer Data Security and Privacy
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: Fundamentals of Communications and Networking
+
+            Course Title: Object Oriented Analysis and Design
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: System Analysis and Design
+
+            Summer Course
+            Course Title: Practical (Co-op) Training
+            Credit Hours: 3
+            Contact Hours: 24
+            Pre-requisite: Information Technology Project Management, System Analysis and Design, Data and Information Management, Web-Based Systems
+fourth year Semester One
+            Course Title: Graduation Project Proposal
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: Information Technology Project Management, System Analysis and Design
+
+            Course Title: Business Strategy
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: Organizational Behavior
+
+            Course Title: Software Quality Assurance
+            Credit Hours: 3
+            Contact Hours: 6
+            Pre-requisite:  CIS 221
+
+            Course Title: Enterprise Architecture
+            Credit Hours: 3
+            Contact Hours: 4.5
+            Pre-requisite: CIS 326 
+
+            Course Title: Elective 1
+            Credit Hours: 3
+            Contact Hours: 4.5
+            Pre-requisite: None
+
+            Semester Two
+            Course Title: Graduation Project Implementation
+            Credit Hours: 3
+            Contact Hours: 6
+            Pre-requisite: Graduation Project Proposal
+
+            Course Title: Organizational Performance Management
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: Business Strategy
+
+            Course Title: Information Systems Management
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: Information Technology Project Management
+
+            Course Title: Elective Course 2
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: None
+
+            Course Title: Elective Course 3
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: None
+Elective Courses CIS
+            Course Title: Mobile Application Programming
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Object Oriented Programming 2
+
+            Course Title: Modeling and Simulation
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Discrete Mathematics
+
+            Course Title: Object Oriented Databases
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: Distributed and Mobile Databases
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: Knowledge Management and Information Retrieval
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: Business Process Management
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+            Course Title: Information Systems Innovation and Modern Technologies
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+            Course Title: Decision Support and Expert Systems
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+            Course Title: Data Mining and Warehousing
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: Big Data and Analytics
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite:  CIS 214
+
+            Course Title: Data and Information Visualization
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite:  CIS 214
+
+            Course Title: Information System Audit
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+first year CYS Semester One
+            Course Title: Fundamentals of Programming
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: Arabic Language Skills
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Course Title: General Mathematics
+            Credit Hours: 4
+            Contact Hours: 5
+            Pre-requisite: None
+
+            Course Title: General English Language 1
+            Credit Hours: 4
+            Contact Hours: 16
+            Pre-requisite: None
+
+            Course Title: Fundamentals of Information Systems
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+            Semester Two
+            Course Title: General English Language 2
+            Credit Hours: 3
+            Contact Hours: 10
+            Pre-requisite: General English Language 1
+
+            Course Title: Creed and Family in Islam
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Course Title: Calculus
+            Credit Hours: 4
+            Contact Hours: 5
+            Pre-requisite: General Mathematics
+
+            Course Title: Artificial Intelligence Principles and Techniques
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: Fundamentals of Cybersecurity
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+secod year CYS Semester One
+            Course Title: Introduction to Statistics and Probability Theory
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Calculus
+
+            Course Title: Object Oriented Programming 1
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Fundamentals of Programming
+
+            Course Title: Technical Reports
+            Credit Hours: 1
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Course Title: Fundamentals of Communications and Networking
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Fundamentals of Information Systems
+
+            Course Title: Information Security Management
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: None
+
+            Course Title: History and Civilization of Kingdom of Saudi Arabia
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Semester Two
+            Course Title: Database Concepts and Design
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Fundamentals of Information Systems
+
+            Course Title: Object Oriented Programming 2
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Object Oriented Programming 1
+
+            Course Title: Discrete Mathematics
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Introduction to Statistics and Probability Theory
+
+            Course Title: Digital Logic Design
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: None
+
+            Course Title: Data Structure
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Object Oriented Programming 1
+
+            Course Title: Islamic Ethics and Values
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+third year CYS Semester One
+            Course Title: Operating Systems
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Fundamentals of Information Systems
+
+            Course Title: Mathematical Foundations of Information Security
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: Discrete Mathematics
+
+            Course Title: Information Technology Infrastructure Management
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Fundamentals of Communications and Networking
+
+            Course Title: Programming for Cybersecurity
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: None
+
+            Course Title: Digital Forensics Techniques and Tools
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: None
+
+            Course Title: Entrepreneurship
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Semester Two
+            Course Title: Applied Cryptography
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: Mathematical Foundations of Information Security
+
+            Course Title: Machine Learning
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Artificial Intelligence Principles and Techniques
+
+            Course Title: Operating System Security
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: Operating Systems
+
+            Course Title: Algorithm Analysis and Design
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: Object Oriented Programming 1
+
+            Course Title: Secure Software Design and Engineering
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: Programming for Cybersecurity
+
+fourth year Semester One
+            Course Title: Graduation Project Proposal
+            Credit Hours: 2
+            Contact Hours: Not specified
+            Pre-requisite: Digital Forensics Techniques and Tools, Secure Software Design and Engineering, Operating System Security
+
+            Course Title: Advanced Digital Forensics
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: Digital Forensics Techniques and Tools
+
+            Course Title: Ethical Hacking
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: Network Security
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: Applied Cryptography
+
+            Course Title: Elective Course 1
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+            Semester Two
+            Course Title: Graduation Project Implementation
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: Graduation Project Proposal
+
+            Course Title: Human-Centered Cybersecurity
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: None
+
+            Course Title: Information System Audit
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: None
+
+            Course Title: Mobile and Wireless Security
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: None
+
+            Course Title: Elective Course 2
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: None
+Elective Courses
+            Course Title: Digital Forensics for Legal Professionals
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+            Course Title: Selected Topics in Cyber Security & Digital Forensics
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+            Course Title: Biometric Security
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+            Course Title: Distributed System Security
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+            Course Title: Multimedia Security
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+            Course Title: Quantum Computation and Quantum Security
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+            Course Title: Big Data Analytics and Machine Learning
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+            Course Title: Web Technology and Security
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: Data Mining and Data Warehousing
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: Introduction to Reverse Engineering
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: Mobile Application Programming
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Object Oriented Programming 2
+
+Year 1 AI
+            Semester 1
+            Course Title: Fundamentals of Programming
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: Arabic Language Skills
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Course Title: General Mathematics
+            Credit Hours: 4
+            Contact Hours: 5
+            Pre-requisite: None
+
+            Course Title: General English Language 1
+            Credit Hours: 4
+            Contact Hours: 16
+            Pre-requisite: None
+
+            Course Title: Fundamentals of Information Systems
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+            Semester 2
+            Course Title: General English Language 2
+            Credit Hours: 3
+            Contact Hours: 10
+            Pre-requisite: General English Language 1
+
+            Course Title: Creed and Family in Islam
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Course Title: Calculus
+            Credit Hours: 4
+            Contact Hours: 5
+            Pre-requisite: General Mathematics
+
+            Course Title: Artificial Intelligence Principles and Techniques
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: Fundamentals of Cybersecurity
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+Year 2 AI
+            Semester 1
+            Course Title: Introduction to Statistics and Probability Theory
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Calculus
+
+            Course Title: Object Oriented Programming 1
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Fundamentals of Programming
+
+            Course Title: Technical Reports
+            Credit Hours: 1
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Course Title: Fundamentals of Communications and Networking
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Fundamentals of Information Systems
+
+            Course Title: Physics
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: History and Civilization of Kingdom of Saudi Arabia
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Semester 2
+            Course Title: Database Concepts and Design
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Fundamentals of Information Systems
+
+            Course Title: Object Oriented Programming 2
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Object Oriented Programming 1
+
+            Course Title: Discrete Mathematics
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Introduction to Statistics and Probability Theory
+
+            Course Title: Digital Logic Design
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: None
+
+            Course Title: Data Structure
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Object Oriented Programming 1
+
+            Course Title: Islamic Ethics and Values
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+Year 3 AI
+Semester 1
+            Course Title: Operating Systems
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Fundamentals of Information Systems
+
+            Course Title: Computer Organization and Architecture
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: Digital Logic Design
+
+            Course Title: Programming for Artificial Intelligence
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: Object Oriented Programming 1
+
+            Course Title: Entrepreneurship
+            Credit Hours: 2
+            Contact Hours: 2
+            Pre-requisite: None
+
+            Course Title: Linear Algebra
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: Discrete Mathematics
+
+            Course Title: Software Engineering
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: Object Oriented Programming 2, Database Concepts and Design
+
+            Semester 2
+            Course Title: Robotics and Intelligent Systems
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Programming for Artificial Intelligence
+
+            Course Title: Mathematical Foundation for Artificial Intelligence
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: Calculus
+
+            Course Title: Algorithm Analysis and Design
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: Object Oriented Programming 1
+
+            Course Title: Machine Learning
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Artificial Intelligence Principles and Techniques
+
+            Course Title: Computer Data Security and Privacy
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: Fundamentals of Communications and Networking
+
+            Summer Semester
+            Course Title: Practical (Co-op) Training
+            Credit Hours: 3
+            Contact Hours: 18
+            Pre-requisite: Programming for Artificial Intelligence, Machine Learning
+
+Year 4 AI
+Semester 1
+            Course Title: Graduation Project Proposal
+            Credit Hours: 2
+            Contact Hours: 4
+            Pre-requisite: Software Engineering, Programming for Artificial Intelligence, Machine Learning
+
+            Course Title: Deep Learning
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Machine Learning
+
+            Course Title: Image Processing
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Machine Learning
+
+            Course Title: Natural Language Processing
+            Credit Hours: 3
+            Contact Hours: 4
+            Pre-requisite: Machine Learning
+
+            Course Title: Elective Course 1
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: None
+
+            Semester 2
+            Course Title: Graduation Project Implementation
+            Credit Hours: 3
+            Contact Hours: 6
+            Pre-requisite: Graduation Project Proposal
+
+            Course Title: Data Science and Analytics
+            Credit Hours: 3
+            Contact Hours: 3
+            Pre-requisite: Programming for Artificial Intelligence, Machine Learning
+
+            Course Title: Parallel and Distributed Computing
+            Credit Hours: 4
+            Contact Hours: 3
+            Pre-requisite: Computer Organization and Architecture
+
+            Course Title: Elective Course 2
+            Credit Hours: 3
+            Contact Hours: Not specified
+            Pre-requisite: None
+
+Electives AI
+            Advanced Functional Programming (3 Credit Hours, 4 Contact Hours) — Pre-requisite: ARTI 302
+
+            Artificial Intelligence in Healthcare: Principles and Applications (3 Credit Hours, 4 Contact Hours) — Pre-requisite: Machine Learning
+
+            Computer Vision and its Applications (3 Credit Hours, 4 Contact Hours) — Pre-requisite: ARTI 312
+
+            Knowledge Representation and Reasoning (3 Credit Hours, 3 Contact Hours) — Pre-requisite: None
+
+            Game Theory (3 Credit Hours, 3 Contact Hours) — Pre-requisite: Introduction to Statistics and Probability Theory
+
+            Design of Problem Solvers (3 Credit Hours, 4 Contact Hours) — Pre-requisite: Artificial Intelligence Principles and Techniques
+
+            Selected Topics in AI (3 Credit Hours, 3 Contact Hours) — Pre-requisite: None
+
+            Soft Computing (3 Credit Hours, 3 Contact Hours) — Pre-requisite: Machine Learning
+
+            Data Mining and Warehousing (3 Credit Hours, 4 Contact Hours) — Pre-requisite: None
+
+            Ethical Hacking (3 Credit Hours, 4 Contact Hours) — Pre-requisite: None
+
+            Information System Audit (3 Credit Hours, 4 Contact Hours) — Pre-requisite: None
+
+            Mobile and Wireless Security (3 Credit Hours, 3 Contact Hours) — Pre-requisite: None
+_______________________
+Program Advisory Board
+
+Members of the advisory board at IAU comprised of industry professionals, educators, and other stakeholders ensure that the curriculum aligns with current industry trends and workforce demands. Their expertise helps bridge the gap between academia and real-world applications, fostering opportunities for internships, research collaborations, and job placements. Additionally, advisory board members offer mentorship, networking opportunities, and funding support, contributing to the program’s growth and sustainability. By incorporating diverse perspectives, the board aids in continuous improvement, ensuring that graduates are well-prepared for their careers.
+
+For Bachelor of Science in Artificial Intelligence:
+      2022-23
+
+      Prof. Kashif Rajpoot
+      Expert, University of Birmingham, Dubai, UAE
+
+      Dr. Nasher AlBinHassan
+      Head Digital Advanced Research Center, Saudi Aramco, Saudi Arabia 
+
+      Dr. Ibrahim Alhashim
+      Director, AI, SCAI, Saudi Arabia
+For Bachelor of Science in Computer Science (CS)
+      2022-23
+
+      Prof. Mostafa Ammar
+      Expert, Georgia Institute of Technology, USA
+
+      Mr Saeed Alsaeed
+      CEO, Cyberani Solutions, Saudi Arabia
+
+      Dr. Mustafa Hassan Qurban
+      ICT Director, King Fahd Military Medical Complex (KFMMC) Dhahran, Saudi Arabia. Biography>
+For Bachelor of Science in Computer Information Systems (CIS)
+      Prof. Omer Rana
+      Expert, Cardiff University, UK
+
+      Mr. Ahmad Kharsah,
+      Technical ICT Lead, Nournet, Saudi Arabia
+
+      Mr. Aiman Mufti  
+      ICT Consultant at Ministry of Health, Saudi Arabia
+For Bachelor of Science in Cyber Security and Digital Forensics (CYS)
+      2022-23
+
+      Prof. Atif Ahmad
+      Expert, University of Melbourne, Australia
+
+      Mr. Amr M. Sherbeeni,
+      Cybersecurity Consultant, Saudi Aramco, Saudi Arabia
+
+      Dr. Esa Alsumiri
+      Member of Saudi Shoura Council
+
+### Important Links
+- IAU Website: www.iau.edu.sa
+- Blackboard: vle.iau.edu.sa
+- SIS Portal: sis.iau.edu.sa
+- E-Resources: login.library.iau.edu.sa/login
+- Graduation Projects: www.iau.edu.sa/.../graduation-projects
+- Estibana Survey: https://estibana.iau.edu.sa/
+
+
+## Turnitin Account Creation
+
+1. Go to the online services > My Dashboard.
+2. Click on "Technical Support - Saned" and press "Saned" button.
+3. Log in to Saned, access "Other Services" > "Plagiarism Check System".
+4. Submit a request mentioning assignment needs.
+5. Activate the Turnitin account via email.
+
+## Course Registration (SIS System)
+
+- Add course: "Class Management" > "Search for Class".
+- Register: "Student Center" > "Shopping Cart" > "Register".
+- View schedule: "Class Management" > "My Weekly Schedule".
+- Drop a course: "Registration Dates" > "Drop".
+- Swap courses: "Registration Dates" > "Swap".
+- Override prerequisite: "Registration Requests" > "Prerequisite Override".
+- Expansion request: "Registration Requests" > "Closed Section".
+- Register lower-level course: "Registration Requests" > "Lower-Level Course Registration".
+- Check request status: "Registration Requests" > "Search Existing Value".
+- View academic level: "Others" > "Student Academic Level".
+
+
+
+Enrollment Grade Requirements (Saudi Students)
+
+Academic Year 1446 (2024):
+Female students:
+- Artificial Intelligence program: Minimum GPA 4.287
+- Cybersecurity program: Minimum GPA 4.213
+- Computer Science program: Minimum GPA 3.868
+- Information Systems program: Minimum GPA 3.0
+Male students:
+- Cybersecurity program: Minimum GPA 3.985
+- Computer Science program: Minimum GPA 3.706
+- Artificial Intelligence program: Minimum GPA 3.397
+- Information Systems program: Minimum GPA 3.0
+
+Academic Year 1445 (2023):
+Female students:
+- Cybersecurity program: Minimum GPA 4.469
+- Artificial Intelligence program: Minimum GPA 4.378
+- Computer Science program: Minimum GPA 4.315
+- Information Systems program: Minimum GPA 2.639
+Male students:
+- Cybersecurity program: Minimum GPA 4.323
+- Artificial Intelligence program: Minimum GPA 4.125
+- Computer Science program: Minimum GPA 3.806
+- Information Systems program: Minimum GPA 2.559
+
+Academic Year 1444 (2022):
+Female students:
+- Cybersecurity program: Minimum GPA 4.477
+- Artificial Intelligence program: Minimum GPA 4.346
+- Computer Science program: Minimum GPA 4.1
+- Information Systems program: Minimum GPA 3.539
+Male students:
+- Cybersecurity program: Minimum GPA 3.982
+- Artificial Intelligence program: Minimum GPA 3.797
+- Computer Science program: Minimum GPA 3.247
+- Information Systems program: Minimum GPA 2.044
+
+Academic Year 1443 (2021):
+Female students:
+- Artificial Intelligence program: Minimum GPA 4.492
+- Cybersecurity program: Minimum GPA 4.306
+- Computer Science program: Minimum GPA 3.992
+- Information Systems program: Minimum GPA 2.433
+Male students:
+- Cybersecurity program: Minimum GPA 3.896
+- Artificial Intelligence program: Minimum GPA 3.144
+- Computer Science program: Minimum GPA 3.203
+- Information Systems program: Minimum GPA 2.1
+
+Academic Year 1442 (2020):
+Female students:
+- Cybersecurity program: Minimum GPA 4.473
+- Artificial Intelligence program: Minimum GPA 4.448
+- Computer Science program: Minimum GPA 4.027
+- Information Systems program: Minimum GPA 2.235
+Male students:
+- Cybersecurity program: Minimum GPA 3.724
+- Computer Science program: Minimum GPA 3.266
+- Artificial Intelligence program: Minimum GPA 2.536
+- Information Systems program: Minimum GPA 2.373
+
+
+Enrollment Grade Requirements (Non-Saudi Students)
+
+Academic Year 1444 (2022):
+Female students:
+- Cybersecurity program: Minimum GPA 4.95
+- Artificial Intelligence program: Minimum GPA 4.82
+- Computer Science program: Minimum GPA 4.48
+- Information Systems program: Minimum GPA 4.13
+Male students:
+- Artificial Intelligence program: Minimum GPA 4.62
+- Cybersecurity program: Minimum GPA 4.32
+- Computer Science program: Minimum GPA 3.68
+- Information Systems program: Minimum GPA 3.25
+
+Academic Year 1443 (2021):
+Female students:
+- Computer Science program: Minimum GPA 4.747
+- Artificial Intelligence program: Minimum GPA 4.733
+- Cybersecurity program: Minimum GPA 4.508
+- Information Systems program: Minimum GPA 4.09
+Male students:
+- Computer Science program: Minimum GPA 4.556
+- Artificial Intelligence program: Minimum GPA 4.34
+- Cybersecurity program: Minimum GPA 4.354
+- Information Systems program: Minimum GPA 4.0
+
+Academic Year 1442 (2020):
+Female students:
+- Computer Science program: Minimum GPA 4.941
+- Artificial Intelligence program: Minimum GPA 4.872
+- Cybersecurity program: Minimum GPA 4.758
+- Information Systems program: Minimum GPA 4.476
+Male students:
+- Computer Science program: Minimum GPA 4.59
+- Cybersecurity program: Minimum GPA 4.325
+- Artificial Intelligence program: Minimum GPA 4.304
+- Information Systems program: Minimum GPA 3.118
+
