@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EditFlashcardSetScreen extends StatefulWidget {
+  final String setId;
   final String initialTitle;
   final List<Map<String, String>> initialFlashcards;
 
   const EditFlashcardSetScreen({
     super.key,
+    required this.setId,
     required this.initialTitle,
     required this.initialFlashcards,
   });

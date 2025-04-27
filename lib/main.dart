@@ -9,6 +9,7 @@ import 'package:coded_gp/core/routes/app_routes.dart';
 import 'package:coded_gp/features/settings/controllers/notifications_controller.dart';
 import 'package:coded_gp/features/calendar/controllers/calendar_controller.dart';
 import 'package:coded_gp/features/timer/controllers/timer_controller.dart';
+import 'package:coded_gp/features/flashcards/controllers/flashcards_controller.dart';
 // Import other necessary controllers and utilities
 
 void main() async {
@@ -20,6 +21,7 @@ void main() async {
   Get.put(NotificationsController());
   Get.put(CalendarController());
   Get.put(TimerController());
+  Get.put(FlashcardsController());
   runApp(const MyApp());
 }
 

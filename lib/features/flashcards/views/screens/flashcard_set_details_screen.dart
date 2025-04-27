@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coded_gp/features/flashcards/views/screens/practice_flashcards_screen.dart';
 import 'package:coded_gp/features/flashcards/views/screens/edit_flashcard_set_screen.dart';
+import 'package:coded_gp/features/flashcards/controllers/flashcards_controller.dart';
 
 class FlashcardSetDetailsScreen extends StatefulWidget {
+  final String setId;
   final String initialTitle;
   final List<Map<String, String>> initialFlashcards;
 
   const FlashcardSetDetailsScreen({
     Key? key,
+    required this.setId,
     required this.initialTitle,
     required this.initialFlashcards,
   }) : super(key: key);
@@ -20,6 +23,7 @@ class FlashcardSetDetailsScreen extends StatefulWidget {
 class _FlashcardSetDetailsScreenState extends State<FlashcardSetDetailsScreen> {
   late String setTitle;
   late List<Map<String, String>> flashcards;
+  final FlashcardsController _flashcardsController = Get.find<FlashcardsController>();
 
   @override
   void initState() {
@@ -45,9 +49,14 @@ class _FlashcardSetDetailsScreenState extends State<FlashcardSetDetailsScreen> {
             ),
             TextButton(
               child: const Text('Delete'),
-              onPressed: () {
+              onPressed: () async {
                 Navigator.of(context).pop();
-                Get.back(result: {'delete': true});
+                try {
+                  await _flashcardsController.deleteFlashcardSet(widget.setId);
+                  Get.back(result: {'delete': true});
+                } catch (e) {
+                  Get.snackbar('Error', 'Failed to delete flashcard set');
+                }
               },
             ),
           ],
@@ -76,15 +85,25 @@ class _FlashcardSetDetailsScreenState extends State<FlashcardSetDetailsScreen> {
             icon: const Icon(Icons.edit),
             onPressed: () async {
               final updated = await Get.to(() => EditFlashcardSetScreen(
+                    setId: widget.setId,
                     initialTitle: setTitle,
                     initialFlashcards: flashcards,
                   ));
 
               if (updated != null) {
-                setState(() {
-                  setTitle = updated['title'];
-                  flashcards = List<Map<String, String>>.from(updated['flashcards']);
-                });
+                try {
+                  await _flashcardsController.updateFlashcardSet(
+                    widget.setId,
+                    updated['title'],
+                    List<Map<String, String>>.from(updated['flashcards']),
+                  );
+                  setState(() {
+                    setTitle = updated['title'];
+                    flashcards = List<Map<String, String>>.from(updated['flashcards']);
+                  });
+                } catch (e) {
+                  Get.snackbar('Error', 'Failed to update flashcard set');
+                }
               }
             },
           ),

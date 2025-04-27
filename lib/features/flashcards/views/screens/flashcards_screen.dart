@@ -4,6 +4,7 @@ import 'package:coded_gp/main_screen.dart';
 import 'package:coded_gp/core/common/widgets/app_bottom_nav_bar.dart';
 import 'package:coded_gp/features/flashcards/views/screens/add_flashcard_set_screen.dart';
 import 'package:coded_gp/features/flashcards/views/screens/flashcard_set_details_screen.dart';
+import 'package:coded_gp/features/flashcards/controllers/flashcards_controller.dart';
 
 class FlashcardsScreen extends StatefulWidget {
   const FlashcardsScreen({super.key});
@@ -13,22 +14,44 @@ class FlashcardsScreen extends StatefulWidget {
 }
 
 class _FlashcardsScreenState extends State<FlashcardsScreen> {
+  final FlashcardsController _flashcardsController = Get.find<FlashcardsController>();
   List<Map<String, dynamic>> flashcardSets = [];
   String searchQuery = '';
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadFlashcardSets();
+  }
+
+  Future<void> _loadFlashcardSets() async {
+    setState(() => isLoading = true);
+    try {
+      final sets = await _flashcardsController.getFlashcardSets();
+      setState(() {
+        flashcardSets = sets;
+        isLoading = false;
+      });
+    } catch (e) {
+      setState(() => isLoading = false);
+      Get.snackbar('Error', 'Failed to load flashcard sets');
+    }
+  }
 
   Future<void> _navigateToAddSet() async {
     final result = await Get.to(() => const AddFlashcardSetScreen());
 
-    print('Received result from AddFlashcardSetScreen:');
-    print(result);
-
     if (result != null && result is Map<String, dynamic>) {
-      print('Adding new flashcard set to list');
-      print('Current sets: $flashcardSets');
-      setState(() {
-        flashcardSets.add(result);
-      });
-      print('Updated sets: $flashcardSets');
+      try {
+        await _flashcardsController.addFlashcardSet(
+          result['title'],
+          List<Map<String, String>>.from(result['flashcards']),
+        );
+        await _loadFlashcardSets();
+      } catch (e) {
+        Get.snackbar('Error', 'Failed to save flashcard set');
+      }
     }
   }
 
@@ -43,7 +66,7 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/coded_bg2.png'), // your ducky bg!
+            image: AssetImage('assets/images/coded_bg2.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -103,92 +126,97 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
 
               // List of Flashcard Sets
               Expanded(
-                child: filteredSets.isEmpty
-                    ? Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/images/Duck-01.png',
-                            height: 120,
-                          ),
-                          const SizedBox(height: 20),
-                          const Text(
-                            'Please add flashcard sets to start practicing',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black87,
-                            ),
-                          ),
-                          const SizedBox(height: 32),
-                          TextButton.icon(
-                            onPressed: _navigateToAddSet,
-                            icon: const Icon(Icons.add_circle_outline, color: Color(0xFF1a457b)),
-                            label: const Text(
-                              'Add Flashcard Set',
-                              style: TextStyle(
-                                color: Color(0xFF1a457b),
-                                fontSize: 16,
+                child: isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : filteredSets.isEmpty
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/Duck-01.png',
+                                height: 120,
                               ),
-                            ),
-                          ),
-                        ],
-                      )
-                    : SingleChildScrollView(
-                        padding: const EdgeInsets.symmetric(vertical: 24),
-                        child: Column(
-                          children: List.generate(filteredSets.length, (index) {
-                            final set = filteredSets[index];
-                            final offset = index * -8.0; // shifts slightly up for stack illusion
-
-                            return Transform.translate(
-                              offset: Offset(0, offset),
-                              child: GestureDetector(
-                                onTap: () async {
-                                  print('Opening flashcard set:');
-                                  print('Title: ${set['title']}');
-                                  print('Flashcards: ${set['flashcards']}');
-                                  final result = await Get.to(() => FlashcardSetDetailsScreen(
-                                        initialTitle: set['title'],
-                                        initialFlashcards: List<Map<String, String>>.from(set['flashcards']),
-                                      ));
-
-                                  if (result != null && result['delete'] == true) {
-                                    setState(() {
-                                      flashcardSets.removeAt(index);
-                                    });
-                                  }
-                                },
-                                child: Container(
-                                  margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFFFF7E3),
-                                    borderRadius: BorderRadius.circular(12),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.08),
-                                        blurRadius: 6,
-                                        offset: const Offset(2, 2),
-                                      ),
-                                    ],
-                                  ),
-                                  width: double.infinity,
-                                  height: 130,
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    set['title'],
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      fontFamily: 'Pacifico',
-                                      fontSize: 22,
-                                    ),
+                              const SizedBox(height: 20),
+                              const Text(
+                                'Please add flashcard sets to start practicing',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black87,
+                                ),
+                              ),
+                              const SizedBox(height: 32),
+                              TextButton.icon(
+                                onPressed: _navigateToAddSet,
+                                icon: const Icon(Icons.add_circle_outline, color: Color(0xFF1a457b)),
+                                label: const Text(
+                                  'Add Flashcard Set',
+                                  style: TextStyle(
+                                    color: Color(0xFF1a457b),
+                                    fontSize: 16,
                                   ),
                                 ),
                               ),
-                            );
-                          }),
-                        ),
-                      ),
+                            ],
+                          )
+                        : SingleChildScrollView(
+                            padding: const EdgeInsets.symmetric(vertical: 24),
+                            child: Column(
+                              children: List.generate(filteredSets.length, (index) {
+                                final set = filteredSets[index];
+                                final offset = index * -8.0;
+
+                                return Transform.translate(
+                                  offset: Offset(0, offset),
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      final result = await Get.to(() => FlashcardSetDetailsScreen(
+                                            setId: set['id'],
+                                            initialTitle: set['title'],
+                                            initialFlashcards: (set['flashcards'] as List)
+                                                .map((fc) => Map<String, String>.from(fc as Map))
+                                                .toList(),
+                                          ));
+
+                                      if (result != null && result['delete'] == true) {
+                                        try {
+                                          await _flashcardsController.deleteFlashcardSet(set['id']);
+                                          await _loadFlashcardSets();
+                                        } catch (e) {
+                                          Get.snackbar('Error', 'Failed to delete flashcard set');
+                                        }
+                                      }
+                                    },
+                                    child: Container(
+                                      margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFFFF7E3),
+                                        borderRadius: BorderRadius.circular(12),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black.withOpacity(0.08),
+                                            blurRadius: 6,
+                                            offset: const Offset(2, 2),
+                                          ),
+                                        ],
+                                      ),
+                                      width: double.infinity,
+                                      height: 130,
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        set['title'],
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                          fontFamily: 'Pacifico',
+                                          fontSize: 22,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }),
+                            ),
+                          ),
               ),
             ],
           ),
