@@ -19,11 +19,6 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
     _messages.add({
       'isBot': true,
       'message': 'Welcome to CodEd. How can I help you?',
-      'options': [
-        'Drop Dates',
-        'Course Requirements',
-        'E-Library Website',
-      ],
     });
   }
 
@@ -177,48 +172,6 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                               style: const TextStyle(
                                 color: Colors.white,
                               ),
-                            ),
-                          ),
-                        if (message['options'] != null)
-                          Padding(
-                            padding: const EdgeInsets.only(left: 48),
-                            child: Wrap(
-                              spacing: 8,
-                              runSpacing: 8,
-                              children: (message['options'] as List<String>)
-                                  .map((option) => InkWell(
-                                        onTap: () {
-                                          _handleUserMessage(option);
-                                          if (option == 'E-Library Website') {
-                                            setState(() {
-                                              _messages.add({
-                                                'isBot': true,
-                                                'message': 'E-Library',
-                                              });
-                                              _messages.add({
-                                                'isBot': true,
-                                                'message':
-                                                    'Can I help you with something else?',
-                                              });
-                                            });
-                                          }
-                                        },
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 16,
-                                            vertical: 8,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
-                                              color: const Color(0xFFBBDE4E),
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
-                                          child: Text(option),
-                                        ),
-                                      ))
-                                  .toList(),
                             ),
                           ),
                       ],
