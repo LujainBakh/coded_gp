@@ -262,9 +262,13 @@ class CalendarController extends GetxController {
 
   // Get filtered events for the entire year
   List<EventModel> getFilteredEvents() {
+    final now = DateTime.now();
     final allEvents = events.values.expand((list) => list).toList();
     
     return allEvents.where((event) {
+      // Past events filter
+      final isFutureEvent = event.startTime.isAfter(now);
+      
       // Search query filter
       final matchesSearch = searchQuery.value.isEmpty ||
           event.title.toLowerCase().contains(searchQuery.value.toLowerCase()) ||
@@ -274,7 +278,7 @@ class CalendarController extends GetxController {
       final matchesType = selectedEventTypes.isEmpty || 
           selectedEventTypes.contains(event.eventType);
       
-      return matchesSearch && matchesType;
+      return isFutureEvent && matchesSearch && matchesType;
     }).toList()..sort((a, b) => a.startTime.compareTo(b.startTime));
   }
 
@@ -301,9 +305,10 @@ class CalendarController extends GetxController {
   // Get upcoming events (used by home screen)
   List<EventModel> getUpcomingEvents() {
     final now = DateTime.now();
-    return getFilteredEvents().where((event) => 
-      event.startTime.isAfter(now.subtract(const Duration(days: 1)))
-    ).toList();
+    return getFilteredEvents()
+        .where((event) => event.startTime.isAfter(now))
+        .toList()
+      ..sort((a, b) => a.startTime.compareTo(b.startTime));
   }
 
   // Get all events across all days

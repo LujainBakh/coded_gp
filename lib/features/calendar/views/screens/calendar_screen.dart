@@ -176,7 +176,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/coded_bg3.png'),
+            image: AssetImage('assets/images/vibrantskybg.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -460,7 +460,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                     return _buildEventCard(
                                       title: event.title,
                                       subtitle: event.subtitle,
-                                      dateTime: DateFormat('E, d MMM yyyy').format(event.startTime),
+                                      dateTime: DateFormat('MMM d, yyyy').format(event.startTime),
                                       time: '${DateFormat('h:mm a').format(event.startTime)} - ${DateFormat('h:mm a').format(event.endTime)}',
                                       eventType: event.eventType,
                                       location: event.location,
@@ -558,12 +558,24 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             ),
                           ),
                       const Spacer(),
-                          Text(
-                        time,
-                            style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12,
-                            ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                dateTime,
+                                style: const TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              Text(
+                                time,
+                                style: const TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),

@@ -67,7 +67,7 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/coded_bg2.png'),
+            image: AssetImage('assets/images/duck1.png'),
             fit: BoxFit.cover,
           ),
         ),
