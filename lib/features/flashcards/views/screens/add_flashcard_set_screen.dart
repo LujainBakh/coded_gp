@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:coded_gp/core/common/widgets/custom_back_button.dart';
 
 class AddFlashcardSetScreen extends StatefulWidget {
   const AddFlashcardSetScreen({super.key});
@@ -59,101 +60,119 @@ class _AddFlashcardSetScreenState extends State<AddFlashcardSetScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: const Text(
-          'Create Flashcard Set',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: const Color(0xFF1a457b),
-        foregroundColor: Colors.white,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.check),
-            onPressed: _saveSet,
-          ),
-        ],
-      ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/coded_bg.png'),
+            image: AssetImage('assets/images/vibrantskybg.png'),
             fit: BoxFit.cover,
           ),
         ),
         child: SafeArea(
-          child: ListView(
-            padding: const EdgeInsets.all(24),
+          child: Column(
             children: [
-              const Text(
-                'Set Title',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1a457b),
-                ),
-              ),
-              const SizedBox(height: 8),
-              TextField(
-                controller: _setTitleController,
-                decoration: InputDecoration(
-                  hintText: 'e.g. Science, Mobile Programming...',
-                  filled: true,
-                  fillColor: Colors.white,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide.none,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                child: SizedBox(
+                  height: 40,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Center(
+                        child: Text(
+                          'Create Flashcard Set',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: CustomBackButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: IconButton(
+                          icon: const Icon(Icons.check, color: Colors.black),
+                          onPressed: _saveSet,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              const SizedBox(height: 32),
-
-              // Flashcards section
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Flashcards',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF1a457b),
-                    ),
-                  ),
-                  TextButton.icon(
-                    onPressed: _addFlashcard,
-                    icon: const Icon(Icons.add_circle_outline, color: Color(0xFF1a457b)),
-                    label: const Text(
-                      'Add Card',
-                      style: TextStyle(color: Color(0xFF1a457b)),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12),
-
-              if (_flashcards.isEmpty)
-                Column(
+              Expanded(
+                child: ListView(
+                  padding: const EdgeInsets.all(24),
                   children: [
-                    Image.asset('assets/images/Duck-01.png', height: 80),
-                    const SizedBox(height: 12),
                     const Text(
-                      'No flashcards added yet.',
-                      style: TextStyle(color: Colors.grey),
+                      'Set Title',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF1a457b),
+                      ),
                     ),
+                    const SizedBox(height: 8),
+                    TextField(
+                      controller: _setTitleController,
+                      decoration: InputDecoration(
+                        hintText: 'e.g. Science, Mobile Programming...',
+                        filled: true,
+                        fillColor: Colors.white,
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+
+                    // Flashcards section
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Flashcards',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF1a457b),
+                          ),
+                        ),
+                        TextButton.icon(
+                          onPressed: _addFlashcard,
+                          icon: const Icon(Icons.add_circle_outline, color: Color(0xFF1a457b)),
+                          label: const Text(
+                            'Add Card',
+                            style: TextStyle(color: Color(0xFF1a457b)),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+
+                    if (_flashcards.isEmpty)
+                      Column(
+                        children: [
+                          Image.asset('assets/images/Duck-01.png', height: 80),
+                          const SizedBox(height: 12),
+                          const Text(
+                            'No flashcards added yet',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ],
+                      )
+                    else
+                      Column(children: _flashcards),
                   ],
-                )
-              else
-                Column(children: _flashcards),
+                ),
+              ),
             ],
           ),
         ),

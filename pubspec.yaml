@@ -87,6 +87,10 @@ flutter_native_splash:
 # The following section is specific to Flutter packages.
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Borel
+      fonts:
+        - asset: assets/fonts/Borel-Regular.ttf
   assets:
     - assets/images/
     - assets/images/splash/
@@ -98,6 +102,10 @@ flutter:
     - assets/images/coded_bg3.png
     - assets/images/folder_icons/
     - assets/images/profileduck.png
+    - assets/images/flashcard/flashcard.png
+    
+
+    
     
 
   # To add assets to your application, add an assets section, like this:

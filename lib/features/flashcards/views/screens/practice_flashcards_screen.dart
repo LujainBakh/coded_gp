@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:math';
 import 'package:coded_gp/features/flashcards/views/screens/flashcard_congrats_screen.dart';
+import 'package:coded_gp/core/common/widgets/custom_back_button.dart';
 
 class PracticeFlashcardsScreen extends StatefulWidget {
   final List<Map<String, String>> flashcards;
@@ -50,6 +51,8 @@ class _PracticeFlashcardsScreenState extends State<PracticeFlashcardsScreen> wit
           builder: (context) => FlashcardCongratsScreen(
             setTitle: widget.setTitle,
             flashcards: widget.flashcards,
+            correctCount: correctCount,
+            totalCount: widget.flashcards.length,
           ),
         ),
       );
@@ -168,28 +171,44 @@ class _PracticeFlashcardsScreenState extends State<PracticeFlashcardsScreen> wit
     print('Current flashcard: $flashcard'); // Debug print
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.setTitle,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        backgroundColor: const Color(0xFF1a457b),
-        iconTheme: const IconThemeData(color: Colors.white),
-        centerTitle: true,
-      ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/coded_bg3.png'),
+            image: AssetImage('assets/images/vibrantskybg.png'),
             fit: BoxFit.cover,
           ),
         ),
         child: SafeArea(
           child: Column(
             children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                child: SizedBox(
+                  height: 40,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Center(
+                        child: Text(
+                          widget.setTitle,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: CustomBackButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               const SizedBox(height: 32),
               GestureDetector(
                 onTap: _flipCard,

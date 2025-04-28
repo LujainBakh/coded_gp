@@ -6,11 +6,15 @@ import 'package:coded_gp/features/flashcards/views/screens/practice_flashcards_s
 class FlashcardCongratsScreen extends StatelessWidget {
   final String setTitle;
   final List<Map<String, String>> flashcards;
+  final int correctCount;
+  final int totalCount;
 
   const FlashcardCongratsScreen({
     super.key, 
     required this.setTitle,
     required this.flashcards,
+    required this.correctCount,
+    required this.totalCount,
   });
 
   @override
@@ -52,6 +56,15 @@ class FlashcardCongratsScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 40),
+                  Text(
+                    'You knew $correctCount out of $totalCount flashcards!',
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

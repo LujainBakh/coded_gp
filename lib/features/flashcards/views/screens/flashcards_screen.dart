@@ -5,6 +5,7 @@ import 'package:coded_gp/core/common/widgets/app_bottom_nav_bar.dart';
 import 'package:coded_gp/features/flashcards/views/screens/add_flashcard_set_screen.dart';
 import 'package:coded_gp/features/flashcards/views/screens/flashcard_set_details_screen.dart';
 import 'package:coded_gp/features/flashcards/controllers/flashcards_controller.dart';
+import 'package:coded_gp/core/common/widgets/custom_back_button.dart';
 
 class FlashcardsScreen extends StatefulWidget {
   const FlashcardsScreen({super.key});
@@ -78,9 +79,8 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 child: Row(
                   children: [
-                    GestureDetector(
-                      onTap: () => Get.back(),
-                      child: const Icon(Icons.arrow_back_ios),
+                    CustomBackButton(
+                      onPressed: () => Get.back(),
                     ),
                     const Spacer(),
                     const Text(
@@ -94,12 +94,22 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
                     GestureDetector(
                       onTap: _navigateToAddSet,
                       child: Container(
-                        decoration: const BoxDecoration(
+                        width: 44,
+                        height: 44,
+                        decoration: BoxDecoration(
                           color: Colors.white,
-                          shape: BoxShape.circle,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.08),
+                              blurRadius: 4,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
                         ),
-                        padding: const EdgeInsets.all(6),
-                        child: const Icon(Icons.add, size: 20),
+                        child: const Center(
+                          child: Icon(Icons.add, size: 28, color: Colors.black),
+                        ),
                       ),
                     ),
                   ],
@@ -188,28 +198,41 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
                                       }
                                     },
                                     child: Container(
-                                      margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xFFFFF7E3),
-                                        borderRadius: BorderRadius.circular(12),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.black.withOpacity(0.08),
-                                            blurRadius: 6,
-                                            offset: const Offset(2, 2),
+                                      margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                                      width: double.infinity,
+                                      height: 240,
+                                      child: Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          Image.asset(
+                                            'assets/images/flashcard/flashcard.png',
+                                            width: double.infinity,
+                                            height: 240,
+                                            fit: BoxFit.contain,
+                                          ),
+                                          Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.symmetric(horizontal: 48.0),
+                                              child: Text(
+                                                set['title'],
+                                                textAlign: TextAlign.center,
+                                                style: const TextStyle(
+                                                  fontFamily: 'Borel',
+                                                  fontSize: 28,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w400,
+                                                  shadows: [
+                                                    Shadow(
+                                                      blurRadius: 4,
+                                                      color: Colors.white,
+                                                      offset: Offset(0, 1),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
                                           ),
                                         ],
-                                      ),
-                                      width: double.infinity,
-                                      height: 130,
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        set['title'],
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                          fontFamily: 'Pacifico',
-                                          fontSize: 22,
-                                        ),
                                       ),
                                     ),
                                   ),

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:coded_gp/features/flashcards/views/screens/practice_flashcards_screen.dart';
 import 'package:coded_gp/features/flashcards/views/screens/edit_flashcard_set_screen.dart';
 import 'package:coded_gp/features/flashcards/controllers/flashcards_controller.dart';
+import 'package:coded_gp/core/common/widgets/custom_back_button.dart';
 
 class FlashcardSetDetailsScreen extends StatefulWidget {
   final String setId;
@@ -72,122 +73,170 @@ class _FlashcardSetDetailsScreenState extends State<FlashcardSetDetailsScreen> {
     print('Flashcards: $flashcards');
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          setTitle,
-          style: const TextStyle(color: Colors.white),
-        ),
-        backgroundColor: const Color(0xFF1a457b),
-        centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.edit),
-            onPressed: () async {
-              final updated = await Get.to(() => EditFlashcardSetScreen(
-                    setId: widget.setId,
-                    initialTitle: setTitle,
-                    initialFlashcards: flashcards,
-                  ));
-
-              if (updated != null) {
-                try {
-                  await _flashcardsController.updateFlashcardSet(
-                    widget.setId,
-                    updated['title'],
-                    List<Map<String, String>>.from(updated['flashcards']),
-                  );
-                  setState(() {
-                    setTitle = updated['title'];
-                    flashcards = List<Map<String, String>>.from(updated['flashcards']);
-                  });
-                } catch (e) {
-                  Get.snackbar('Error', 'Failed to update flashcard set');
-                }
-              }
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.delete),
-            onPressed: _showDeleteConfirmationDialog,
-          ),
-        ],
-      ),
       body: Container(
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color(0xFFF5F9FF), Colors.white],
+          image: DecorationImage(
+            image: AssetImage('assets/images/vibrantskybg.png'),
+            fit: BoxFit.cover,
           ),
         ),
-        child: flashcards.isEmpty
-            ? const Center(
-                child: Text(
-                  'No flashcards added yet.',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Color(0xFF8E9AAF),
-                  ),
-                ),
-              )
-            : ListView.builder(
-                padding: const EdgeInsets.all(16),
-                itemCount: flashcards.length,
-                itemBuilder: (context, index) {
-                  final flashcard = flashcards[index];
-                  return Card(
-                    margin: const EdgeInsets.symmetric(vertical: 8),
-                    elevation: 2,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        gradient: const LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [Colors.white, Color(0xFFF5F9FF)],
+        child: SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                child: SizedBox(
+                  height: 40,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      // Centered Title
+                      Center(
+                        child: Text(
+                          setTitle,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
-                      child: ListTile(
-                        title: Text(
-                          flashcard['question'] ?? '',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF1E3F84),
-                          ),
+                      // Back button (left)
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: CustomBackButton(
+                          onPressed: () => Navigator.of(context).pop(),
                         ),
-                        subtitle: Text(
-                          flashcard['answer'] ?? '',
-                          style: const TextStyle(
+                      ),
+                      // Edit and Delete (right)
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.edit, color: Colors.black),
+                              onPressed: () async {
+                                final updated = await Get.to(() => EditFlashcardSetScreen(
+                                      setId: widget.setId,
+                                      initialTitle: setTitle,
+                                      initialFlashcards: flashcards,
+                                    ));
+
+                                if (updated != null) {
+                                  try {
+                                    await _flashcardsController.updateFlashcardSet(
+                                      widget.setId,
+                                      updated['title'],
+                                      List<Map<String, String>>.from(updated['flashcards']),
+                                    );
+                                    setState(() {
+                                      setTitle = updated['title'];
+                                      flashcards = List<Map<String, String>>.from(updated['flashcards']);
+                                    });
+                                  } catch (e) {
+                                    Get.snackbar('Error', 'Failed to update flashcard set');
+                                  }
+                                }
+                              },
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.delete, color: Colors.black),
+                              onPressed: _showDeleteConfirmationDialog,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: flashcards.isEmpty
+                    ? const Center(
+                        child: Text(
+                          'No flashcards added yet.',
+                          style: TextStyle(
+                            fontSize: 16,
                             color: Color(0xFF8E9AAF),
                           ),
                         ),
+                      )
+                    : ListView.builder(
+                        padding: const EdgeInsets.all(16),
+                        itemCount: flashcards.length,
+                        itemBuilder: (context, index) {
+                          final flashcard = flashcards[index];
+                          return Card(
+                            margin: const EdgeInsets.symmetric(vertical: 8),
+                            elevation: 2,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                gradient: const LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [Colors.white, Color(0xFFF5F9FF)],
+                                ),
+                              ),
+                              child: ListTile(
+                                title: Text(
+                                  flashcard['question'] ?? '',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF1E3F84),
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  flashcard['answer'] ?? '',
+                                  style: const TextStyle(
+                                    color: Color(0xFF8E9AAF),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+              ),
+              if (flashcards.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 32, top: 8),
+                  child: Center(
+                    child: SizedBox(
+                      width: 280,
+                      height: 56,
+                      child: FloatingActionButton.extended(
+                        onPressed: () {
+                          print('Flashcards being passed to practice: $flashcards');
+                          Get.to(() => PracticeFlashcardsScreen(
+                            flashcards: flashcards,
+                            setTitle: setTitle,
+                          ));
+                        },
+                        backgroundColor: const Color(0xFFBBDE4E),
+                        icon: const Icon(Icons.play_arrow, color: Colors.white, size: 30),
+                        label: const Text(
+                          'Practice',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.2,
+                          ),
+                        ),
                       ),
                     ),
-                  );
-                },
-              ),
+                  ),
+                ),
+            ],
+          ),
+        ),
       ),
-      floatingActionButton: flashcards.isNotEmpty
-          ? FloatingActionButton.extended(
-              onPressed: () {
-                print('Flashcards being passed to practice: $flashcards');
-                Get.to(() => PracticeFlashcardsScreen(
-                  flashcards: flashcards,
-                  setTitle: setTitle,
-                ));
-              },
-              backgroundColor: const Color(0xFFBBDE4E),
-              icon: const Icon(Icons.play_arrow, color: Colors.white),
-              label: const Text(
-                'Practice',
-                style: TextStyle(color: Colors.white),
-              ),
-            )
-          : null,
     );
   }
 } 
