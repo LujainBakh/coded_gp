@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:coded_gp/core/common/widgets/custom_back_button.dart';
+import 'package:share_plus/share_plus.dart';
 
 class SummarisedNoteScreen extends StatelessWidget {
   final String title;
@@ -10,6 +11,10 @@ class SummarisedNoteScreen extends StatelessWidget {
     required this.title,
     required this.summary,
   });
+
+  void _shareSummary(BuildContext context) {
+    Share.share(summary, subject: title);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +53,17 @@ class SummarisedNoteScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: IconButton(
+                        icon: const Icon(Icons.share, color: Color(0xFF1A237E)),
+                        tooltip: 'Share',
+                        onPressed: () => _shareSummary(context),
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 32),
@@ -58,15 +74,27 @@ class SummarisedNoteScreen extends StatelessWidget {
                     width: double.infinity,
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.9),
-                      borderRadius: BorderRadius.circular(16),
+                      image: const DecorationImage(
+                        image: AssetImage('assets/images/notesbg.png'),
+                        fit: BoxFit.cover,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 16,
+                          offset: Offset(0, 8),
+                        ),
+                      ],
                     ),
                     child: SingleChildScrollView(
-                      child: Text(
-                        summary,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          height: 1.5,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 44.0),
+                        child: Text(
+                          summary,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            height: 1.5,
+                          ),
                         ),
                       ),
                     ),

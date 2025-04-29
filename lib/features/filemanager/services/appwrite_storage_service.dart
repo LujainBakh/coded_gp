@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:coded_gp/features/filemanager/models/file_model.dart';
+import 'package:coded_gp/core/config/appwrite_config.dart';
 import 'dart:io';
 
 class AppwriteStorageService {
@@ -231,7 +232,20 @@ class AppwriteStorageService {
         bucketId: bucketId,
         fileId: fileModel.fileId,
       );
-      return result.toString();
+
+      // Ensure the URL is properly formatted
+      String url = result.toString();
+      if (!url.startsWith('http')) {
+        // Extract the host from the endpoint
+        final endpoint = AppwriteConfig.endpoint;
+        final host = endpoint.split('/')[2];
+        // Construct the proper URL
+        url =
+            'https://$host/v1/storage/buckets/$bucketId/files/${fileModel.fileId}/download';
+      }
+
+      debugPrint('Generated download URL: $url');
+      return url;
     } catch (e) {
       debugPrint('Error getting file download: $e');
       rethrow;

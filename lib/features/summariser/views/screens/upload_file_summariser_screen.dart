@@ -5,6 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'dart:io';
 import 'package:coded_gp/features/summariser/services/pdf_summarizer_service.dart';
 import 'package:coded_gp/features/summariser/views/screens/summarised_note_screen.dart';
+import 'package:coded_gp/features/summariser/views/screens/summariser_loading_screen.dart';
 
 class UploadFileSummariserScreen extends StatefulWidget {
   const UploadFileSummariserScreen({super.key});
@@ -99,9 +100,13 @@ class _UploadFileSummariserScreenState
       return;
     }
 
-    setState(() {
-      _isLoading = true;
-    });
+    // Navigate to loading screen and start summarization in the background
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SummariserLoadingScreen(),
+      ),
+    );
 
     try {
       final summary = await _pdfSummarizerService.summarizePDF(
@@ -111,6 +116,8 @@ class _UploadFileSummariserScreenState
 
       if (!mounted) return;
 
+      // Remove the loading screen and go to the summary screen
+      Navigator.of(context).pop(); // Pop loading screen
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -122,18 +129,13 @@ class _UploadFileSummariserScreenState
       );
     } catch (e) {
       if (!mounted) return;
+      Navigator.of(context).pop(); // Pop loading screen
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Error summarizing file: ${e.toString()}'),
           backgroundColor: const Color(0xFF1A237E),
         ),
       );
-    } finally {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-        });
-      }
     }
   }
 
