@@ -282,17 +282,17 @@ class _PracticeFlashcardsScreenState extends State<PracticeFlashcardsScreen> wit
     return Card(
       elevation: 8,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      color: const Color(0xFFBBDE4E),
+      color: isFront ? const Color(0xFFF5E6D3) : const Color(0xFFBBDE4E),
       child: Center(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Text(
             text.trim().isNotEmpty ? text : (isFront ? "No Question" : "No Answer"),
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: isFront ? Colors.black87 : Colors.white,
             ),
           ),
         ),
