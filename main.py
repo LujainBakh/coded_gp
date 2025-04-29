@@ -2,16 +2,12 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import openai
-from config import OPENAI_API_KEY
 import logging
+import config
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
-
-# Set the OpenAI API key
-openai.api_key = OPENAI_API_KEY
-logger.info("OpenAI API key set")
 
 app = FastAPI()
 
@@ -45,7 +41,8 @@ async def chat(message: Message):
     try:
         logger.info(f"Received message: {message.user_input}")
         
-        if not OPENAI_API_KEY:
+        if not openai.api_key:
+
             logger.error("OpenAI API key not found")
             raise HTTPException(status_code=500, detail="OpenAI API key not found")
             
