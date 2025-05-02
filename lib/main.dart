@@ -10,10 +10,12 @@ import 'package:coded_gp/features/settings/controllers/notifications_controller.
 import 'package:coded_gp/features/calendar/controllers/calendar_controller.dart';
 import 'package:coded_gp/features/timer/controllers/timer_controller.dart';
 import 'package:coded_gp/features/flashcards/controllers/flashcards_controller.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 // Import other necessary controllers and utilities
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   await Firebase.initializeApp();
   await Get.putAsync(() async => ThemeController());
   Get.put(OnboardingController());

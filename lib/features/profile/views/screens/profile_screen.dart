@@ -156,27 +156,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                           // Name and Profile Picture
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    isLoading ? 'Loading...' : fullName,
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600,
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      isLoading ? 'Loading...' : fullName,
+                                      style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    isLoading ? 'Loading...' : major,
-                                    style: const TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 14,
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      isLoading ? 'Loading...' : major,
+                                      style: const TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 14,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                               GestureDetector(
                                 onTap: () {

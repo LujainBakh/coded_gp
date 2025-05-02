@@ -128,7 +128,7 @@ class PDFSummarizerService {
           Uri.parse('$_baseUrl/chat/completions'),
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ${ApiConfig.openAiApiKey}',
+            'Authorization': 'Bearer ${ApiConfig.openAiApiKeySummarizer}',
           },
           body: jsonEncode({
             'model': 'gpt-4-turbo-preview',
@@ -230,7 +230,7 @@ class PDFSummarizerService {
             Uri.parse('$_baseUrl/chat/completions'),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer ${ApiConfig.openAiApiKey}',
+              'Authorization': 'Bearer ${ApiConfig.openAiApiKeySummarizer}',
             },
             body: jsonEncode({
               'model': 'gpt-4-turbo-preview',

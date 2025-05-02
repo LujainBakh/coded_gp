@@ -37,7 +37,9 @@ class ViewAllNewsPage extends StatelessWidget {
                     ),
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: CustomBackButton(),
+                      child: CustomBackButton(
+                        useNavigator: true,
+                      ),
                     ),
                   ],
                 ),

@@ -56,7 +56,7 @@ class OpenAIService {
           Uri.parse('$_baseUrl/chat/completions'),
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ${ApiConfig.openAiApiKey}',
+            'Authorization': 'Bearer ${ApiConfig.openAiApiKeySummarizer}',
           },
           body: jsonEncode({
             'model': 'gpt-4-turbo-preview',
@@ -170,7 +170,7 @@ class OpenAIService {
             Uri.parse('$_baseUrl/chat/completions'),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer ${ApiConfig.openAiApiKey}',
+              'Authorization': 'Bearer ${ApiConfig.openAiApiKeySummarizer}',
             },
             body: jsonEncode({
               'model': 'gpt-4-turbo-preview',

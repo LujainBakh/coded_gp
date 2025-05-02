@@ -1,9 +1,15 @@
+import os
+from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import openai
 import logging
 import config
+
+# Load environment variables
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY_MAIN")
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)

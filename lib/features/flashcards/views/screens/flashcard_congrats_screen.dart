@@ -68,45 +68,66 @@ class FlashcardCongratsScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // Back to Flashcards button
-                      ElevatedButton(
-                        onPressed: () {
-                          Get.offAll(() => const FlashcardsScreen());
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFBBDE4E),
-                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
+                      Expanded(
+                        flex: 2,
+                        child: SizedBox(
+                          height: 52,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Get.offAll(() => const FlashcardsScreen());
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFBBDE4E),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                side: const BorderSide(color: Color(0xFF1a457b)),
+                              ),
+                              minimumSize: const Size.fromHeight(52),
+                              padding: EdgeInsets.zero,
+                              elevation: 0,
+                            ),
+                            child: const Text(
+                              'Back to Flashcards',
+                              style: TextStyle(
+                                color: Color(0xFF1a457b),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                        ),
-                        child: const Text(
-                          'Back to Flashcards',
-                          style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                       ),
                       const SizedBox(width: 16),
-                      // Retake button
-                      OutlinedButton(
-                        onPressed: () {
-                          Get.off(() => PracticeFlashcardsScreen(
-                            flashcards: flashcards,
-                            setTitle: setTitle,
-                          ));
-                        },
-                        style: OutlinedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          side: const BorderSide(color: Color(0xFF1a457b)),
-                        ),
-                        child: const Text(
-                          'Retake',
-                          style: TextStyle(
-                            color: Color(0xFF1a457b),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
+                      Flexible(
+                        flex: 1,
+                        child: SizedBox(
+                          height: 52,
+                          child: OutlinedButton(
+                            onPressed: () {
+                              Get.off(() => PracticeFlashcardsScreen(
+                                flashcards: flashcards,
+                                setTitle: setTitle,
+                              ));
+                            },
+                            style: OutlinedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              side: const BorderSide(color: Color(0xFF1a457b)),
+                              minimumSize: const Size.fromHeight(52),
+                              padding: EdgeInsets.zero,
+                            ),
+                            child: const Text(
+                              'Retake',
+                              style: TextStyle(
+                                color: Color(0xFF1a457b),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
                       ),

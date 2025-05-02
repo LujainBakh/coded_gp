@@ -66,6 +66,7 @@ dependencies:
   flutter_html: ^3.0.0
   open_file: ^3.3.2
   syncfusion_flutter_pdf: ^24.2.8
+  flutter_dotenv: ^5.1.0
   
 dev_dependencies:
   flutter_test:
@@ -96,6 +97,7 @@ flutter:
       fonts:
         - asset: assets/fonts/Borel-Regular.ttf
   assets:
+    - .env
     - assets/images/
     - assets/images/splash/
     - assets/images/onboarding/
