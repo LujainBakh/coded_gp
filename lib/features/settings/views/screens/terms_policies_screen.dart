@@ -24,7 +24,9 @@ class TermsPoliciesScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 8.0, right: 8.0),
                 child: Row(
                   children: [
-                    const CustomBackButton(),
+                    CustomBackButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
                     Expanded(
                       child: Center(
                         child: Image.asset(
@@ -69,7 +71,6 @@ class TermsPoliciesScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 24),
-                      
                       _buildSection(
                         'Terms of Use',
                         'By using CodEd, you agree to the following terms:',
@@ -82,7 +83,6 @@ class TermsPoliciesScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 20),
-
                       _buildSection(
                         'Data Usage',
                         'How we handle your data:',
@@ -95,7 +95,6 @@ class TermsPoliciesScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 20),
-
                       _buildSection(
                         'User Guidelines',
                         'Please follow these guidelines:',
@@ -108,7 +107,6 @@ class TermsPoliciesScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 20),
-
                       _buildSection(
                         'Updates and Changes',
                         'Policy updates:',
@@ -163,31 +161,33 @@ class TermsPoliciesScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-        ...points.map((point) => Padding(
-          padding: const EdgeInsets.only(left: 16, bottom: 8),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                '• ',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black87,
-                ),
-              ),
-              Expanded(
-                child: Text(
-                  point,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.black87,
+        ...points
+            .map((point) => Padding(
+                  padding: const EdgeInsets.only(left: 16, bottom: 8),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        '• ',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          point,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ),
-            ],
-          ),
-        )).toList(),
+                ))
+            .toList(),
       ],
     );
   }
-} 
+}

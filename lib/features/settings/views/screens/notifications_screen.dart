@@ -25,7 +25,9 @@ class NotificationsScreen extends GetView<NotificationsController> {
                 padding: const EdgeInsets.only(top: 8.0, right: 8.0),
                 child: Row(
                   children: [
-                    const CustomBackButton(),
+                    CustomBackButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
                     Expanded(
                       child: Center(
                         child: Image.asset(
@@ -74,20 +76,23 @@ class NotificationsScreen extends GetView<NotificationsController> {
                         'Common',
                         [
                           Obx(() => _buildSwitchTile(
-                            'General Notification',
-                            controller.generalNotification,
-                            (value) => controller.updateSetting('generalNotification', value),
-                          )),
+                                'General Notification',
+                                controller.generalNotification,
+                                (value) => controller.updateSetting(
+                                    'generalNotification', value),
+                              )),
                           Obx(() => _buildSwitchTile(
-                            'Sound',
-                            controller.sound,
-                            (value) => controller.updateSetting('sound', value),
-                          )),
+                                'Sound',
+                                controller.sound,
+                                (value) =>
+                                    controller.updateSetting('sound', value),
+                              )),
                           Obx(() => _buildSwitchTile(
-                            'Vibrate',
-                            controller.vibrate,
-                            (value) => controller.updateSetting('vibrate', value),
-                          )),
+                                'Vibrate',
+                                controller.vibrate,
+                                (value) =>
+                                    controller.updateSetting('vibrate', value),
+                              )),
                         ],
                       ),
                       const Divider(),
@@ -95,25 +100,29 @@ class NotificationsScreen extends GetView<NotificationsController> {
                         'System & services update',
                         [
                           Obx(() => _buildSwitchTile(
-                            'App Updates',
-                            controller.appUpdates,
-                            (value) => controller.updateSetting('appUpdates', value),
-                          )),
+                                'App Updates',
+                                controller.appUpdates,
+                                (value) => controller.updateSetting(
+                                    'appUpdates', value),
+                              )),
                           Obx(() => _buildSwitchTile(
-                            'Assignment Reminder',
-                            controller.assignmentReminder,
-                            (value) => controller.updateSetting('assignmentReminder', value),
-                          )),
+                                'Assignment Reminder',
+                                controller.assignmentReminder,
+                                (value) => controller.updateSetting(
+                                    'assignmentReminder', value),
+                              )),
                           Obx(() => _buildSwitchTile(
-                            'Exam Notification',
-                            controller.examNotification,
-                            (value) => controller.updateSetting('examNotification', value),
-                          )),
+                                'Exam Notification',
+                                controller.examNotification,
+                                (value) => controller.updateSetting(
+                                    'examNotification', value),
+                              )),
                           Obx(() => _buildSwitchTile(
-                            'Registration Reminder',
-                            controller.registrationReminder,
-                            (value) => controller.updateSetting('registrationReminder', value),
-                          )),
+                                'Registration Reminder',
+                                controller.registrationReminder,
+                                (value) => controller.updateSetting(
+                                    'registrationReminder', value),
+                              )),
                         ],
                       ),
                       const Divider(),
@@ -121,15 +130,17 @@ class NotificationsScreen extends GetView<NotificationsController> {
                         'Others',
                         [
                           Obx(() => _buildSwitchTile(
-                            'New Service Available',
-                            controller.newServiceAvailable,
-                            (value) => controller.updateSetting('newServiceAvailable', value),
-                          )),
+                                'New Service Available',
+                                controller.newServiceAvailable,
+                                (value) => controller.updateSetting(
+                                    'newServiceAvailable', value),
+                              )),
                           Obx(() => _buildSwitchTile(
-                            'New Tips Available',
-                            controller.newTipsAvailable,
-                            (value) => controller.updateSetting('newTipsAvailable', value),
-                          )),
+                                'New Tips Available',
+                                controller.newTipsAvailable,
+                                (value) => controller.updateSetting(
+                                    'newTipsAvailable', value),
+                              )),
                         ],
                       ),
                     ],
@@ -191,4 +202,4 @@ class NotificationsScreen extends GetView<NotificationsController> {
       contentPadding: EdgeInsets.zero,
     );
   }
-} 
+}
