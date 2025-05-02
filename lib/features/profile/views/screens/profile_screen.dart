@@ -112,8 +112,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   // Back button in Row to force left alignment
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
-                      CustomBackButton(),
+                    children: [
+                      CustomBackButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 16),
@@ -179,6 +181,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ],
                                 ),
                               ),
+                              const SizedBox(width: 16),
                               GestureDetector(
                                 onTap: () {
                                   showDialog(
@@ -187,7 +190,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     builder: (BuildContext context) {
                                       return Dialog(
                                         backgroundColor: Colors.transparent,
-                                        insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+                                        insetPadding:
+                                            const EdgeInsets.symmetric(
+                                                horizontal: 20),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
@@ -201,22 +206,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                     width: 300,
                                                     height: 300,
                                                     decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(20),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20),
                                                       color: Colors.white,
                                                       boxShadow: [
                                                         BoxShadow(
-                                                          color: Colors.black.withOpacity(0.2),
+                                                          color: Colors.black
+                                                              .withOpacity(0.2),
                                                           blurRadius: 15,
                                                           spreadRadius: 2,
                                                         ),
                                                       ],
                                                     ),
                                                     child: ClipRRect(
-                                                      borderRadius: BorderRadius.circular(20),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20),
                                                       child: Image.asset(
                                                         'assets/images/profileduck.png',
                                                         fit: BoxFit.contain,
-                                                        filterQuality: FilterQuality.high,
+                                                        filterQuality:
+                                                            FilterQuality.high,
                                                       ),
                                                     ),
                                                   ),
@@ -225,7 +236,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   top: -20,
                                                   right: -20,
                                                   child: GestureDetector(
-                                                    onTap: () => Navigator.pop(context),
+                                                    onTap: () =>
+                                                        Navigator.pop(context),
                                                     child: Container(
                                                       width: 40,
                                                       height: 40,
@@ -234,7 +246,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                         shape: BoxShape.circle,
                                                         boxShadow: [
                                                           BoxShadow(
-                                                            color: Colors.black.withOpacity(0.1),
+                                                            color: Colors.black
+                                                                .withOpacity(
+                                                                    0.1),
                                                             blurRadius: 5,
                                                             spreadRadius: 1,
                                                           ),

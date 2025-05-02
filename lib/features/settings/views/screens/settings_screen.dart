@@ -28,7 +28,9 @@ class SettingsScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 8.0, right: 8.0),
                 child: Row(
                   children: [
-                    const CustomBackButton(),
+                    CustomBackButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
                     Expanded(
                       child: Center(
                         child: Image.asset(
@@ -76,7 +78,8 @@ class SettingsScreen extends StatelessWidget {
                     _buildSection(
                       'Account',
                       [
-                        _buildMenuItem(Icons.notifications_outlined, 'Notifications'),
+                        _buildMenuItem(
+                            Icons.notifications_outlined, 'Notifications'),
                         _buildMenuItem(Icons.lock_outline, 'Privacy'),
                       ],
                     ),
@@ -84,7 +87,8 @@ class SettingsScreen extends StatelessWidget {
                       'Support & About',
                       [
                         _buildMenuItem(Icons.help_outline, 'Help & Support'),
-                        _buildMenuItem(Icons.description_outlined, 'Terms and Policies'),
+                        _buildMenuItem(
+                            Icons.description_outlined, 'Terms and Policies'),
                         _buildMenuItem(Icons.info_outline, 'About Us'),
                       ],
                     ),

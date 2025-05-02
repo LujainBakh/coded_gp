@@ -24,7 +24,9 @@ class AboutScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 8.0, right: 8.0),
                 child: Row(
                   children: [
-                    const CustomBackButton(),
+                    CustomBackButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
                     Expanded(
                       child: Center(
                         child: Image.asset(
@@ -97,4 +99,4 @@ class AboutScreen extends StatelessWidget {
       ),
     );
   }
-} 
+}

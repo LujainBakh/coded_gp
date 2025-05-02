@@ -25,7 +25,9 @@ class HelpSupportScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 8.0, right: 8.0),
                 child: Row(
                   children: [
-                    const CustomBackButton(),
+                    CustomBackButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
                     Expanded(
                       child: Center(
                         child: Image.asset(
@@ -70,7 +72,7 @@ class HelpSupportScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 24),
-                      
+
                       // Contact Support Section
                       _buildSection(
                         'Contact Support',
@@ -249,7 +251,8 @@ class HelpSupportScreen extends StatelessWidget {
     Get.dialog(
       AlertDialog(
         title: Text(topic),
-        content: Text('Detailed information about $topic will be available soon.'),
+        content:
+            Text('Detailed information about $topic will be available soon.'),
         actions: [
           TextButton(
             onPressed: () => Get.back(),
@@ -259,4 +262,4 @@ class HelpSupportScreen extends StatelessWidget {
       ),
     );
   }
-} 
+}
