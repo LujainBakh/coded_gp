@@ -1,16 +1,41 @@
-# coded_gp
+# 🎓 CodEd – Smart Academic Assistant for CCSIT Students
 
-A new Flutter project.
+Welcome to the official repository of **CodEd**, an AI-powered academic assistant designed to support students of the *College of Computer Science and Information Technology (CCSIT)* at Imam Abdulrahman Bin Faisal University.
 
-## Getting Started
+## 📱 About the Project
 
-This project is a starting point for a Flutter application.
+CodEd is a mobile application built with Flutter that provides an intelligent, student-centered platform integrating modern AI technologies to assist CCSIT students in managing their academic life more effectively. It leverages OpenAI’s GPT models to simulate a virtual academic advisor capable of answering FAQs, summarizing documents, generating flashcards and quizzes, and retrieving personalized student data.
 
-A few resources to get you started if this is your first Flutter project:
+## 🔍 Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- 🧠 **AI Chatbot**: Personalized responses to CCSIT-specific queries using OpenAI Assistant API.
+- 📅 **Calendar**: Manage academic deadlines with smart reminders.
+- 🗃️ **File Manager**: Upload and organize lecture materials with ease.
+- 🧮 **GPA Calculator**: Quickly calculate your GPA by inputting grades and credit hours.
+- 🔖 **Flashcard Generator**: Automatically create flashcards from uploaded content.
+- 🧾 **Document Summarizer**: Extract summaries from lecture files using LLMs.
+- 👤 **Profile & Settings**: Secure login with Firebase Authentication and user-specific configurations.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## ⚙️ Technologies Used
+
+| Category         | Tools/Technologies                        |
+|------------------|--------------------------------------------|
+| Frontend         | Flutter                                   |
+| Backend/Database | Firebase Firestore, Firebase Auth         |
+| AI/Chatbot       | OpenAI Assistants API  |
+| File Handling    | Firebase Storage, Appwrite                |
+| Agent Platform   | Cursor     |
+
+## 🚧 Development Timeline
+
+- **Start Date**: September 2024  
+- **Testing Phase**: March 16, 2025  
+- **Showcased at Graduation Projects Fair**: April 2025
+
+## 🛠️ Setup Instructions
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/coded.git
+   cd coded
+
