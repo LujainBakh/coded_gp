@@ -15,7 +15,8 @@ class FlashcardsScreen extends StatefulWidget {
 }
 
 class _FlashcardsScreenState extends State<FlashcardsScreen> {
-  final FlashcardsController _flashcardsController = Get.find<FlashcardsController>();
+  final FlashcardsController _flashcardsController =
+      Get.find<FlashcardsController>();
   List<Map<String, dynamic>> flashcardSets = [];
   String searchQuery = '';
   bool isLoading = true;
@@ -76,11 +77,12 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
             children: [
               // Header Row
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 child: Row(
                   children: [
                     CustomBackButton(
-                      onPressed: () => Get.back(),
+                      onPressed: () => Navigator.of(context).pop(),
                     ),
                     const Spacer(),
                     const Text(
@@ -118,7 +120,8 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
 
               // Search Bar
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                 child: TextField(
                   onChanged: (val) => setState(() => searchQuery = val),
                   decoration: InputDecoration(
@@ -158,7 +161,8 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
                               const SizedBox(height: 32),
                               TextButton.icon(
                                 onPressed: _navigateToAddSet,
-                                icon: const Icon(Icons.add_circle_outline, color: Color(0xFF1a457b)),
+                                icon: const Icon(Icons.add_circle_outline,
+                                    color: Color(0xFF1a457b)),
                                 label: const Text(
                                   'Add Flashcard Set',
                                   style: TextStyle(
@@ -172,7 +176,8 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
                         : SingleChildScrollView(
                             padding: const EdgeInsets.symmetric(vertical: 24),
                             child: Column(
-                              children: List.generate(filteredSets.length, (index) {
+                              children:
+                                  List.generate(filteredSets.length, (index) {
                                 final set = filteredSets[index];
                                 final offset = index * -8.0;
 
@@ -180,25 +185,33 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
                                   offset: Offset(0, offset),
                                   child: GestureDetector(
                                     onTap: () async {
-                                      final result = await Get.to(() => FlashcardSetDetailsScreen(
+                                      final result = await Get.to(() =>
+                                          FlashcardSetDetailsScreen(
                                             setId: set['id'],
                                             initialTitle: set['title'],
-                                            initialFlashcards: (set['flashcards'] as List)
-                                                .map((fc) => Map<String, String>.from(fc as Map))
+                                            initialFlashcards: (set[
+                                                    'flashcards'] as List)
+                                                .map((fc) =>
+                                                    Map<String, String>.from(
+                                                        fc as Map))
                                                 .toList(),
                                           ));
 
-                                      if (result != null && result['delete'] == true) {
+                                      if (result != null &&
+                                          result['delete'] == true) {
                                         try {
-                                          await _flashcardsController.deleteFlashcardSet(set['id']);
+                                          await _flashcardsController
+                                              .deleteFlashcardSet(set['id']);
                                           await _loadFlashcardSets();
                                         } catch (e) {
-                                          Get.snackbar('Error', 'Failed to delete flashcard set');
+                                          Get.snackbar('Error',
+                                              'Failed to delete flashcard set');
                                         }
                                       }
                                     },
                                     child: Container(
-                                      margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 16, horizontal: 12),
                                       width: double.infinity,
                                       height: 240,
                                       child: Stack(
@@ -212,7 +225,9 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
                                           ),
                                           Center(
                                             child: Padding(
-                                              padding: const EdgeInsets.symmetric(horizontal: 48.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 48.0),
                                               child: Text(
                                                 set['title'],
                                                 textAlign: TextAlign.center,
@@ -262,4 +277,4 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
       ),
     );
   }
-} 
+}
