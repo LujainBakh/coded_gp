@@ -25,7 +25,7 @@ class FAQScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     CustomBackButton(
-                      onPressed: () => Get.back(),
+                      onPressed: () => Navigator.of(context).pop(),
                     ),
                     Expanded(
                       child: Center(
@@ -71,49 +71,44 @@ class FAQScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 24),
-                      
                       _buildExpandableFAQ(
                         'Can CodEd help me plan my study schedule?',
                         'Yes! CodEd offers a smart scheduling system that helps you:\n'
-                        '• Create personalized study timetables\n'
-                        '• Set reminders for assignments and exams\n'
-                        '• Balance your study time across different courses\n'
-                        '• Adapt your schedule based on your learning preferences',
+                            '• Create personalized study timetables\n'
+                            '• Set reminders for assignments and exams\n'
+                            '• Balance your study time across different courses\n'
+                            '• Adapt your schedule based on your learning preferences',
                         Colors.lightGreen.shade100,
                       ),
-                      
                       _buildExpandableFAQ(
                         'How does CodEd differ from Blackboard or SIS?',
                         'CodEd complements Blackboard and SIS by providing:\n'
-                        '• AI-powered study assistance and instant answers\n'
-                        '• Smart calendar integration for better time management\n'
-                        '• Personalized notifications for important deadlines\n'
-                        '• Easy access to all university resources in one place\n'
-                        '• User-friendly interface designed specifically for IAU students',
+                            '• AI-powered study assistance and instant answers\n'
+                            '• Smart calendar integration for better time management\n'
+                            '• Personalized notifications for important deadlines\n'
+                            '• Easy access to all university resources in one place\n'
+                            '• User-friendly interface designed specifically for IAU students',
                         Colors.lightGreen.shade100,
                       ),
-                      
                       _buildExpandableFAQ(
                         'Questions related to support:',
                         'Here\'s how you can get help:\n'
-                        '• Email support: support@coded.edu\n'
-                        '• Phone support: +966 456 7890\n'
-                        '• Report issues through the app\'s "Report a Problem" feature\n'
-                        '• Check our help documentation in the Help & Support section',
+                            '• Email support: support@coded.edu\n'
+                            '• Phone support: +966 456 7890\n'
+                            '• Report issues through the app\'s "Report a Problem" feature\n'
+                            '• Check our help documentation in the Help & Support section',
                         Colors.lightGreen.shade100,
                       ),
-                      
                       _buildExpandableFAQ(
                         'Questions related to this app:',
                         'Common app-related information:\n'
-                        '• Updates are automatic through your app store\n'
-                        '• Requires iOS 13+ or Android 8+\n'
-                        '• Manage notifications in the Settings menu\n'
-                        '• Basic features work offline, but chatbot requires internet\n'
-                        '• Data is securely stored and backed up regularly',
+                            '• Updates are automatic through your app store\n'
+                            '• Requires iOS 13+ or Android 8+\n'
+                            '• Manage notifications in the Settings menu\n'
+                            '• Basic features work offline, but chatbot requires internet\n'
+                            '• Data is securely stored and backed up regularly',
                         Colors.lightGreen.shade100,
                       ),
-                      
                       const SizedBox(height: 20),
                     ],
                   ),
@@ -126,7 +121,8 @@ class FAQScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildExpandableFAQ(String title, String content, Color backgroundColor) {
+  Widget _buildExpandableFAQ(
+      String title, String content, Color backgroundColor) {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
@@ -158,4 +154,4 @@ class FAQScreen extends StatelessWidget {
       ),
     );
   }
-} 
+}
