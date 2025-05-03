@@ -201,7 +201,9 @@ class _AddFileScreenState extends State<AddFileScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const CustomBackButton(),
+                    CustomBackButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.only(right: 40),

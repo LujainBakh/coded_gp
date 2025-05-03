@@ -7,14 +7,25 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:coded_gp/features/filemanager/models/folder_model.dart';
 import 'package:coded_gp/features/filemanager/views/screens/add_folder_screen.dart';
 
-class FileManagerScreen extends StatelessWidget {
-  FileManagerScreen({super.key});
+class FileManagerScreen extends StatefulWidget {
+  const FileManagerScreen({super.key});
 
+  @override
+  State<FileManagerScreen> createState() => _FileManagerScreenState();
+}
+
+class _FileManagerScreenState extends State<FileManagerScreen> {
   final FolderController folderController = Get.put(FolderController());
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   void _navigateToAddScreen() {
-    Get.to(
-        () => const AddFolderScreen()); // Direct navigation to AddFolderScreen
+    Get.to(() => const AddFolderScreen());
   }
 
   void _showSortOptions(BuildContext context) {
@@ -154,6 +165,10 @@ class FileManagerScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(16),
                     child: TextField(
+                      controller: _searchController,
+                      onChanged: (value) {
+                        folderController.setSearchQuery(value);
+                      },
                       decoration: InputDecoration(
                         hintText: 'Search',
                         prefixIcon: const Icon(Icons.search),
@@ -178,7 +193,7 @@ class FileManagerScreen extends StatelessWidget {
                         mainAxisSpacing: 24,
                         crossAxisSpacing: 24,
                         childAspectRatio: 0.85,
-                        children: folderController.folders
+                        children: folderController.filteredFolders
                             .map((folder) => _buildFolderItem(folder))
                             .toList(),
                       );

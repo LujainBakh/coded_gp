@@ -14,6 +14,21 @@ class FolderController extends GetxController {
   final RxList<Folder> folders = <Folder>[].obs;
   final RxBool isLoading = false.obs;
   final Rx<SortOption> currentSort = SortOption.newest.obs;
+  final RxString searchQuery = ''.obs;
+
+  void setSearchQuery(String query) {
+    searchQuery.value = query;
+  }
+
+  List<Folder> get filteredFolders {
+    if (searchQuery.value.isEmpty) {
+      return folders;
+    }
+    return folders
+        .where((folder) =>
+            folder.name.toLowerCase().contains(searchQuery.value.toLowerCase()))
+        .toList();
+  }
 
   void setSortOption(SortOption option) {
     currentSort.value = option;

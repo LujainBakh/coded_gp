@@ -4,7 +4,6 @@ import 'package:coded_gp/core/common/widgets/custom_back_button.dart';
 import 'package:coded_gp/features/chatbot/views/screens/chatbot_screen.dart';
 import 'package:coded_gp/main_screen.dart';
 import 'package:coded_gp/features/summariser/views/screens/upload_file_summariser_screen.dart';
-import 'package:coded_gp/features/summariser/views/screens/pdf_summarizer_screen.dart';
 
 class SummariserScreen extends StatelessWidget {
   const SummariserScreen({super.key});
@@ -21,7 +20,7 @@ class SummariserScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           const Text(
-            'Please choose an option to start\nsummarizing',
+            'Uplaod a PDF file to\n summarize it',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 16,
@@ -44,26 +43,6 @@ class SummariserScreen extends StatelessWidget {
                 ),
                 label: const Text(
                   'Upload File',
-                  style: TextStyle(
-                    color: Color(0xFF1a457b),
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              TextButton.icon(
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const PDFSummarizerScreen(),
-                  ),
-                ),
-                icon: const Icon(
-                  Icons.picture_as_pdf,
-                  color: Color(0xFF1a457b),
-                ),
-                label: const Text(
-                  'Summarize PDF from URL',
                   style: TextStyle(
                     color: Color(0xFF1a457b),
                     fontSize: 16,

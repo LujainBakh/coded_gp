@@ -252,7 +252,8 @@ class AppwriteStorageService {
     }
   }
 
-  Future<List<FileModel>> listFiles({required String folderId}) async {
+  Future<List<FileModel>> listFiles(
+      {required String folderId, String? searchQuery}) async {
     try {
       final userId = _auth.currentUser?.uid;
       if (userId == null) throw Exception('User not authenticated');
@@ -276,6 +277,17 @@ class AppwriteStorageService {
         debugPrint('Processing file: \\n${doc.data()}');
         return FileModel.fromMap(doc.data() as Map<String, dynamic>);
       }).toList();
+
+      // Apply search filter if query is provided
+      if (searchQuery != null && searchQuery.isNotEmpty) {
+        return files
+            .where((file) =>
+                file.fileTitle
+                    .toLowerCase()
+                    .contains(searchQuery.toLowerCase()) ||
+                file.fileName.toLowerCase().contains(searchQuery.toLowerCase()))
+            .toList();
+      }
 
       debugPrint('Successfully converted ${files.length} files to FileModel');
       return files;

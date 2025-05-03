@@ -28,6 +28,7 @@ class _ViewFilesScreenState extends State<ViewFilesScreen> {
   late AppwriteStorageService _storageService;
   List<FileModel> _files = [];
   bool _isLoading = true;
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
@@ -37,10 +38,9 @@ class _ViewFilesScreenState extends State<ViewFilesScreen> {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // Reload files when the screen is focused
-    _loadFiles();
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 
   void _initializeAppwrite() {
@@ -61,7 +61,11 @@ class _ViewFilesScreenState extends State<ViewFilesScreen> {
       });
 
       debugPrint('Loading files for folder: ${widget.folderId}');
-      final files = await _storageService.listFiles(folderId: widget.folderId);
+      final files = await _storageService.listFiles(
+        folderId: widget.folderId,
+        searchQuery:
+            _searchController.text.isEmpty ? null : _searchController.text,
+      );
       debugPrint('Loaded ${files.length} files');
 
       if (mounted) {
@@ -217,6 +221,10 @@ class _ViewFilesScreenState extends State<ViewFilesScreen> {
                   Padding(
                     padding: const EdgeInsets.all(16),
                     child: TextField(
+                      controller: _searchController,
+                      onChanged: (value) {
+                        _loadFiles();
+                      },
                       decoration: InputDecoration(
                         hintText: 'Search',
                         prefixIcon: const Icon(Icons.search),
