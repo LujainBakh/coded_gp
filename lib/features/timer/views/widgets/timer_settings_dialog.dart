@@ -34,7 +34,7 @@ class TimerSettingsDialog extends StatelessWidget {
                 ),
                 IconButton(
                   icon: const Icon(Icons.close),
-                  onPressed: () => Get.back(),
+                  onPressed: () => Navigator.of(context).pop(),
                 ),
               ],
             ),
@@ -75,7 +75,7 @@ class TimerSettingsDialog extends StatelessWidget {
                     sound: controller.soundEnabled.value,
                     notifications: controller.notificationsEnabled.value,
                   );
-                  Get.back();
+                  Navigator.of(context).pop();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFBBDE4E),
