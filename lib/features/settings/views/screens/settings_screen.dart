@@ -283,6 +283,6 @@ class SettingsScreen extends StatelessWidget {
   }
 
   void _logoutWithoutContext() {
-    // Implementation of logoutWithoutContext method
+    _showLogoutDialog();
   }
 }
