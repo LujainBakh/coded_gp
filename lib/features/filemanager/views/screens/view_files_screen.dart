@@ -460,10 +460,11 @@ class _FileIconWithLabel extends StatelessWidget {
               ),
             ],
           ),
-          child: Icon(
-            _getFileIconStatic(fileType),
-            size: 48,
-            color: Colors.grey[800],
+          child: Image.asset(
+            'assets/images/file.png',
+            width: 15,
+            height: 15,
+            fit: BoxFit.contain,
           ),
         ),
         Positioned(
