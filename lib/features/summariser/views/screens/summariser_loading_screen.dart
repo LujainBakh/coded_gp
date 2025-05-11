@@ -82,7 +82,7 @@ class _SummariserLoadingScreenState extends State<SummariserLoadingScreen>
               ),
               const SizedBox(height: 32),
               const Text(
-                'Your flashcards are\nbrewing!',
+                'Your summary is\nbrewing!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 28,

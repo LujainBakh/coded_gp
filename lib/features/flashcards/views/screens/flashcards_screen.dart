@@ -82,7 +82,18 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
                 child: Row(
                   children: [
                     CustomBackButton(
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () {
+                        if (Navigator.of(context).canPop()) {
+                          Navigator.of(context).pop();
+                        } else {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => MainScreen(initialIndex: 0),
+                            ),
+                          );
+                        }
+                      },
                     ),
                     const Spacer(),
                     const Text(
