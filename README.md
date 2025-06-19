@@ -2,6 +2,8 @@
 
 Welcome to the official repository of **CodEd**, an AI-powered academic assistant designed to support students of the *College of Computer Science and Information Technology (CCSIT)* at Imam Abdulrahman Bin Faisal University.
 
+**Learn more about CodEd Here:** https://linktr.ee/coded_gp
+
 ## 📱 About the Project
 
 CodEd is a mobile application built with Flutter that provides an intelligent, student-centered platform integrating modern AI technologies to assist CCSIT students in managing their academic life more effectively. It leverages OpenAI’s GPT models to simulate a virtual academic advisor capable of answering FAQs, summarizing documents, generating flashcards and quizzes, and retrieving personalized student data.
